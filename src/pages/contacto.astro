@@ -1,0 +1,321 @@
+---
+/**
+ * Página de Contacto (/contacto).
+ * Formulario maquetado (nombre, email, empresa, mensaje) + email directo.
+ * IMPORTANTE: el envío del formulario está PENDIENTE de decidir método.
+ * De momento no se envía a ningún sitio; un pequeño script muestra un aviso
+ * temporal al pulsar "Enviar". Ver comentario en el <script> al final.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Datos estructurados de contacto (SEO).
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contacto — Naveosoft',
+  url: 'https://naveosoft.es/contacto',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Naveosoft',
+    email: 'naveosoft@gmail.com',
+    url: 'https://naveosoft.es',
+  },
+};
+---
+
+<BaseLayout
+  title="Contacto — Habla con Naveosoft"
+  description="¿Buscas una app de fichaje o un desarrollo de software a medida? Escríbenos y te respondemos sin compromiso. Contacta con Naveosoft por formulario o email."
+  jsonLd={contactJsonLd}
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Contacto</span>
+      <h1>¿Hablamos de tu proyecto?</h1>
+      <p class="lead">
+        Rellena el formulario o escríbenos directamente. Te respondemos lo antes
+        posible, sin compromiso.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= CONTENIDO ================= -->
+  <section class="section">
+    <div class="container contact-grid">
+      <!-- Columna de información -->
+      <aside class="contact-info">
+        <h2>Escríbenos</h2>
+        <p>
+          Tanto si necesitas <strong>Forjia</strong> para el fichaje de tu
+          empresa como un <strong>desarrollo a medida</strong>, cuéntanos tu
+          caso y te ayudamos.
+        </p>
+
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">✉️</span>
+          <div>
+            <h3>Email</h3>
+            <a href="mailto:naveosoft@gmail.com">naveosoft@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">💬</span>
+          <div>
+            <h3>Qué esperar</h3>
+            <p>Una respuesta cercana y sin tecnicismos, normalmente en 24-48 h laborables.</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">📱</span>
+          <div>
+            <h3>¿Ya usas Forjia?</h3>
+            <p>
+              Accede a la app en
+              <a href="https://forjia.es" target="_blank" rel="noopener">forjia.es ↗</a>
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Columna del formulario -->
+      <div class="contact-form-wrap">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="field">
+            <label for="nombre">Nombre <span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" autocomplete="organization" />
+          </div>
+
+          <div class="field">
+            <label for="mensaje">Mensaje <span class="req">*</span></label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+
+          <!-- Campo trampa anti-spam (invisible para las personas) -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">No rellenar</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="field field--check">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">
+              He leído y acepto que mis datos se usen únicamente para responder a
+              mi consulta. <span class="req">*</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+
+          <!-- Aviso temporal (se muestra al enviar mientras no hay backend) -->
+          <p id="form-status" class="form-status" role="status" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO más corto */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .hero-inner {
+    max-width: 46rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1rem;
+  }
+
+  /* Rejilla contacto */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-info > p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.75rem;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding-block: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .info-icon {
+    font-size: 1.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light-bg);
+    border-radius: var(--radius);
+  }
+
+  .info-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .info-item p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* Formulario */
+  .contact-form-wrap {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .field {
+    margin-bottom: 1.25rem;
+  }
+
+  .field label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-dark);
+  }
+
+  .req {
+    color: var(--color-primary);
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-text);
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  /* Casilla de consentimiento */
+  .field--check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .field--check input {
+    width: auto;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+    accent-color: var(--color-primary);
+  }
+
+  .field--check label {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  /* Campo trampa oculto */
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .contact-form .btn {
+    width: 100%;
+  }
+
+  .form-status {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius);
+    background-color: var(--color-light-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
+
+<script>
+  /*
+   * ENVÍO PENDIENTE DE DECIDIR.
+   * Este script es TEMPORAL: valida los campos y muestra un aviso, pero
+   * todavía NO envía el mensaje a ningún sitio. Cuando Zacarias elija el
+   * método de envío (Formspree, Web3Forms, función serverless, etc.),
+   * se sustituirá por el envío real.
+   */
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status') as HTMLElement | null;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (status) {
+      status.hidden = false;
+      status.textContent =
+        'Formulario de demostración: el envío se activará en breve. De momento, escríbenos a naveosoft@gmail.com.';
+    }
+  });
+</script>

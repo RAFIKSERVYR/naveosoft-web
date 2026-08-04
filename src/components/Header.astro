@@ -1,0 +1,217 @@
+---
+/**
+ * Cabecera del sitio con el logo y el menú de navegación principal.
+ * Resalta el enlace de la página actual y ofrece un menú desplegable
+ * en pantallas de móvil.
+ */
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/forjia', label: 'Forjia' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/sobre-nosotros', label: 'Sobre nosotros' },
+  { href: '/blog', label: 'Blog' },
+];
+
+// Ruta actual (sin barra final) para marcar el enlace activo.
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Naveosoft — inicio">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Naveosoft</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-burger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="site-nav" aria-label="Navegación principal">
+      <ul>
+        {
+          navLinks.map((link) => {
+            const linkPath = link.href.replace(/\/$/, '') || '/';
+            const isActive = currentPath === linkPath;
+            return (
+              <li>
+                <a href={link.href} aria-current={isActive ? 'page' : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            );
+          })
+        }
+        <li class="nav-cta">
+          <a href="/contacto" class="btn btn--primary">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+    gap: 1rem;
+  }
+
+  /* Logo */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--color-dark);
+    letter-spacing: -0.02em;
+  }
+
+  .logo:hover {
+    color: var(--color-dark);
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Navegación */
+  .site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .site-nav a {
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.98rem;
+    padding-block: 0.25rem;
+    transition: color 0.15s ease;
+  }
+
+  .site-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .site-nav a[aria-current='page'] {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .nav-cta a {
+    color: var(--color-white);
+  }
+
+  .nav-cta a:hover {
+    color: var(--color-white);
+  }
+
+  /* Menú hamburguesa (oculto en escritorio) */
+  .nav-toggle,
+  .nav-burger {
+    display: none;
+  }
+
+  .nav-burger {
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  .nav-burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-dark);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* Responsive: menú desplegable en móvil */
+  @media (max-width: 860px) {
+    .nav-burger {
+      display: flex;
+      align-items: center;
+    }
+
+    .site-nav {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem 1.5rem 1.25rem;
+    }
+
+    .site-nav li {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .site-nav a {
+      display: block;
+      padding: 0.9rem 0;
+    }
+
+    .nav-cta {
+      margin-top: 0.75rem;
+      border-top: none !important;
+    }
+
+    .nav-cta a {
+      width: 100%;
+    }
+
+    /* Al marcar la casilla oculta, se despliega el menú */
+    .nav-toggle:checked ~ .site-nav {
+      max-height: 26rem;
+    }
+
+    .nav-toggle:checked ~ .nav-burger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle:checked ~ .nav-burger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-burger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>

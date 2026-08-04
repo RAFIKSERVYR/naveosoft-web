@@ -1,0 +1,301 @@
+---
+/**
+ * Página de Forjia (/forjia).
+ * Presenta el producto estrella: qué es, para quién y sus características.
+ * Sin precios. CTA "Solicita información" hacia contacto y enlace a forjia.es.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Características de Forjia (tarjetas).
+const features = [
+  {
+    icon: '⏱️',
+    title: 'Fichaje en segundos',
+    text: 'Tus empleados registran su entrada y salida con un solo toque, desde el móvil o una tablet.',
+  },
+  {
+    icon: '📍',
+    title: 'Verificación por ubicación',
+    text: 'Confirma que el fichaje se realiza desde el lugar de trabajo mediante geolocalización.',
+  },
+  {
+    icon: '🖥️',
+    title: 'Modo kiosko para tablets',
+    text: 'Convierte una tablet en un punto de fichaje compartido para toda la plantilla.',
+  },
+  {
+    icon: '📊',
+    title: 'Panel de administración',
+    text: 'Gestiona empleados, horarios y fichajes desde un panel central, claro y sencillo.',
+  },
+  {
+    icon: '📅',
+    title: 'Informes mensuales',
+    text: 'Genera automáticamente los informes de horas trabajadas listos para presentar.',
+  },
+  {
+    icon: '🏖️',
+    title: 'Vacaciones y documentos',
+    text: 'Gestiona solicitudes de vacaciones, ausencias y la documentación de tu equipo.',
+  },
+];
+
+// Datos estructurados del producto SaaS (SEO).
+const forjiaJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Forjia',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web, Android, iOS',
+  url: 'https://forjia.es',
+  description:
+    'App SaaS de control de presencia y fichaje para pymes españolas. Cumple el registro horario legal (RD 8/2019) y el RGPD: fichaje en segundos, verificación por ubicación, modo kiosko, informes mensuales y gestión de vacaciones.',
+  inLanguage: 'es',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Naveosoft',
+    url: 'https://naveosoft.es',
+  },
+};
+---
+
+<BaseLayout
+  title="Forjia — App de control de presencia y fichaje para pymes | Naveosoft"
+  description="Forjia es la app de fichaje y control de presencia para pymes españolas. Cumple el RD 8/2019 y el RGPD: fichaje en segundos, verificación por ubicación, modo kiosko, informes mensuales y gestión de vacaciones. Solicita información."
+  jsonLd={forjiaJsonLd}
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Producto de Naveosoft</span>
+      <h1>Forjia, el fichaje legal que tu pyme necesita</h1>
+      <p class="lead">
+        La app de control de presencia y registro horario pensada para pequeñas
+        y medianas empresas. Sencilla para tu equipo, tranquila para ti: cumple
+        el <strong>RD 8/2019</strong> y el <strong>RGPD</strong> sin quebraderos
+        de cabeza.
+      </p>
+      <div class="hero-actions">
+        <a href="/contacto" class="btn btn--primary">Solicita información</a>
+        <a href="https://forjia.es" target="_blank" rel="noopener" class="btn btn--secondary">
+          Ir a la app ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUÉ ES / PARA QUIÉN ================= -->
+  <section class="section">
+    <div class="container grid grid--2 whatfor">
+      <article>
+        <span class="eyebrow">Qué es</span>
+        <h2>Registro horario sin complicaciones</h2>
+        <p>
+          Forjia digitaliza el fichaje de tu empresa. Tus empleados registran su
+          jornada en segundos y tú obtienes de forma automática los informes que
+          exige la ley, sin hojas de cálculo ni papeles. Todo queda guardado de
+          forma segura y accesible cuando lo necesites.
+        </p>
+      </article>
+      <article>
+        <span class="eyebrow">Para quién</span>
+        <h2>Pensado para pymes españolas</h2>
+        <p>
+          Ideal para pequeñas y medianas empresas que necesitan cumplir el
+          registro horario legal de forma ágil: oficinas, comercios, talleres,
+          clínicas, hostelería y equipos con turnos o varias sedes. Fácil de
+          implantar, sin instalaciones complicadas.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= CARACTERÍSTICAS ================= -->
+  <section class="section section--light">
+    <div class="container text-center">
+      <span class="eyebrow">Características</span>
+      <h2>Todo lo que necesitas para controlar la presencia</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Una herramienta completa que se adapta a cómo trabaja tu equipo.
+      </p>
+    </div>
+
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--3">
+        {
+          features.map((f) => (
+            <article class="card">
+              <div class="card-icon">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CUMPLIMIENTO LEGAL ================= -->
+  <section class="section">
+    <div class="container">
+      <div class="compliance">
+        <div class="compliance-badge" aria-hidden="true">
+          <span>⚖️</span>
+        </div>
+        <div>
+          <span class="eyebrow">Cumplimiento garantizado</span>
+          <h2>Tranquilidad legal: RD 8/2019 y RGPD</h2>
+          <p class="lead">
+            El registro de jornada es obligatorio en España. Forjia guarda los
+            fichajes de forma fiable durante el plazo que marca la ley y protege
+            los datos de tu plantilla conforme al RGPD. Ante una inspección,
+            tienes los informes listos con un clic.
+          </p>
+          <ul class="check-list">
+            <li>Registro horario diario e inalterable</li>
+            <li>Conservación de los datos según la normativa</li>
+            <li>Protección de datos personales conforme al RGPD</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA FINAL ================= -->
+  <section class="section section--dark cta">
+    <div class="container text-center">
+      <h2>¿Quieres ver Forjia en tu empresa?</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Cuéntanos cómo trabaja tu equipo y te enseñamos cómo Forjia encaja. Sin
+        compromiso.
+      </p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="/contacto" class="btn btn--primary">Solicita información</a>
+        <a href="https://forjia.es" target="_blank" rel="noopener" class="btn btn--ghost">
+          Ir a la app ↗
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO (mismo lenguaje visual que Inicio) */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  .hero-inner {
+    max-width: 46rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Qué es / Para quién */
+  .whatfor {
+    gap: 3rem;
+  }
+
+  .whatfor p {
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  /* Iconos de tarjetas */
+  .card-icon {
+    font-size: 1.75rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+
+  /* Bloque de cumplimiento */
+  .compliance {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    background: linear-gradient(160deg, #ffffff, var(--color-light-bg));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .compliance-badge {
+    width: 96px;
+    height: 96px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.75rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    box-shadow: var(--shadow-md);
+  }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 1.9rem;
+    color: var(--color-text);
+  }
+
+  .check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 860px) {
+    .compliance {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.75rem;
+    }
+
+    .compliance-badge {
+      width: 72px;
+      height: 72px;
+      font-size: 2rem;
+    }
+  }
+</style>

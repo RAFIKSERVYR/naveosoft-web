@@ -1,0 +1,64 @@
+---
+/**
+ * Componente SEO reutilizable.
+ * Genera los metadatos, Open Graph, Twitter Cards y la URL canónica
+ * de cada página. También permite inyectar datos estructurados (JSON-LD).
+ */
+interface Props {
+  /** Título de la pestaña del navegador y de los buscadores. */
+  title: string;
+  /** Descripción breve para Google y redes sociales. */
+  description: string;
+  /** Imagen para compartir en redes (ruta dentro de /public). */
+  image?: string;
+  /** Datos estructurados JSON-LD (opcional, un objeto o array). */
+  jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.svg',
+  jsonLd,
+} = Astro.props;
+
+// URL canónica de la página actual, calculada a partir del dominio (site).
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// URL absoluta de la imagen para compartir.
+const socialImage = new URL(image, Astro.site);
+
+const siteName = 'Naveosoft';
+---
+
+<!-- Metadatos básicos -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph (redes sociales / WhatsApp) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={socialImage} />
+<meta property="og:locale" content="es_ES" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
+
+<!-- Datos estructurados JSON-LD (si la página los aporta) -->
+{
+  jsonLd && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  )
+}

@@ -1,0 +1,170 @@
+---
+/**
+ * Pie de página del sitio: enlaces de navegación, contacto directo,
+ * enlace a la app Forjia y aviso de copyright.
+ */
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo" aria-label="Naveosoft — inicio">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">Naveosoft</span>
+      </a>
+      <p class="footer-tagline">
+        Desarrollo de software a medida para pymes. Creadores de Forjia, la app
+        de control de presencia y fichaje.
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Navegación del pie">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/servicios">Servicios</a></li>
+        <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-label="Producto">
+      <h4>Producto</h4>
+      <ul>
+        <li><a href="/forjia">Forjia</a></li>
+        <li>
+          <a href="https://forjia.es" target="_blank" rel="noopener">
+            Ir a la app ↗
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="/contacto">Formulario de contacto</a></li>
+        <li>
+          <a href="mailto:naveosoft@gmail.com">naveosoft@gmail.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; {year} Naveosoft. Todos los derechos reservados.</p>
+    <p class="footer-made">Hecho con Astro · naveosoft.es</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-darker);
+    color: var(--color-text-on-dark);
+    padding-top: 3.5rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.4fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--color-white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.9rem;
+  }
+
+  .logo:hover {
+    color: var(--color-white);
+  }
+
+  .logo-mark {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  }
+
+  .footer-tagline {
+    color: var(--color-text-on-dark);
+    opacity: 0.75;
+    max-width: 22rem;
+    font-size: 0.95rem;
+  }
+
+  .footer-col h4 {
+    color: var(--color-white);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-col a {
+    color: var(--color-text-on-dark);
+    opacity: 0.8;
+    font-size: 0.95rem;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+
+  .footer-col a:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .footer-bottom p {
+    color: var(--color-text-on-dark);
+  }
+
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

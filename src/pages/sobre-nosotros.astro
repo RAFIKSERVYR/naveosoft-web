@@ -1,0 +1,195 @@
+---
+/**
+ * Página Sobre nosotros (/sobre-nosotros).
+ * Presenta quién es Naveosoft, su enfoque y sus valores.
+ * Nota: los textos son de marca; los datos concretos (año, equipo)
+ * los aportará Zacarias más adelante.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Valores de la empresa (tarjetas).
+const values = [
+  {
+    icon: '🤝',
+    title: 'Cercanía',
+    text: 'Hablamos claro, sin tecnicismos. Estamos a tu lado antes, durante y después del proyecto.',
+  },
+  {
+    icon: '✨',
+    title: 'Calidad',
+    text: 'Construimos software cuidado, fiable y hecho para durar, no soluciones de usar y tirar.',
+  },
+  {
+    icon: '🔍',
+    title: 'Transparencia',
+    text: 'Sabes en todo momento en qué se trabaja y por qué. Sin sorpresas ni letra pequeña.',
+  },
+  {
+    icon: '🎯',
+    title: 'Enfoque práctico',
+    text: 'Nos centramos en resolver tu problema real y en aportar valor desde el primer día.',
+  },
+  {
+    icon: '📈',
+    title: 'Visión de producto',
+    text: 'Pensamos a largo plazo: creamos software preparado para crecer con tu empresa.',
+  },
+  {
+    icon: '🔒',
+    title: 'Compromiso y seguridad',
+    text: 'Cuidamos tus datos y los de tus clientes, con las mejores prácticas y cumpliendo el RGPD.',
+  },
+];
+---
+
+<BaseLayout
+  title="Sobre nosotros — Quiénes somos | Naveosoft"
+  description="Conoce a Naveosoft: un equipo de desarrollo de software cercano y práctico, creador de Forjia. Nuestro enfoque y nuestros valores para ayudar a las pymes a crecer con tecnología."
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Sobre nosotros</span>
+      <h1>Tecnología cercana para que tu empresa crezca</h1>
+      <p class="lead">
+        Somos Naveosoft, un equipo apasionado por crear software que de verdad
+        ayuda a las pymes. Creemos en la tecnología útil, bien hecha y explicada
+        con claridad.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= QUIÉNES SOMOS ================= -->
+  <section class="section">
+    <div class="container grid grid--2 whatfor">
+      <article>
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Un equipo de desarrollo con vocación de acompañar</h2>
+        <p>
+          Naveosoft nace con una idea sencilla: acercar el buen software a las
+          pequeñas y medianas empresas. Muchas pymes necesitan herramientas
+          digitales pero se topan con soluciones caras, complicadas o pensadas
+          para grandes corporaciones. Nosotros hacemos lo contrario: tecnología
+          a tu medida, fácil de usar y con un trato humano.
+        </p>
+        <p style="margin-top: 1rem;">
+          Fruto de esa forma de trabajar nació <strong>Forjia</strong>, nuestra
+          app de control de presencia y fichaje, hoy usada por empresas que
+          necesitan cumplir la ley sin complicaciones. Y con el mismo cuidado
+          desarrollamos proyectos a medida para otras compañías.
+        </p>
+      </article>
+      <article class="approach-box">
+        <span class="eyebrow">Nuestro enfoque</span>
+        <h2>Escuchar primero, construir después</h2>
+        <p>
+          Antes de escribir una sola línea de código, nos sentamos a entender tu
+          negocio y tu problema. Solo así podemos proponerte la solución
+          adecuada, ni más ni menos de lo que necesitas.
+        </p>
+        <p style="margin-top: 1rem;">
+          Trabajamos por fases, mostrándote avances de forma continua, para que
+          el resultado final sea exactamente lo que esperabas.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= VALORES ================= -->
+  <section class="section section--light">
+    <div class="container text-center">
+      <span class="eyebrow">Lo que nos mueve</span>
+      <h2>Nuestros valores</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Principios que guían cada proyecto que ponemos en marcha.
+      </p>
+    </div>
+
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--3">
+        {
+          values.map((v) => (
+            <article class="card">
+              <div class="card-icon">{v.icon}</div>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA FINAL ================= -->
+  <section class="section section--dark cta">
+    <div class="container text-center">
+      <h2>Trabajemos juntos</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Tanto si buscas una app de fichaje como un desarrollo a medida, nos
+        encantará conocer tu proyecto.
+      </p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="/contacto" class="btn btn--primary">Contactar</a>
+        <a href="/servicios" class="btn btn--ghost">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO (mismo lenguaje visual) */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  .hero-inner {
+    max-width: 46rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Quiénes somos / enfoque */
+  .whatfor {
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .whatfor p {
+    color: var(--color-text-muted);
+  }
+
+  .approach-box {
+    background: linear-gradient(160deg, #ffffff, var(--color-light-bg));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Iconos de tarjetas */
+  .card-icon {
+    font-size: 1.75rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+</style>

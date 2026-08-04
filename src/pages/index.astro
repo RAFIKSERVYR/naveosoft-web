@@ -1,0 +1,303 @@
+---
+/**
+ * Página de Inicio (/).
+ * Presenta a Naveosoft como empresa y dirige a los dos públicos:
+ * empresas que buscan una app de fichaje (Forjia) y empresas que
+ * buscan desarrollo de software a medida (Servicios).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Datos estructurados de la empresa (ayudan al SEO en Google).
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Naveosoft',
+  url: 'https://naveosoft.es',
+  description:
+    'Empresa de desarrollo de software a medida para pymes. Creadores de Forjia, la app de control de presencia y fichaje.',
+  email: 'naveosoft@gmail.com',
+  areaServed: 'ES',
+  knowsAbout: [
+    'Desarrollo de software a medida',
+    'Aplicaciones SaaS',
+    'Control de presencia y fichaje',
+    'Automatización de procesos',
+  ],
+};
+---
+
+<BaseLayout
+  title="Naveosoft — Desarrollo de software a medida y app de fichaje Forjia"
+  description="Naveosoft desarrolla software a medida para pymes españolas y crea Forjia, la app de control de presencia y fichaje que cumple el RD 8/2019. Descubre nuestros servicios."
+  jsonLd={organizationJsonLd}
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Software a medida para pymes</span>
+      <h1>
+        Construimos el software que tu empresa necesita para crecer
+      </h1>
+      <p class="lead">
+        En Naveosoft desarrollamos aplicaciones web, apps y soluciones SaaS a
+        medida. Y creamos <strong>Forjia</strong>, la app de control de presencia
+        y fichaje legal para pymes españolas.
+      </p>
+      <div class="hero-actions">
+        <a href="/forjia" class="btn btn--primary">Descubre Forjia</a>
+        <a href="/servicios" class="btn btn--secondary">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BLOQUE FORJIA ================= -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="split">
+        <div class="split-text">
+          <span class="eyebrow">Nuestro producto estrella</span>
+          <h2>Forjia: fichaje y control de presencia sin complicaciones</h2>
+          <p class="lead">
+            La app que ayuda a las pymes a cumplir el registro horario legal
+            (RD 8/2019) de forma sencilla: fichaje en segundos, verificación por
+            ubicación, modo kiosko para tablets, informes mensuales y mucho más.
+          </p>
+          <ul class="check-list">
+            <li>Cumple con el RD 8/2019 y el RGPD</li>
+            <li>Fichaje en segundos desde el móvil o una tablet</li>
+            <li>Panel de administración e informes automáticos</li>
+          </ul>
+          <div class="hero-actions">
+            <a href="/forjia" class="btn btn--primary">Descubre Forjia</a>
+            <a href="https://forjia.es" target="_blank" rel="noopener" class="btn btn--secondary">
+              Ir a la app ↗
+            </a>
+          </div>
+        </div>
+        <div class="split-visual" aria-hidden="true">
+          <div class="mock-card">
+            <div class="mock-dot"></div>
+            <span class="mock-label">Forjia</span>
+            <div class="mock-check">✓</div>
+            <p class="mock-title">Fichaje registrado</p>
+            <p class="mock-sub">Entrada · 09:02 · Oficina central</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BLOQUE SERVICIOS ================= -->
+  <section class="section">
+    <div class="container text-center">
+      <span class="eyebrow">Desarrollo a medida</span>
+      <h2>Convertimos tu idea en software que funciona</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Si necesitas una herramienta que no existe en el mercado, la creamos
+        para ti. Acompañamos a las pymes desde la idea hasta la puesta en marcha.
+      </p>
+    </div>
+
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card-icon">🌐</div>
+          <h3>Aplicaciones web</h3>
+          <p>Plataformas y paneles a medida, rápidos y seguros, adaptados a tu forma de trabajar.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">📱</div>
+          <h3>Apps y SaaS</h3>
+          <p>Productos digitales para tus clientes o tu equipo, escalables y listos para crecer.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>Automatización</h3>
+          <p>Eliminamos tareas repetitivas y conectamos tus herramientas para ahorrarte tiempo.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="container text-center" style="margin-top: 2.5rem;">
+      <a href="/servicios" class="btn btn--primary">Ver servicios</a>
+    </div>
+  </section>
+
+  <!-- ================= LLAMADA A CONTACTO ================= -->
+  <section class="section section--dark cta">
+    <div class="container text-center">
+      <h2>¿Hablamos de tu proyecto?</h2>
+      <p class="lead" style="margin-inline: auto;">
+        Cuéntanos qué necesitas y te respondemos sin compromiso. Tanto si buscas
+        una app de fichaje como un desarrollo a medida, estamos para ayudarte.
+      </p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="/contacto" class="btn btn--primary">Contactar</a>
+        <a href="mailto:naveosoft@gmail.com" class="btn btn--ghost">
+          naveosoft@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  .hero-inner {
+    max-width: 46rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* BLOQUE PARTIDO (texto + visual) */
+  .split {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 1.9rem;
+    color: var(--color-text);
+  }
+
+  .check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* Tarjeta visual simulada de Forjia */
+  .split-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mock-card {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    background: linear-gradient(160deg, #ffffff, #f1f5f9);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+
+  .mock-dot {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+  }
+
+  .mock-label {
+    position: absolute;
+    top: 0.85rem;
+    right: 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.03em;
+  }
+
+  .mock-check {
+    width: 64px;
+    height: 64px;
+    margin: 0.5rem auto 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+  }
+
+  .mock-title {
+    font-weight: 700;
+    color: var(--color-dark);
+    font-size: 1.1rem;
+  }
+
+  .mock-sub {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Iconos de tarjetas */
+  .card-icon {
+    font-size: 1.75rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light-bg);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+
+  /* CTA final */
+  .cta .lead {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .split {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .split-visual {
+      order: -1;
+    }
+  }
+</style>

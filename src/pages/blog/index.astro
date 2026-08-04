@@ -1,0 +1,152 @@
+---
+/**
+ * Listado del blog (/blog).
+ * Muestra todos los artículos publicados (no borradores), del más
+ * reciente al más antiguo.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Traemos los artículos, quitamos los borradores y ordenamos por fecha.
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Formatea una fecha en español (ej. "4 de agosto de 2026").
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Blog — Fichaje, normativa laboral y desarrollo | Naveosoft"
+  description="Artículos sobre registro horario, normativa laboral, control de presencia y desarrollo de software para pymes. El blog de Naveosoft."
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Blog</span>
+      <h1>Ideas sobre fichaje, normativa y tecnología</h1>
+      <p class="lead">
+        Consejos prácticos sobre registro horario y cumplimiento legal, y todo
+        lo que aprendemos desarrollando software para pymes.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= LISTADO ================= -->
+  <section class="section">
+    <div class="container">
+      {
+        posts.length === 0 ? (
+          <p class="empty">Aún no hay artículos publicados. ¡Vuelve pronto!</p>
+        ) : (
+          <div class="grid grid--3">
+            {posts.map((post) => (
+              <article class="card post-card">
+                <a href={`/blog/${post.id}`} class="post-link">
+                  <span class="post-category">{post.data.category}</span>
+                  <h2 class="post-title">{post.data.title}</h2>
+                  <p class="post-desc">{post.data.description}</p>
+                  <div class="post-meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {formatDate(post.data.pubDate)}
+                    </time>
+                    <span class="post-more">Leer &rarr;</span>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .hero-inner {
+    max-width: 46rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1rem;
+  }
+
+  .post-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .post-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.75rem;
+    color: inherit;
+  }
+
+  .post-link:hover {
+    color: inherit;
+  }
+
+  .post-category {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background-color: var(--color-light-bg);
+    border: 1px solid var(--color-border);
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .post-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    flex-grow: 1;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-more {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding-block: 2rem;
+  }
+</style>
