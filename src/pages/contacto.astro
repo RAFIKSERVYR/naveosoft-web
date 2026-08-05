@@ -17,7 +17,7 @@ const contactJsonLd = {
   mainEntity: {
     '@type': 'Organization',
     name: 'Naveosoft',
-    email: 'naveosoft@gmail.com',
+    email: 'info@naveosoft.es',
     url: 'https://naveosoft.es',
   },
 };
@@ -56,7 +56,7 @@ const contactJsonLd = {
           <span class="info-icon" aria-hidden="true">✉️</span>
           <div>
             <h3>Email</h3>
-            <a href="mailto:naveosoft@gmail.com">naveosoft@gmail.com</a>
+            <a href="mailto:info@naveosoft.es">info@naveosoft.es</a>
           </div>
         </div>
 
@@ -82,7 +82,30 @@ const contactJsonLd = {
 
       <!-- Columna del formulario -->
       <div class="contact-form-wrap">
-        <form id="contact-form" class="contact-form" novalidate>
+        <form
+          id="contact-form"
+          class="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          novalidate
+        >
+          <!--
+            Clave PÚBLICA de Web3Forms. No es secreta: solo sirve para que los
+            mensajes se envíen al correo info@naveosoft.es que configuraste.
+            Sustituye el texto de abajo por tu clave real de Web3Forms.
+          -->
+          <input
+            type="hidden"
+            name="access_key"
+            value="336e91f2-74e2-4319-932b-b91d779a5c7d"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="Nuevo mensaje desde el formulario de naveosoft.es"
+          />
+          <input type="hidden" name="from_name" value="Web Naveosoft" />
+
           <div class="field">
             <label for="nombre">Nombre <span class="req">*</span></label>
             <input type="text" id="nombre" name="nombre" autocomplete="name" required />
@@ -103,11 +126,16 @@ const contactJsonLd = {
             <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
           </div>
 
-          <!-- Campo trampa anti-spam (invisible para las personas) -->
-          <div class="hp" aria-hidden="true">
-            <label for="website">No rellenar</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
+          <!-- Campo anti-spam de Web3Forms (invisible para las personas) -->
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hp"
+            style="display: none"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
 
           <div class="field field--check">
             <input type="checkbox" id="consent" name="consent" required />
@@ -287,6 +315,18 @@ const contactJsonLd = {
     text-align: center;
   }
 
+  .form-status--ok {
+    background-color: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #065f46;
+  }
+
+  .form-status--error {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+  }
+
   @media (max-width: 860px) {
     .contact-grid {
       grid-template-columns: 1fr;
@@ -297,25 +337,63 @@ const contactJsonLd = {
 
 <script>
   /*
-   * ENVÍO PENDIENTE DE DECIDIR.
-   * Este script es TEMPORAL: valida los campos y muestra un aviso, pero
-   * todavía NO envía el mensaje a ningún sitio. Cuando Zacarias elija el
-   * método de envío (Formspree, Web3Forms, función serverless, etc.),
-   * se sustituirá por el envío real.
+   * Envío del formulario a través de Web3Forms.
+   * Manda los datos sin recargar la página y muestra un mensaje de éxito
+   * o de error. Requiere que el campo oculto "access_key" tenga tu clave.
    */
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const status = document.getElementById('form-status') as HTMLElement | null;
+  const button = form?.querySelector(
+    'button[type="submit"]'
+  ) as HTMLButtonElement | null;
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Validación de los campos obligatorios del navegador.
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    if (status) {
-      status.hidden = false;
-      status.textContent =
-        'Formulario de demostración: el envío se activará en breve. De momento, escríbenos a naveosoft@gmail.com.';
+
+    const originalText = button?.textContent ?? 'Enviar mensaje';
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Enviando…';
+    }
+    if (status) status.hidden = true;
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        form.reset();
+        if (status) {
+          status.hidden = false;
+          status.className = 'form-status form-status--ok';
+          status.textContent =
+            '¡Gracias! Hemos recibido tu mensaje y te responderemos lo antes posible.';
+        }
+      } else {
+        throw new Error(data.message || 'Error al enviar');
+      }
+    } catch (error) {
+      if (status) {
+        status.hidden = false;
+        status.className = 'form-status form-status--error';
+        status.textContent =
+          'No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos a info@naveosoft.es.';
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
     }
   });
 </script>

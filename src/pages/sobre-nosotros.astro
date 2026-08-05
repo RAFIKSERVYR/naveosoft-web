@@ -66,16 +66,19 @@ const values = [
         <span class="eyebrow">Quiénes somos</span>
         <h2>Un equipo de desarrollo con vocación de acompañar</h2>
         <p>
-          Naveosoft nace con una idea sencilla: acercar el buen software a las
-          pequeñas y medianas empresas. Muchas pymes necesitan herramientas
-          digitales pero se topan con soluciones caras, complicadas o pensadas
-          para grandes corporaciones. Nosotros hacemos lo contrario: tecnología
-          a tu medida, fácil de usar y con un trato humano.
+          Naveosoft nació en <strong>2026</strong> con una idea sencilla:
+          acercar el buen software a las pequeñas y medianas empresas. Muchas
+          pymes necesitan herramientas digitales pero se topan con soluciones
+          caras, complicadas o pensadas para grandes corporaciones. Nosotros
+          hacemos lo contrario: tecnología a tu medida, fácil de usar y con un
+          trato humano.
         </p>
         <p style="margin-top: 1rem;">
-          Fruto de esa forma de trabajar nació <strong>Forjia</strong>, nuestra
-          app de control de presencia y fichaje, hoy usada por empresas que
-          necesitan cumplir la ley sin complicaciones. Y con el mismo cuidado
+          Somos un <strong>equipo cercano</strong>: tratamos cada proyecto de tú
+          a tú, sin intermediarios ni procesos impersonales. Fruto de esa forma
+          de trabajar nació <strong>Forjia</strong>, nuestra app de control de
+          presencia y fichaje, que hoy usan ya <strong>miles de trabajadores</strong>
+          para cumplir la ley sin complicaciones. Con el mismo cuidado
           desarrollamos proyectos a medida para otras compañías.
         </p>
       </article>
@@ -92,6 +95,26 @@ const values = [
           el resultado final sea exactamente lo que esperabas.
         </p>
       </article>
+    </div>
+  </section>
+
+  <!-- ================= CIFRAS ================= -->
+  <section class="section section--dark stats-section">
+    <div class="container">
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">2026</span>
+          <span class="stat-label">Año de fundación</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">Miles</span>
+          <span class="stat-label">de trabajadores usan Forjia</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Trato cercano y directo</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -191,5 +214,42 @@ const values = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     margin-bottom: 1rem;
+  }
+
+  /* Franja de cifras */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .stat-num {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .stat-label {
+    color: var(--color-text-on-dark);
+    opacity: 0.85;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
   }
 </style>
