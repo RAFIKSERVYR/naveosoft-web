@@ -5,36 +5,37 @@
  * Sin precios. CTA "Solicita información" hacia contacto y enlace a forjia.es.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 
 // Características de Forjia (tarjetas).
 const features = [
   {
-    icon: '⏱️',
+    icon: 'clock',
     title: 'Fichaje en segundos',
     text: 'Tus empleados registran su entrada y salida con un solo toque, desde el móvil o una tablet.',
   },
   {
-    icon: '📍',
+    icon: 'map-pin',
     title: 'Verificación por ubicación',
     text: 'Confirma que el fichaje se realiza desde el lugar de trabajo mediante geolocalización.',
   },
   {
-    icon: '🖥️',
+    icon: 'monitor',
     title: 'Modo kiosko para tablets',
     text: 'Convierte una tablet en un punto de fichaje compartido para toda la plantilla.',
   },
   {
-    icon: '📊',
+    icon: 'dashboard',
     title: 'Panel de administración',
     text: 'Gestiona empleados, horarios y fichajes desde un panel central, claro y sencillo.',
   },
   {
-    icon: '📅',
+    icon: 'calendar',
     title: 'Informes mensuales',
     text: 'Genera automáticamente los informes de horas trabajadas listos para presentar.',
   },
   {
-    icon: '🏖️',
+    icon: 'briefcase',
     title: 'Vacaciones y documentos',
     text: 'Gestiona solicitudes de vacaciones, ausencias y la documentación de tu equipo.',
   },
@@ -86,7 +87,7 @@ const forjiaJsonLd = {
 
   <!-- ================= QUÉ ES / PARA QUIÉN ================= -->
   <section class="section">
-    <div class="container grid grid--2 whatfor">
+    <div class="container grid grid--2 whatfor reveal">
       <article>
         <span class="eyebrow">Qué es</span>
         <h2>Registro horario sin complicaciones</h2>
@@ -112,20 +113,22 @@ const forjiaJsonLd = {
 
   <!-- ================= CARACTERÍSTICAS ================= -->
   <section class="section section--light">
-    <div class="container text-center">
+    <div class="container section-head reveal">
       <span class="eyebrow">Características</span>
       <h2>Todo lo que necesitas para controlar la presencia</h2>
-      <p class="lead" style="margin-inline: auto;">
+      <p class="lead">
         Una herramienta completa que se adapta a cómo trabaja tu equipo.
       </p>
     </div>
 
-    <div class="container" style="margin-top: 2.5rem;">
-      <div class="grid grid--3">
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--3 reveal">
         {
           features.map((f) => (
             <article class="card">
-              <div class="card-icon">{f.icon}</div>
+              <span class="icon-box">
+                <Icon name={f.icon} />
+              </span>
               <h3>{f.title}</h3>
               <p>{f.text}</p>
             </article>
@@ -138,9 +141,9 @@ const forjiaJsonLd = {
   <!-- ================= CUMPLIMIENTO LEGAL ================= -->
   <section class="section">
     <div class="container">
-      <div class="compliance">
+      <div class="compliance reveal">
         <div class="compliance-badge" aria-hidden="true">
-          <span>⚖️</span>
+          <Icon name="scale" size={44} />
         </div>
         <div>
           <span class="eyebrow">Cumplimiento garantizado</span>
@@ -163,9 +166,9 @@ const forjiaJsonLd = {
 
   <!-- ================= CTA FINAL ================= -->
   <section class="section section--dark cta">
-    <div class="container text-center">
+    <div class="container section-head reveal">
       <h2>¿Quieres ver Forjia en tu empresa?</h2>
-      <p class="lead" style="margin-inline: auto;">
+      <p class="lead">
         Cuéntanos cómo trabaja tu equipo y te enseñamos cómo Forjia encaja. Sin
         compromiso.
       </p>
@@ -183,8 +186,8 @@ const forjiaJsonLd = {
   /* HERO (mismo lenguaje visual que Inicio) */
   .hero {
     background:
-      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
-      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.12), transparent 55%),
       var(--color-white);
     padding-block: clamp(3.5rem, 8vw, 6.5rem);
   }
@@ -214,20 +217,6 @@ const forjiaJsonLd = {
     margin-top: 0.5rem;
   }
 
-  /* Iconos de tarjetas */
-  .card-icon {
-    font-size: 1.75rem;
-    width: 3.25rem;
-    height: 3.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    margin-bottom: 1rem;
-  }
-
   /* Bloque de cumplimiento */
   .compliance {
     display: grid;
@@ -242,13 +231,14 @@ const forjiaJsonLd = {
   }
 
   .compliance-badge {
-    width: 96px;
-    height: 96px;
-    border-radius: 24px;
+    width: 92px;
+    height: 92px;
+    flex-shrink: 0;
+    border-radius: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.75rem;
+    color: #ffffff;
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     box-shadow: var(--shadow-md);
   }

@@ -7,6 +7,7 @@
  * temporal al pulsar "Enviar". Ver comentario en el <script> al final.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 
 // Datos estructurados de contacto (SEO).
 const contactJsonLd = {
@@ -42,7 +43,7 @@ const contactJsonLd = {
 
   <!-- ================= CONTENIDO ================= -->
   <section class="section">
-    <div class="container contact-grid">
+    <div class="container contact-grid reveal">
       <!-- Columna de información -->
       <aside class="contact-info">
         <h2>Escríbenos</h2>
@@ -53,7 +54,7 @@ const contactJsonLd = {
         </p>
 
         <div class="info-item">
-          <span class="info-icon" aria-hidden="true">✉️</span>
+          <span class="info-icon" aria-hidden="true"><Icon name="mail" size={20} /></span>
           <div>
             <h3>Email</h3>
             <a href="mailto:info@naveosoft.es">info@naveosoft.es</a>
@@ -61,7 +62,7 @@ const contactJsonLd = {
         </div>
 
         <div class="info-item">
-          <span class="info-icon" aria-hidden="true">💬</span>
+          <span class="info-icon" aria-hidden="true"><Icon name="chat" size={20} /></span>
           <div>
             <h3>Qué esperar</h3>
             <p>Una respuesta cercana y sin tecnicismos, normalmente en 24-48 h laborables.</p>
@@ -69,7 +70,7 @@ const contactJsonLd = {
         </div>
 
         <div class="info-item">
-          <span class="info-icon" aria-hidden="true">📱</span>
+          <span class="info-icon" aria-hidden="true"><Icon name="smartphone" size={20} /></span>
           <div>
             <h3>¿Ya usas Forjia?</h3>
             <p>
@@ -159,8 +160,8 @@ const contactJsonLd = {
   /* HERO más corto */
   .hero {
     background:
-      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
-      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.12), transparent 55%),
       var(--color-white);
     padding-block: clamp(3rem, 6vw, 4.5rem);
   }
@@ -199,14 +200,15 @@ const contactJsonLd = {
   }
 
   .info-icon {
-    font-size: 1.25rem;
     width: 2.75rem;
     height: 2.75rem;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-light-bg);
+    color: var(--color-primary);
+    background: linear-gradient(160deg, rgba(var(--color-primary-rgb), 0.12), rgba(var(--color-accent-rgb), 0.1));
+    border: 1px solid rgba(var(--color-primary-rgb), 0.16);
     border-radius: var(--radius);
   }
 
@@ -262,7 +264,7 @@ const contactJsonLd = {
   .field textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
   }
 
   .field textarea {

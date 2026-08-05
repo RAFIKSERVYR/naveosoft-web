@@ -26,7 +26,7 @@ const { title, description, image, jsonLd } = Astro.props;
     <SEO title={title} description={description} image={image} jsonLd={jsonLd} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="theme-color" content="#3b82f6" />
+    <meta name="theme-color" content="#43629f" />
   </head>
   <body>
     <a href="#contenido" class="skip-link">Saltar al contenido</a>
@@ -35,6 +35,31 @@ const { title, description, image, jsonLd } = Astro.props;
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Aparición suave de los elementos con la clase "reveal" al hacer scroll.
+      const prefersReduced = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+      const items = document.querySelectorAll('.reveal');
+
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        items.forEach((el) => observer.observe(el));
+      }
+    </script>
 
     <style>
       /* Enlace de accesibilidad para saltar directamente al contenido */

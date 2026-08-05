@@ -4,6 +4,8 @@
  * Resalta el enlace de la página actual y ofrece un menú desplegable
  * en pantallas de móvil.
  */
+import Logo from './Logo.astro';
+
 const navLinks = [
   { href: '/', label: 'Inicio' },
   { href: '/forjia', label: 'Forjia' },
@@ -19,7 +21,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="logo" aria-label="Naveosoft — inicio">
-      <span class="logo-mark" aria-hidden="true"></span>
+      <Logo size={32} />
       <span class="logo-text">Naveosoft</span>
     </a>
 
@@ -56,8 +58,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: saturate(180%) blur(10px);
+    background-color: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -103,15 +106,35 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
   .site-nav a {
+    position: relative;
     color: var(--color-text);
     font-weight: 500;
-    font-size: 0.98rem;
-    padding-block: 0.25rem;
-    transition: color 0.15s ease;
+    font-size: 0.95rem;
+    padding-block: 0.35rem;
+    transition: color 0.18s ease;
   }
 
-  .site-nav a:hover {
-    color: var(--color-primary);
+  .site-nav li:not(.nav-cta) a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.15rem;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .site-nav li:not(.nav-cta) a:hover {
+    color: var(--color-dark);
+  }
+
+  .site-nav li:not(.nav-cta) a:hover::after,
+  .site-nav a[aria-current='page']::after {
+    transform: scaleX(1);
   }
 
   .site-nav a[aria-current='page'] {

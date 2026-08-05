@@ -5,29 +5,30 @@
  * web, apps, automatización y SaaS.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 
 // Servicios ofrecidos (tarjetas con detalle).
 const services = [
   {
-    icon: '🌐',
+    icon: 'globe',
     title: 'Desarrollo web a medida',
     text: 'Webs corporativas, tiendas y plataformas rápidas y seguras, orientadas a SEO y adaptadas a cualquier dispositivo.',
     points: ['Webs y landings', 'Paneles y áreas privadas', 'Tiendas online'],
   },
   {
-    icon: '📱',
+    icon: 'smartphone',
     title: 'Aplicaciones y apps',
     text: 'Aplicaciones web y móviles para tu equipo o tus clientes, diseñadas para ser fáciles de usar y fiables.',
     points: ['Apps web (PWA)', 'Aplicaciones internas', 'Portales de cliente'],
   },
   {
-    icon: '⚙️',
+    icon: 'automation',
     title: 'Automatización de procesos',
     text: 'Eliminamos tareas repetitivas, conectamos tus herramientas y ahorramos tiempo y errores a tu empresa.',
     points: ['Integraciones entre sistemas', 'Flujos automáticos', 'Informes y avisos'],
   },
   {
-    icon: '🚀',
+    icon: 'rocket',
     title: 'Productos SaaS',
     text: 'Convertimos tu idea en un producto digital escalable, listo para crecer con tu negocio. Como hicimos con Forjia.',
     points: ['Del concepto al producto', 'Arquitectura escalable', 'Mantenimiento y evolución'],
@@ -109,7 +110,7 @@ const servicesJsonLd = {
 
   <!-- ================= ENFOQUE ================= -->
   <section class="section">
-    <div class="container grid grid--2 whatfor">
+    <div class="container grid grid--2 whatfor reveal">
       <article>
         <span class="eyebrow">Nuestro enfoque</span>
         <h2>Tecnología que resuelve problemas reales</h2>
@@ -133,21 +134,23 @@ const servicesJsonLd = {
 
   <!-- ================= SERVICIOS ================= -->
   <section id="servicios" class="section section--light">
-    <div class="container text-center">
+    <div class="container section-head reveal">
       <span class="eyebrow">Qué hacemos</span>
       <h2>Nuestros servicios</h2>
-      <p class="lead" style="margin-inline: auto;">
+      <p class="lead">
         Todo lo que tu empresa necesita para dar el salto digital, en un mismo
         equipo.
       </p>
     </div>
 
-    <div class="container" style="margin-top: 2.5rem;">
-      <div class="grid grid--2">
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--2 reveal">
         {
           services.map((s) => (
             <article class="card service-card">
-              <div class="card-icon">{s.icon}</div>
+              <span class="icon-box">
+                <Icon name={s.icon} />
+              </span>
               <h3>{s.title}</h3>
               <p>{s.text}</p>
               <ul class="mini-list">
@@ -164,17 +167,17 @@ const servicesJsonLd = {
 
   <!-- ================= CÓMO TRABAJAMOS ================= -->
   <section class="section">
-    <div class="container text-center">
+    <div class="container section-head reveal">
       <span class="eyebrow">Cómo trabajamos</span>
       <h2>De la idea a la puesta en marcha</h2>
-      <p class="lead" style="margin-inline: auto;">
+      <p class="lead">
         Un proceso claro y por fases, para que en todo momento sepas dónde está
         tu proyecto.
       </p>
     </div>
 
-    <div class="container" style="margin-top: 2.5rem;">
-      <ol class="steps">
+    <div class="container" style="margin-top: 3rem;">
+      <ol class="steps reveal">
         {
           steps.map((step) => (
             <li class="step">
@@ -190,9 +193,9 @@ const servicesJsonLd = {
 
   <!-- ================= CTA FINAL ================= -->
   <section class="section section--dark cta">
-    <div class="container text-center">
+    <div class="container section-head reveal">
       <h2>¿Tienes una idea en mente?</h2>
-      <p class="lead" style="margin-inline: auto;">
+      <p class="lead">
         Cuéntanos qué necesitas y te proponemos cómo hacerlo realidad. Primera
         conversación sin compromiso.
       </p>
@@ -210,8 +213,8 @@ const servicesJsonLd = {
   /* HERO (mismo lenguaje visual) */
   .hero {
     background:
-      radial-gradient(1200px 500px at 80% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
-      radial-gradient(900px 500px at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.12), transparent 55%),
       var(--color-white);
     padding-block: clamp(3.5rem, 8vw, 6.5rem);
   }
@@ -239,20 +242,6 @@ const servicesJsonLd = {
   .whatfor p {
     color: var(--color-text-muted);
     margin-top: 0.5rem;
-  }
-
-  /* Tarjetas de servicio */
-  .card-icon {
-    font-size: 1.75rem;
-    width: 3.25rem;
-    height: 3.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    margin-bottom: 1rem;
   }
 
   .mini-list {
