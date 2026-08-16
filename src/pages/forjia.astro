@@ -1,43 +1,184 @@
 ---
 /**
  * Página de Forjia (/forjia).
- * Presenta el producto estrella: qué es, para quién y sus características.
+ * Presenta el producto estrella con sus funciones REALES y actuales:
+ * fichaje, turnos, vacaciones, documentos/firma, cumplimiento legal,
+ * panel del administrador y plataforma.
  * Sin precios. CTA "Solicita información" hacia contacto y enlace a forjia.es.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 
-// Características de Forjia (tarjetas).
-const features = [
-  {
-    icon: 'clock',
-    title: 'Fichaje en segundos',
-    text: 'Tus empleados registran su entrada y salida con un solo toque, desde el móvil o una tablet.',
-  },
+// --- FICHAJE ---
+const fichaje = [
   {
     icon: 'map-pin',
-    title: 'Verificación por ubicación',
-    text: 'Confirma que el fichaje se realiza desde el lugar de trabajo mediante geolocalización.',
+    title: 'Fichaje con ubicación',
+    text: 'Entrada, salida y pausas desde el móvil o la web, con tu posición confirmada en el mapa y geolocalización GPS (activable por la empresa).',
+  },
+  {
+    icon: 'target',
+    title: 'Zonas de fichaje (geovalla)',
+    text: 'Define varios centros de trabajo, cada uno con su ubicación y su radio. Solo se puede fichar dentro de la zona asignada.',
+  },
+  {
+    icon: 'qr',
+    title: 'Fichaje por código QR',
+    text: 'Un cartel imprimible que el empleado escanea para fichar al instante.',
   },
   {
     icon: 'monitor',
-    title: 'Modo kiosko para tablets',
-    text: 'Convierte una tablet en un punto de fichaje compartido para toda la plantilla.',
+    title: 'Modo kiosko en tablet',
+    text: 'Una tablet compartida donde cada empleado ficha con su PIN de 4 dígitos.',
   },
   {
-    icon: 'dashboard',
-    title: 'Panel de administración',
-    text: 'Gestiona empleados, horarios y fichajes desde un panel central, claro y sencillo.',
+    icon: 'camera',
+    title: 'Selfie de verificación',
+    text: 'Foto anti-fraude al fichar, en el móvil o el kiosko (activable por la empresa). El administrador la ve junto a cada fichaje.',
+  },
+  {
+    icon: 'bell',
+    title: 'Recordatorio de salida',
+    text: 'Aviso automático para fichar la salida cuando el empleado acumula muchas horas fichado.',
+  },
+];
+
+// --- TURNOS Y CUADRANTES ---
+const turnos = [
+  {
+    icon: 'calendar',
+    title: 'Cuadrante semanal',
+    text: 'Asigna turnos por día con hora de inicio, fin y una nota. Crea el mismo turno para varios empleados y días de una sola vez.',
+  },
+  {
+    icon: 'copy',
+    title: 'Copiar semana anterior',
+    text: 'Duplica todo el cuadrante con un botón y ahorra tiempo cada semana.',
+  },
+  {
+    icon: 'clock',
+    title: 'Mi horario a la vista',
+    text: 'El empleado ve sus próximos 7 días al abrir la app y recibe un aviso cuando le asignan o le quitan un turno.',
+  },
+  {
+    icon: 'alert',
+    title: 'Alertas de asistencia',
+    text: 'El encargado ve quién tenía turno y no ha fichado, y quién ha fichado tarde.',
+  },
+];
+
+// --- VACACIONES Y AUSENCIAS ---
+const vacaciones = [
+  {
+    icon: 'briefcase',
+    title: 'Vacaciones y permisos',
+    text: 'Solicitudes con aprobación o rechazo del administrador (con nota). Las citas médicas se registran al instante.',
+  },
+  {
+    icon: 'target',
+    title: 'Saldo de vacaciones',
+    text: 'Días asignados, consumidos y restantes por empleado, descontando los festivos.',
   },
   {
     icon: 'calendar',
-    title: 'Informes mensuales',
-    text: 'Genera automáticamente los informes de horas trabajadas listos para presentar.',
+    title: 'Calendarios con colores',
+    text: 'Calendario personal (vacaciones, ausencias, solicitudes y festivos) y calendario de equipo para ver quién falta cada día.',
   },
   {
-    icon: 'briefcase',
-    title: 'Vacaciones y documentos',
-    text: 'Gestiona solicitudes de vacaciones, ausencias y la documentación de tu equipo.',
+    icon: 'check',
+    title: 'Festivos en un clic',
+    text: 'Carga los festivos nacionales de España y añade los propios de tu empresa.',
+  },
+];
+
+// --- DOCUMENTOS Y FIRMA ---
+const documentos = [
+  {
+    icon: 'file',
+    title: 'Documentos privados',
+    text: 'Nóminas, contratos y comunicados por empleado. Cada persona solo ve los suyos.',
+  },
+  {
+    icon: 'edit',
+    title: 'Firma desde el móvil',
+    text: 'El empleado abre el documento y firma con el dedo. Se guarda la fecha y la imagen de la firma como acuse de recibo.',
+  },
+  {
+    icon: 'check',
+    title: 'Control de firmas',
+    text: 'El administrador ve qué documentos están pendientes de firma y cuáles ya firmados.',
+  },
+];
+
+// --- CUMPLIMIENTO LEGAL ---
+const legal = [
+  {
+    icon: 'lock',
+    title: 'Historial inalterable',
+    text: 'Cada alta, cambio o borrado de un fichaje queda auditado (quién, cuándo y qué cambió) y nadie puede manipularlo.',
+  },
+  {
+    icon: 'shield',
+    title: 'Sin fichajes manipulables',
+    text: 'Los empleados no pueden editar, borrar ni inventar fichajes. Las correcciones solo las hace el administrador y quedan registradas.',
+  },
+  {
+    icon: 'file',
+    title: 'Informe legal en PDF',
+    text: 'Resumen del periodo por trabajador (con DNI y horas) y detalle de cada fichaje, listo para la Inspección de Trabajo.',
+  },
+  {
+    icon: 'dashboard',
+    title: 'Informes en Excel y CSV',
+    text: 'Horas por empleado y de toda la empresa, con exportación a Excel y CSV.',
+  },
+];
+
+// --- PANEL DEL ADMINISTRADOR ---
+const panel = [
+  {
+    icon: 'eye',
+    title: 'Estado del equipo en vivo',
+    text: 'Quién está dentro, en pausa o fuera, en tiempo real.',
+  },
+  {
+    icon: 'alert',
+    title: 'Alertas automáticas',
+    text: 'Salidas olvidadas, jornadas demasiado largas, retrasos y no presentados.',
+  },
+  {
+    icon: 'trending-up',
+    title: 'Gráfica de horas',
+    text: 'Horas trabajadas del mes por cada empleado.',
+  },
+  {
+    icon: 'users',
+    title: 'Gestión de empleados',
+    text: 'Alta y desactivación, datos, contraseña, PIN de kiosko y días de vacaciones.',
+  },
+];
+
+// --- PLATAFORMA ---
+const plataforma = [
+  {
+    icon: 'smartphone',
+    title: 'App web y Android',
+    text: 'Instálala como app web (PWA) o desde Google Play.',
+  },
+  {
+    icon: 'languages',
+    title: '3 idiomas de serie',
+    text: 'Español, catalán e inglés.',
+  },
+  {
+    icon: 'moon',
+    title: 'Modo oscuro',
+    text: 'Cómoda a cualquier hora y en cualquier pantalla.',
+  },
+  {
+    icon: 'check',
+    title: 'Sin costes de implantación',
+    text: 'Sin mínimos de facturación ni costes de puesta en marcha.',
   },
 ];
 
@@ -47,11 +188,24 @@ const forjiaJsonLd = {
   '@type': 'SoftwareApplication',
   name: 'Forjia',
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web, Android, iOS',
+  operatingSystem: 'Web, Android',
   url: 'https://forjia.es',
+  inLanguage: ['es', 'ca', 'en'],
   description:
-    'App SaaS de control de presencia y fichaje para pymes españolas. Cumple el registro horario legal (RD 8/2019) y el RGPD: fichaje en segundos, verificación por ubicación, modo kiosko, informes mensuales y gestión de vacaciones.',
-  inLanguage: 'es',
+    'App de fichaje y control de presencia para pymes y autónomos en España. Fichaje con GPS, QR y modo kiosko, turnos y cuadrantes, vacaciones y ausencias, firma de documentos e informes legales. Registro de jornada conforme al art. 34.9 del Estatuto de los Trabajadores.',
+  featureList: [
+    'Fichaje desde móvil y web con geolocalización GPS',
+    'Zonas de fichaje (geovalla) con varios centros de trabajo',
+    'Fichaje por código QR',
+    'Modo kiosko para tablet con PIN',
+    'Selfie de verificación anti-fraude',
+    'Turnos y cuadrantes semanales',
+    'Vacaciones, permisos y ausencias con aprobación',
+    'Documentos privados y firma digital desde el móvil',
+    'Registro de jornada inalterable conforme al art. 34.9 ET',
+    'Informe legal en PDF e informes en Excel y CSV',
+    'Panel del administrador con estado en vivo y alertas',
+  ],
   publisher: {
     '@type': 'Organization',
     name: 'Naveosoft',
@@ -61,20 +215,20 @@ const forjiaJsonLd = {
 ---
 
 <BaseLayout
-  title="Forjia — App de control de presencia y fichaje para pymes | Naveosoft"
-  description="Forjia es la app de fichaje y control de presencia para pymes españolas. Cumple el RD 8/2019 y el RGPD: fichaje en segundos, verificación por ubicación, modo kiosko, informes mensuales y gestión de vacaciones. Solicita información."
+  title="Forjia — App de fichaje y control de presencia para pymes y autónomos | Naveosoft"
+  description="Forjia es la app de fichaje y registro de jornada para pymes y autónomos en España: fichaje con GPS y QR, modo kiosko, turnos, vacaciones, firma de documentos e informes legales. Conforme al art. 34.9 del Estatuto de los Trabajadores."
   jsonLd={forjiaJsonLd}
 >
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="container hero-inner">
       <span class="eyebrow">Producto de Naveosoft</span>
-      <h1>Forjia, el fichaje legal que tu pyme necesita</h1>
+      <h1>Forjia: el fichaje simple y legal para pymes y autónomos</h1>
       <p class="lead">
-        La app de control de presencia y registro horario pensada para pequeñas
-        y medianas empresas. Sencilla para tu equipo, tranquila para ti: cumple
-        el <strong>RD 8/2019</strong> y el <strong>RGPD</strong> sin quebraderos
-        de cabeza.
+        La app de control de presencia y registro de jornada pensada para
+        autónomos y pequeñas empresas en España. Sencilla, en tu idioma y con lo
+        esencial legal ya cubierto, <strong>sin costes de implantación ni mínimos
+        de facturación</strong>.
       </p>
       <div class="hero-actions">
         <a href="/contacto" class="btn btn--primary">Solicita información</a>
@@ -90,45 +244,116 @@ const forjiaJsonLd = {
     <div class="container grid grid--2 whatfor reveal">
       <article>
         <span class="eyebrow">Qué es</span>
-        <h2>Registro horario sin complicaciones</h2>
+        <h2>Registro de jornada sin complicaciones</h2>
         <p>
-          Forjia digitaliza el fichaje de tu empresa. Tus empleados registran su
-          jornada en segundos y tú obtienes de forma automática los informes que
-          exige la ley, sin hojas de cálculo ni papeles. Todo queda guardado de
-          forma segura y accesible cuando lo necesites.
+          Forjia digitaliza el fichaje y el registro de jornada de tu empresa. Tu
+          equipo ficha en segundos desde el móvil, la web o una tablet, y tú
+          obtienes de forma automática los informes que exige la ley, sin hojas
+          de cálculo ni papeles.
         </p>
       </article>
       <article>
         <span class="eyebrow">Para quién</span>
-        <h2>Pensado para pymes españolas</h2>
+        <h2>Pensada para autónomos y pymes</h2>
         <p>
-          Ideal para pequeñas y medianas empresas que necesitan cumplir el
-          registro horario legal de forma ágil: oficinas, comercios, talleres,
-          clínicas, hostelería y equipos con turnos o varias sedes. Fácil de
-          implantar, sin instalaciones complicadas.
+          Ideal para autónomos y pequeñas y medianas empresas españolas que
+          quieren cumplir sin complicarse: comercios, oficinas, talleres,
+          hostelería, clínicas y equipos con turnos o varios centros de trabajo.
         </p>
       </article>
     </div>
   </section>
 
-  <!-- ================= CARACTERÍSTICAS ================= -->
+  <!-- ================= FICHAJE ================= -->
   <section class="section section--light">
     <div class="container section-head reveal">
-      <span class="eyebrow">Características</span>
-      <h2>Todo lo que necesitas para controlar la presencia</h2>
+      <span class="eyebrow">Fichaje</span>
+      <h2>Fichar es cuestión de segundos</h2>
       <p class="lead">
-        Una herramienta completa que se adapta a cómo trabaja tu equipo.
+        Desde el móvil, la web o una tablet compartida, con las garantías que
+        necesita tu empresa.
       </p>
     </div>
-
     <div class="container" style="margin-top: 3rem;">
       <div class="grid grid--3 reveal">
         {
-          features.map((f) => (
+          fichaje.map((f) => (
             <article class="card">
-              <span class="icon-box">
-                <Icon name={f.icon} />
-              </span>
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TURNOS Y CUADRANTES ================= -->
+  <section class="section">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Turnos y cuadrantes</span>
+      <h2>Organiza los turnos de tu equipo</h2>
+      <p class="lead">
+        Planifica la semana en minutos y mantén a todos informados de forma
+        automática.
+      </p>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--2 reveal">
+        {
+          turnos.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VACACIONES Y AUSENCIAS ================= -->
+  <section class="section section--light">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Vacaciones y ausencias</span>
+      <h2>Vacaciones y ausencias, bajo control</h2>
+      <p class="lead">
+        Solicitudes, saldos y calendarios claros para el equipo y para el
+        administrador.
+      </p>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--2 reveal">
+        {
+          vacaciones.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DOCUMENTOS Y FIRMA ================= -->
+  <section class="section">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Documentos y firma</span>
+      <h2>Documentos y firma digital</h2>
+      <p class="lead">
+        Comparte nóminas y contratos y recoge la firma del empleado sin papeles.
+      </p>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--3 reveal">
+        {
+          documentos.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
               <h3>{f.title}</h3>
               <p>{f.text}</p>
             </article>
@@ -139,27 +364,88 @@ const forjiaJsonLd = {
   </section>
 
   <!-- ================= CUMPLIMIENTO LEGAL ================= -->
-  <section class="section">
+  <section class="section section--light">
     <div class="container">
       <div class="compliance reveal">
         <div class="compliance-badge" aria-hidden="true">
           <Icon name="scale" size={44} />
         </div>
         <div>
-          <span class="eyebrow">Cumplimiento garantizado</span>
-          <h2>Tranquilidad legal: RD 8/2019 y RGPD</h2>
+          <span class="eyebrow">Cumplimiento legal</span>
+          <h2>Tranquilidad ante la Inspección de Trabajo</h2>
           <p class="lead">
-            El registro de jornada es obligatorio en España. Forjia guarda los
-            fichajes de forma fiable durante el plazo que marca la ley y protege
-            los datos de tu plantilla conforme al RGPD. Ante una inspección,
-            tienes los informes listos con un clic.
+            Forjia lleva el registro de jornada conforme al <strong>art. 34.9 del
+            Estatuto de los Trabajadores</strong> y guarda cada fichaje de forma
+            fiable e inalterable. Ante una inspección, tienes los informes listos
+            con un clic.
           </p>
           <ul class="check-list">
-            <li>Registro horario diario e inalterable</li>
-            <li>Conservación de los datos según la normativa</li>
-            <li>Protección de datos personales conforme al RGPD</li>
+            <li><Icon name="check" size={18} /> Conforme al art. 34.9 del Estatuto de los Trabajadores</li>
+            <li><Icon name="check" size={18} /> Historial de auditoría inalterable de cada fichaje</li>
+            <li><Icon name="check" size={18} /> Preparada para la próxima ley de registro horario digital</li>
           </ul>
         </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--2 reveal">
+        {
+          legal.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PANEL DEL ADMINISTRADOR ================= -->
+  <section class="section">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Panel del administrador</span>
+      <h2>Todo tu equipo, de un vistazo</h2>
+      <p class="lead">
+        Controla la presencia en tiempo real y gestiona a tu plantilla desde un
+        único panel.
+      </p>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--2 reveal">
+        {
+          panel.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLATAFORMA ================= -->
+  <section class="section section--light">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Plataforma</span>
+      <h2>Lista para tu día a día</h2>
+    </div>
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--2 reveal">
+        {
+          plataforma.map((f) => (
+            <article class="card card--compact">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <div>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -193,7 +479,7 @@ const forjiaJsonLd = {
   }
 
   .hero-inner {
-    max-width: 46rem;
+    max-width: 48rem;
   }
 
   .hero h1 {
@@ -215,6 +501,18 @@ const forjiaJsonLd = {
   .whatfor p {
     color: var(--color-text-muted);
     margin-top: 0.5rem;
+  }
+
+  /* Tarjeta compacta (plataforma): icono a la izquierda */
+  .card--compact {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .card--compact .icon-box {
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
 
   /* Bloque de cumplimiento */
@@ -249,30 +547,26 @@ const forjiaJsonLd = {
     margin: 1.5rem 0 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .check-list li {
-    position: relative;
-    padding-left: 1.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
     color: var(--color-text);
+    font-weight: 500;
   }
 
-  .check-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 0;
+  .check-list li :global(svg) {
+    flex-shrink: 0;
     width: 1.35rem;
     height: 1.35rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-primary);
+    padding: 0.28rem;
     color: #fff;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     border-radius: 50%;
-    font-size: 0.8rem;
-    font-weight: 700;
+    box-sizing: content-box;
   }
 
   @media (max-width: 860px) {
@@ -285,7 +579,6 @@ const forjiaJsonLd = {
     .compliance-badge {
       width: 72px;
       height: 72px;
-      font-size: 2rem;
     }
   }
 </style>
