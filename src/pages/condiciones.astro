@@ -1,0 +1,601 @@
+---
+/**
+ * Página de Condiciones del Servicio de Forjia (/condiciones).
+ *
+ * BORRADOR PENDIENTE DE REVISIÓN LEGAL. El texto lo ha redactado el equipo como
+ * punto de partida para que lo revise un abogado. Mientras tanto, la página
+ * muestra un aviso visible arriba ("Borrador pendiente de revisión legal"); el
+ * dueño decide cuándo quitarlo (basta con borrar el bloque <aside class="draft">).
+ *
+ * Marcadores por rellenar cuando se decida el titular:
+ *   {NOMBRE/RAZÓN SOCIAL}  {NIF}  {DIRECCIÓN}
+ * Están agrupados en la constante `prestador` para cambiarlos en un solo sitio.
+ *
+ * Las condiciones de precio remiten a /precios (fuente de verdad de los planes)
+ * y la protección de datos a https://forjia.es/privacidad, para no duplicar.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Datos del prestador. Sustituir los marcadores cuando estén decididos.
+const prestador = {
+  marca: 'Naveosoft',
+  razonSocial: '{NOMBRE/RAZÓN SOCIAL}',
+  nif: '{NIF}',
+  direccion: '{DIRECCIÓN}',
+  email: 'info@forjia.es',
+};
+
+const fechaVersion = 'Septiembre de 2026 (borrador)';
+
+// Índice de secciones (para el sumario y los anclajes).
+const secciones = [
+  { id: 'prestador', titulo: '1. Quién presta el servicio' },
+  { id: 'objeto', titulo: '2. Objeto y aceptación' },
+  { id: 'alta', titulo: '3. Alta y prueba gratuita' },
+  { id: 'planes', titulo: '4. Planes y precios' },
+  { id: 'facturacion', titulo: '5. Facturación y pago' },
+  { id: 'tramos', titulo: '6. Cambios de plan y de tramo' },
+  { id: 'cancelacion', titulo: '7. Cancelación y fin del servicio' },
+  { id: 'obligaciones', titulo: '8. Obligaciones del cliente' },
+  { id: 'gestorias', titulo: '9. Gestorías y despachos' },
+  { id: 'datos', titulo: '10. Protección de datos' },
+  { id: 'propiedad', titulo: '11. Propiedad intelectual' },
+  { id: 'disponibilidad', titulo: '12. Disponibilidad y soporte' },
+  { id: 'responsabilidad', titulo: '13. Limitación de responsabilidad' },
+  { id: 'modificaciones', titulo: '14. Modificaciones de estas condiciones' },
+  { id: 'ley', titulo: '15. Ley aplicable y jurisdicción' },
+  { id: 'contacto', titulo: '16. Contacto' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Condiciones del Servicio de Forjia',
+  url: 'https://naveosoft.es/condiciones',
+  inLanguage: 'es-ES',
+  description: 'Condiciones del Servicio de Forjia, la app de control horario para pymes y gestorías.',
+  publisher: { '@type': 'Organization', name: 'Forjia', url: 'https://naveosoft.es' },
+};
+---
+
+<BaseLayout
+  title="Condiciones del Servicio — Forjia"
+  description="Condiciones del Servicio de Forjia: alta y prueba gratuita, planes y facturación, cancelación, obligaciones del cliente, gestorías, protección de datos, soporte y responsabilidad."
+  jsonLd={jsonLd}
+>
+  <!-- ================= CABECERA ================= -->
+  <section class="hero">
+    <div class="container legal-wrap">
+      <span class="eyebrow">Legal</span>
+      <h1>Condiciones del Servicio de Forjia</h1>
+      <p class="lead">
+        Estas condiciones regulan el uso de Forjia, la aplicación de control
+        horario y gestión de plantilla para empresas y gestorías. Están escritas
+        en lenguaje claro para que se entiendan sin ayuda de un abogado.
+      </p>
+      <p class="version">Versión: {fechaVersion}</p>
+
+      <!-- AVISO DE BORRADOR: el dueño decide cuándo quitar este bloque -->
+      <aside class="draft" role="note">
+        <Icon name="alert" size={20} />
+        <div>
+          <strong>Borrador pendiente de revisión legal.</strong>
+          Este texto es una versión de trabajo redactada por el equipo de Forjia y
+          todavía no ha sido revisada por un abogado. Puede cambiar antes de su
+          versión definitiva.
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= CONTENIDO ================= -->
+  <section class="section legal">
+    <div class="container legal-wrap">
+      <!-- Sumario -->
+      <nav class="toc" aria-label="Índice de las condiciones">
+        <p class="toc-title">Índice</p>
+        <ol>
+          {secciones.map((s) => <li><a href={`#${s.id}`}>{s.titulo}</a></li>)}
+        </ol>
+      </nav>
+
+      <article class="prose legal-body">
+        <h2 id="prestador">1. Quién presta el servicio</h2>
+        <p>
+          Forjia es un servicio de <strong>{prestador.marca}</strong>, con los
+          siguientes datos identificativos:
+        </p>
+        <ul>
+          <li>Titular: <strong>{prestador.razonSocial}</strong></li>
+          <li>NIF: <strong>{prestador.nif}</strong></li>
+          <li>Domicilio: <strong>{prestador.direccion}</strong></li>
+          <li>Correo electrónico: <a href={`mailto:${prestador.email}`}>{prestador.email}</a></li>
+          <li>Sitios web: <a href="https://naveosoft.es">naveosoft.es</a> (información) y <a href="https://forjia.es" rel="noopener">forjia.es</a> (aplicación)</li>
+        </ul>
+        <p>
+          En estas condiciones llamamos <strong>"Forjia"</strong> o <strong>"nosotros"</strong>
+          al prestador del servicio, y <strong>"cliente"</strong> o <strong>"tú"</strong> a la
+          empresa, autónomo o gestoría que se da de alta y usa la aplicación.
+        </p>
+
+        <h2 id="objeto">2. Objeto y aceptación</h2>
+        <p>
+          Forjia es una aplicación en la nube (web, PWA y app Android) para el
+          <strong>registro de la jornada laboral</strong> conforme al artículo 34.9 del
+          Estatuto de los Trabajadores y para la gestión de plantilla asociada:
+          fichaje, turnos, informes, vacaciones y ausencias, documentos con firma
+          y panel para gestorías, según el plan contratado.
+        </p>
+        <p>
+          Al crear una cuenta, marcar la casilla de aceptación o usar el servicio,
+          aceptas estas condiciones. Si actúas en nombre de una empresa, declaras
+          que tienes capacidad para obligarla. Forjia está dirigido a
+          <strong>empresas y profesionales</strong>; no es un servicio para consumidores.
+        </p>
+        <p>
+          Forjia es una herramienta que ayuda a cumplir la obligación de registro
+          de jornada. La <strong>responsabilidad legal del registro</strong> ante los
+          trabajadores y la Inspección de Trabajo sigue siendo de la empresa
+          empleadora, que decide cómo organiza el registro y cómo usa la aplicación.
+        </p>
+
+        <h2 id="alta">3. Alta y prueba gratuita</h2>
+        <p>
+          El alta se realiza en <a href="https://forjia.es/registro" rel="noopener">forjia.es/registro</a>.
+          Toda cuenta nueva dispone de una <strong>prueba gratuita de 30 días</strong> con
+          las funciones del plan Completo, <strong>sin introducir tarjeta</strong> y sin
+          compromiso.
+        </p>
+        <p>
+          Al terminar la prueba, el cliente puede elegir un plan de pago o no hacer
+          nada. Si no elige plan, no se genera ningún cargo y la cuenta pasa al
+          estado descrito en la sección 7. Nos reservamos el derecho a limitar la
+          prueba gratuita a una por empresa y a cancelar cuentas de prueba usadas
+          de forma abusiva o fraudulenta.
+        </p>
+
+        <h2 id="planes">4. Planes y precios</h2>
+        <p>
+          Forjia se contrata <strong>por empresa</strong> y por <strong>tramo de empleados</strong>
+          (por ejemplo, hasta 5, de 6 a 25, de 26 a 50). Existen dos planes para
+          empresas, <strong>Básico</strong> y <strong>Completo</strong>, y un plan específico para
+          <strong>gestorías</strong>, con precio por empresa gestionada y un importe mínimo mensual.
+        </p>
+        <p>
+          Los precios vigentes, lo que incluye cada plan y los tramos se publican
+          en <a href="/precios">naveosoft.es/precios</a> y en la propia aplicación en el
+          momento de contratar. Esa página es la referencia en caso de duda. Los
+          precios se indican <strong>sin IVA</strong>.
+        </p>
+        <p>
+          No hay permanencia, ni coste de alta, ni mínimos, salvo el mínimo
+          mensual del plan para gestorías indicado en la página de precios.
+        </p>
+
+        <h2 id="facturacion">5. Facturación y pago</h2>
+        <ul>
+          <li>
+            <strong>Periodicidad:</strong> el cliente elige pago <strong>mensual</strong> o
+            <strong>anual</strong>. El pago anual equivale a diez mensualidades (dos meses
+            gratis) y se abona por adelantado.
+          </li>
+          <li>
+            <strong>Renovación:</strong> la suscripción se renueva automáticamente al
+            final de cada periodo por el mismo plazo, salvo que se cancele antes
+            (sección 7).
+          </li>
+          <li>
+            <strong>Impuestos:</strong> a los precios se les añade el IVA aplicable
+            (actualmente el 21 % en la Península y Baleares). El cliente es
+            responsable de facilitar datos fiscales correctos.
+          </li>
+          <li>
+            <strong>Forma de pago:</strong> los pagos se procesan a través de
+            <strong>Stripe</strong>, un proveedor de pagos externo. Forjia no almacena los
+            datos completos de la tarjeta. Al pagar, el cliente acepta también las
+            condiciones de Stripe para el usuario final.
+          </li>
+          <li>
+            <strong>Facturas:</strong> se emiten electrónicamente y quedan disponibles
+            en la aplicación o se envían por correo electrónico.
+          </li>
+          <li>
+            <strong>Impagos:</strong> si un cobro falla, lo reintentaremos y avisaremos al
+            cliente. Si tras un plazo razonable (en torno a 15 días) no se
+            regulariza, la cuenta pasa al estado de la sección 7 hasta que se
+            actualice el medio de pago.
+          </li>
+          <li>
+            <strong>Reembolsos:</strong> los periodos ya iniciados no se reembolsan, salvo
+            error de facturación imputable a Forjia o cuando la ley lo exija.
+          </li>
+        </ul>
+
+        <h2 id="tramos">6. Cambios de plan y de tramo</h2>
+        <p>
+          El cliente puede cambiar de plan (Básico a Completo o viceversa) y de
+          tramo en cualquier momento desde la aplicación.
+        </p>
+        <ul>
+          <li>
+            Si el número de empleados activos supera el tramo contratado, el
+            cliente debe pasar al tramo siguiente. El nuevo precio se aplica
+            <strong>a partir del siguiente periodo de facturación</strong>; la aplicación lo
+            avisa con antelación.
+          </li>
+          <li>
+            Las mejoras de plan se aplican de inmediato. Las reducciones de plan o
+            de tramo se aplican al inicio del siguiente periodo, sin devolución de
+            la parte ya pagada.
+          </li>
+          <li>
+            Empresas con más de 50 empleados: contactar en
+            <a href={`mailto:${prestador.email}`}>{prestador.email}</a> para una
+            propuesta a medida.
+          </li>
+        </ul>
+
+        <h2 id="cancelacion">7. Cancelación y fin del servicio</h2>
+        <p>
+          El cliente puede cancelar la suscripción en cualquier momento desde la
+          aplicación o escribiendo a <a href={`mailto:${prestador.email}`}>{prestador.email}</a>.
+          La cancelación es efectiva al final del periodo ya pagado; hasta
+          entonces el servicio sigue disponible con normalidad.
+        </p>
+        <p><strong>Qué ocurre al terminar</strong> (por cancelación, fin de la prueba sin elegir plan o impago):</p>
+        <ul>
+          <li>
+            <strong>Los empleados pueden seguir fichando.</strong> El registro de jornada
+            no se interrumpe, para que la empresa no incumpla su obligación legal
+            por un problema administrativo.
+          </li>
+          <li>
+            <strong>El panel del administrador se bloquea</strong> hasta que se elige un
+            plan o se regulariza el pago. No se pueden consultar informes, editar
+            empleados ni usar el resto de funciones de gestión.
+          </li>
+          <li>
+            <strong>Los registros de jornada se conservan cuatro años</strong> desde su
+            fecha, porque así lo exige la normativa laboral, y el cliente puede
+            exportarlos en cualquier momento reactivando la cuenta o
+            solicitándolo por correo. Transcurrido ese plazo, o antes si el cliente
+            lo pide expresamente y por escrito asumiendo su responsabilidad legal,
+            los datos se eliminan.
+          </li>
+          <li>
+            El resto de datos (documentos, vacaciones, configuración) se conservan
+            un plazo razonable tras la baja para permitir la reactivación, y
+            después se eliminan conforme a la política de privacidad.
+          </li>
+        </ul>
+        <p>
+          Forjia puede suspender o dar de baja una cuenta, avisando previamente
+          cuando sea posible, en caso de incumplimiento grave de estas condiciones,
+          uso ilícito, impago prolongado o riesgo para la seguridad del servicio.
+        </p>
+
+        <h2 id="obligaciones">8. Obligaciones del cliente</h2>
+        <p>Al usar Forjia, el cliente se compromete a:</p>
+        <ul>
+          <li>
+            <strong>Facilitar datos veraces</strong> de la empresa, de los administradores y
+            de los empleados, y mantenerlos actualizados.
+          </li>
+          <li>
+            <strong>Usar el servicio de forma lícita</strong>, sin intentar acceder a datos de
+            otras empresas, alterar el funcionamiento, revender el servicio o
+            usarlo para fines distintos de la gestión laboral de su propia
+            plantilla (o de las empresas que gestiona, en el caso de gestorías).
+          </li>
+          <li>
+            <strong>Informar a su plantilla</strong> del sistema de registro de jornada, de los
+            datos que se tratan (incluida, si se activan, la geolocalización al fichar
+            o la foto de verificación) y de sus derechos, y cumplir los trámites de
+            consulta o negociación que exija la normativa laboral y su convenio.
+          </li>
+          <li>
+            <strong>Cumplir la obligación de registro de jornada</strong>: revisar los
+            fichajes, gestionar las incidencias y conservar los registros. Forjia
+            facilita los medios, pero no sustituye la diligencia de la empresa.
+          </li>
+          <li>
+            <strong>Custodiar las credenciales</strong> de acceso y comunicar de inmediato
+            cualquier acceso no autorizado.
+          </li>
+          <li>
+            Ser responsable de la actuación de los usuarios a los que dé acceso
+            (administradores, encargados, gestoría).
+          </li>
+        </ul>
+
+        <h2 id="gestorias">9. Gestorías y despachos</h2>
+        <p>
+          Las gestorías y despachos laborales pueden usar Forjia para gestionar el
+          registro de jornada de varias empresas cliente desde un panel de
+          cartera. En ese caso:
+        </p>
+        <ul>
+          <li>
+            La gestoría actúa, respecto a los datos de cada empresa cliente, como
+            <strong>encargada del tratamiento</strong> (o como subencargada, según su
+            relación contractual), y Forjia como encargada o subencargada de la
+            gestoría. Cada empresa cliente sigue siendo la <strong>responsable</strong> del
+            tratamiento de los datos de su plantilla.
+          </li>
+          <li>
+            La gestoría debe contar con <strong>autorización escrita</strong> de cada empresa
+            cliente para dar de alta a esa empresa en Forjia y acceder a sus datos,
+            y debe poder acreditarla si se le solicita.
+          </li>
+          <li>
+            El acceso de la gestoría se configura con <strong>privacidad por defecto</strong>:
+            solo ve los datos necesarios para su función (registros de jornada,
+            informes e incidencias), salvo que la empresa cliente le conceda
+            expresamente permisos adicionales.
+          </li>
+          <li>
+            La gestoría es responsable de la facturación de las empresas de su
+            cartera frente a Forjia, salvo que cada empresa contrate por su cuenta.
+          </li>
+        </ul>
+
+        <h2 id="datos">10. Protección de datos</h2>
+        <p>
+          Forjia trata datos personales de los empleados del cliente (identidad,
+          fichajes, y en su caso geolocalización, fotografías o documentos) por
+          cuenta del cliente, que es el responsable del tratamiento. Forjia actúa
+          como <strong>encargado del tratamiento</strong>, conforme al Reglamento (UE)
+          2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).
+        </p>
+        <p>
+          Las condiciones detalladas del tratamiento (finalidades, medidas de
+          seguridad, subencargados, ubicación de los datos, duración y derechos)
+          se recogen en la <a href="https://forjia.es/privacidad" rel="noopener">Política de
+          Privacidad</a> y en el <strong>Acuerdo de Encargo del Tratamiento (DPA)</strong>,
+          que forman parte de estas condiciones. El DPA está disponible a petición
+          en <a href={`mailto:${prestador.email}`}>{prestador.email}</a> y, cuando esté
+          publicado, en la aplicación.
+        </p>
+        <p>
+          Los datos se alojan en proveedores de infraestructura ubicados en la
+          Unión Europea o con garantías adecuadas según el RGPD.
+        </p>
+
+        <h2 id="propiedad">11. Propiedad intelectual</h2>
+        <p>
+          El software, el diseño, las marcas <strong>Forjia</strong> y <strong>Naveosoft</strong>, los
+          textos y el resto de contenidos de la aplicación y de las webs son
+          propiedad de {prestador.marca} o de sus licenciantes. El cliente recibe
+          un derecho de uso <strong>no exclusivo, no transferible y limitado</strong> a la
+          duración de la suscripción y a las finalidades de estas condiciones.
+        </p>
+        <p>
+          <strong>Los datos que el cliente introduce</strong> (empleados, fichajes, documentos)
+          son del cliente. Forjia solo los usa para prestar el servicio y puede
+          elaborar estadísticas agregadas y anonimizadas para mejorar el producto.
+        </p>
+        <p>
+          No está permitido copiar, descompilar, hacer ingeniería inversa,
+          revender o crear productos derivados de Forjia sin autorización escrita.
+        </p>
+
+        <h2 id="disponibilidad">12. Disponibilidad y soporte</h2>
+        <p>
+          Forjia se presta <strong>"tal cual"</strong> y con un <strong>esfuerzo razonable</strong> por
+          mantenerlo disponible las 24 horas. No podemos garantizar una
+          disponibilidad absoluta: puede haber interrupciones por mantenimiento
+          (que intentaremos avisar y hacer fuera del horario laboral habitual),
+          por fallos de terceros (proveedores de alojamiento, operadores,
+          Stripe) o por causas ajenas a nuestro control.
+        </p>
+        <p>
+          El fichaje desde el móvil dispone de un <strong>modo sin conexión</strong> que
+          guarda los registros y los sincroniza al recuperar la red, para reducir
+          el impacto de cortes puntuales.
+        </p>
+        <p>
+          <strong>Soporte:</strong> por correo electrónico en
+          <a href={`mailto:${prestador.email}`}>{prestador.email}</a>, de
+          <strong>lunes a viernes de 9:00 a 18:00</strong> (hora peninsular española),
+          excepto festivos. Procuramos responder en el mismo día laborable y en un
+          máximo de dos. El soporte incluye ayuda con el uso de la aplicación; no
+          incluye asesoramiento laboral ni jurídico.
+        </p>
+        <p>
+          Realizamos <strong>copias de seguridad periódicas</strong> de los datos, sin
+          perjuicio de que el cliente puede y debe exportar sus registros cuando
+          lo considere.
+        </p>
+
+        <h2 id="responsabilidad">13. Limitación de responsabilidad</h2>
+        <p>
+          Forjia responde de los daños directos causados por dolo o negligencia
+          grave en la prestación del servicio. Dentro de lo que permite la ley:
+        </p>
+        <ul>
+          <li>
+            La responsabilidad total de Forjia frente al cliente por cualquier
+            causa queda limitada al <strong>importe pagado por el cliente en los doce
+            meses anteriores</strong> al hecho que la origine.
+          </li>
+          <li>
+            Forjia no responde de daños indirectos, pérdida de beneficios, pérdida
+            de negocio, ni de <strong>sanciones administrativas</strong> impuestas al cliente
+            por incumplir su obligación de registro de jornada, salvo que la
+            causa sea un fallo del servicio imputable a Forjia.
+          </li>
+          <li>
+            Forjia no responde de la veracidad de los datos introducidos por el
+            cliente o sus empleados, ni de decisiones laborales que el cliente
+            tome a partir de la información de la aplicación.
+          </li>
+          <li>
+            Forjia no responde de fallos causados por los dispositivos, la
+            conexión a internet o el software del cliente, ni por el uso de la
+            aplicación contrario a estas condiciones.
+          </li>
+        </ul>
+        <p>
+          Nada en estas condiciones limita la responsabilidad que no pueda
+          limitarse conforme a la legislación española.
+        </p>
+
+        <h2 id="modificaciones">14. Modificaciones de estas condiciones</h2>
+        <p>
+          Podemos actualizar estas condiciones para adaptarlas a cambios legales,
+          técnicos o del servicio. Publicaremos la nueva versión en esta página y,
+          si el cambio es relevante (precios, funciones incluidas, limitación de
+          responsabilidad, tratamiento de datos), lo comunicaremos por correo
+          electrónico o en la aplicación con al menos <strong>30 días de antelación</strong>.
+        </p>
+        <p>
+          Si el cliente no está de acuerdo con un cambio, puede cancelar antes de
+          que entre en vigor, sin penalización. Seguir usando el servicio tras esa
+          fecha supone aceptar la nueva versión. Los cambios de precio no afectan
+          a los periodos anuales ya pagados hasta su renovación.
+        </p>
+
+        <h2 id="ley">15. Ley aplicable y jurisdicción</h2>
+        <p>
+          Estas condiciones se rigen por la <strong>legislación española</strong>.
+        </p>
+        <p>
+          Para cualquier controversia, las partes intentarán primero una solución
+          amistosa. Si no se alcanza, se someten a los <strong>juzgados y tribunales del
+          domicilio del prestador</strong> ({prestador.direccion}), salvo que el
+          cliente tenga la condición legal de consumidor, en cuyo caso se aplicará
+          el fuero que le corresponda por ley.
+        </p>
+
+        <h2 id="contacto">16. Contacto</h2>
+        <p>
+          Para cualquier duda sobre estas condiciones, la facturación o el
+          servicio, escríbenos a
+          <a href={`mailto:${prestador.email}`}>{prestador.email}</a> o a través del
+          <a href="/contacto">formulario de contacto</a>. Responderemos en el
+          horario de soporte indicado en la sección 12.
+        </p>
+
+        <hr />
+        <p class="legal-foot">
+          Documentos relacionados:
+          <a href="https://forjia.es/privacidad" rel="noopener">Política de Privacidad</a> ·
+          <a href="/precios">Precios</a> ·
+          <a href="/contacto">Contacto</a>
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* CABECERA */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.1), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem) 2.5rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+    font-size: clamp(2.1rem, 4.2vw, 3rem);
+  }
+
+  .legal-wrap {
+    max-width: var(--content-narrow);
+  }
+
+  .version {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Aviso de borrador (ámbar) */
+  .draft {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    margin-top: 1.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    background: rgba(var(--color-warning-rgb), 0.1);
+    border: 1px solid rgba(var(--color-warning-rgb), 0.35);
+    color: var(--color-dark);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .draft svg {
+    flex-shrink: 0;
+    color: var(--color-warning);
+    margin-top: 0.15rem;
+  }
+
+  .draft strong {
+    display: block;
+    color: var(--color-warning);
+    margin-bottom: 0.15rem;
+  }
+
+  /* CONTENIDO */
+  .legal {
+    padding-top: 2.5rem;
+  }
+
+  .toc {
+    background: var(--color-light-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .toc-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .toc a {
+    color: var(--color-text);
+  }
+
+  .toc a:hover {
+    color: var(--color-primary);
+  }
+
+  .legal-body h2 {
+    scroll-margin-top: 6rem;
+  }
+
+  .legal-body ul {
+    list-style: disc;
+  }
+
+  .legal-foot {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .toc ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

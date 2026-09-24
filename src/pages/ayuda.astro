@@ -1,0 +1,681 @@
+---
+/**
+ * Centro de ayuda (/ayuda).
+ * Preguntas frecuentes reales sobre Forjia, agrupadas en cinco bloques
+ * (empezar, fichar, vacaciones y documentos, informes e Inspección, cuenta y
+ * precios), para que un jefe de pyme o una gestoría resuelva sus dudas sin
+ * escribir a soporte. Acordeones <details>/<summary> sin JavaScript pesado,
+ * un buscador sencillo que filtra en el navegador y datos estructurados
+ * FAQPage para Google.
+ *
+ * Los nombres de pestañas y botones están copiados de los textos reales de la
+ * app (src/lib/locales/es.js del repo de Forjia). Si cambian allí, revisar aquí.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Cada bloque tiene un id (ancla), icono, título, descripción y sus preguntas.
+// Las respuestas admiten HTML sencillo (enlaces, negritas, listas).
+const bloques = [
+  {
+    id: 'empezar',
+    icon: 'rocket',
+    title: 'Empezar',
+    desc: 'Alta de la empresa, primeros empleados y primer fichaje.',
+    faqs: [
+      {
+        q: '¿Cómo doy de alta mi empresa? ¿Cuánto se tarda?',
+        a: `<p>Unos dos minutos. Entra en <a href="https://forjia.es/registro" rel="noopener">forjia.es/registro</a>, escribe el nombre de tu empresa, tu nombre, tu email y una contraseña (mínimo 8 caracteres) y pulsa <strong>Empezar los 30 días gratis</strong>. Te llegará un correo con el asunto «Confirma tu cuenta de Forjia»: escribe el código de 6 dígitos o pulsa su enlace y, por último, <strong>Crear mi empresa</strong>.</p>
+<p>No hace falta tarjeta. El registro es solo para el dueño o responsable del negocio: a los empleados los das de alta tú después, desde dentro de la app.</p>`,
+      },
+      {
+        q: '¿Cómo añado a mis empleados, uno a uno o todos de golpe?',
+        a: `<p><strong>Uno a uno:</strong> pestaña <strong>Empleados</strong> → <strong>Equipo</strong> → <strong>Añadir empleado</strong>. Nombre, email y una contraseña, y pulsa <strong>Crear empleado</strong>. Con esos datos ya puede entrar en forjia.es y fichar.</p>
+<p><strong>Todos de golpe:</strong> en la misma pantalla, <strong>Alta de varios empleados a la vez</strong>. Pega una lista con un empleado por línea (nombre y correo, por ejemplo <code>Juan Pérez, juan@empresa.com</code>), pulsa <strong>Revisar la lista</strong> y después <strong>Crear N empleados</strong>. La app genera una contraseña para cada persona y te la muestra al final: usa <strong>Copiar credenciales</strong> o <strong>Descargar credenciales (CSV)</strong> y guárdalas en ese momento, porque por seguridad no se vuelven a mostrar.</p>`,
+      },
+      {
+        q: '¿Cómo pongo el cartel con el código QR en la entrada?',
+        a: `<p>Ve a <strong>Empleados</strong> → <strong>Ajustes</strong> → <strong>Código QR de fichaje</strong>. Ahí puedes <strong>Descargar cartel para imprimir (PDF)</strong>, un A4 con el QR grande y tres pasos explicados, o <strong>Descargar QR</strong> como imagen suelta.</p>
+<p>Cuélgalo en la entrada. El empleado apunta con la cámara del móvil, toca el aviso y se le abre Forjia lista para fichar. Si tienes activado el GPS o las zonas de fichaje, el QR los respeta igual.</p>`,
+      },
+      {
+        q: '¿Cómo hace un empleado su primer fichaje?',
+        a: `<p>Entra en <a href="https://forjia.es" rel="noopener">forjia.es</a> con el email y la contraseña que le has dado. En la pestaña <strong>Fichar</strong> pulsa <strong>Fichar entrada</strong>. Si tu empresa tiene el GPS activado, verá su posición en un mapa y tendrá que pulsar <strong>Confirmar fichaje</strong>.</p>
+<p>A partir de ahí ve un cronómetro con las horas de <strong>Hoy</strong> y de <strong>Esta semana</strong>. Al terminar, <strong>Fichar salida</strong>. Todo queda guardado al instante y tú lo ves en tu panel.</p>`,
+      },
+      {
+        q: '¿Puedo usar la app en catalán o en inglés?',
+        a: `<p>Sí. Forjia está en <strong>español, catalán e inglés</strong>. Cada persona elige su idioma: en la app, toca el icono de ajustes de cuenta (arriba a la derecha) y cambia <strong>Idioma</strong>. En ese mismo menú están el <strong>Modo oscuro</strong> y las <strong>notificaciones</strong>.</p>
+<p>El idioma es individual: tú puedes usar la app en español y un empleado en catalán sin que afecte a nadie más.</p>`,
+      },
+      {
+        q: '¿Cómo instalo Forjia en el móvil? ¿Está en Google Play?',
+        a: `<p><strong>Android:</strong> busca «Forjia» en <strong>Google Play</strong> e instálala como cualquier otra app. También puedes abrir forjia.es en Chrome, tocar el menú (los tres puntos) y elegir <strong>Instalar aplicación</strong> o <strong>Añadir a pantalla de inicio</strong>.</p>
+<p><strong>iPhone:</strong> abre forjia.es en Safari, toca el botón de <strong>Compartir</strong> y después <strong>Añadir a pantalla de inicio</strong>.</p>
+<p>Es la misma app y los mismos datos que en el navegador. Una vez instalada, activa las notificaciones desde el menú de ajustes de cuenta para recibir los avisos de turnos, solicitudes y documentos.</p>`,
+      },
+    ],
+  },
+  {
+    id: 'fichar',
+    icon: 'clock',
+    title: 'Fichar',
+    desc: 'Entradas, salidas, pausas, GPS, kiosco y correcciones.',
+    faqs: [
+      {
+        q: '¿Cómo se fichan la entrada, la salida y las pausas?',
+        a: `<p>En la pestaña <strong>Fichar</strong> hay un único botón grande que cambia según el momento: <strong>Fichar entrada</strong>, <strong>Iniciar pausa</strong>, <strong>Fin de pausa</strong> y <strong>Fichar salida</strong>. Las pausas quedan separadas de las horas trabajadas y se descuentan en los informes.</p>
+<p>Al iniciar una pausa, el empleado puede indicar si es el almuerzo o la comida, o marcar <strong>Fichar incidencia</strong> y dejar una nota para su responsable (por ejemplo «me voy al médico, vuelvo en 1 h»), adjuntando el justificante si quiere.</p>`,
+      },
+      {
+        q: '¿Es obligatorio el GPS? ¿Qué ve exactamente el jefe?',
+        a: `<p>No, es <strong>opcional</strong> y se activa por empresa. Si está activado, al fichar el empleado ve su posición en un mapa y la confirma; se guarda <strong>solo la ubicación de ese instante</strong>. La app nunca rastrea en segundo plano ni con la app cerrada.</p>
+<p>El administrador ve junto a cada fichaje un botón <strong>Ver mapa</strong> con el punto exacto. Además puedes definir <strong>Zonas de fichaje (centros de trabajo)</strong> con un radio entre 20 y 5.000 metros y activar <strong>Solo se puede fichar dentro de una zona</strong>: si alguien está fuera, la app le avisa a cuántos metros está y no le deja fichar.</p>`,
+      },
+      {
+        q: '¿Cómo funciona el kiosco en una tablet compartida (QR o PIN)?',
+        a: `<p>En <strong>Empleados</strong> → <strong>Modo kiosko</strong> → <strong>Activar Kiosko</strong>. La tablet pasa a mostrar solo un teclado numérico: cada empleado introduce su <strong>PIN de 4 dígitos</strong> y elige entrada o salida. En kiosco no se pide GPS ni ubicación.</p>
+<p>El PIN se asigna en la ficha de cada empleado, en <strong>PIN kiosko (4 dígitos)</strong>, y debe ser único en la empresa. Para salir del modo kiosco, mantén pulsada la esquina inferior izquierda durante 3 segundos.</p>
+<p>Si prefieres una cuenta exclusiva para la tablet, que al iniciar sesión entre directa a la pantalla de PIN, escríbenos a <a href="mailto:info@forjia.es">info@forjia.es</a> y la creamos. Y si no quieres tablet, el cartel QR hace que cada uno fiche desde su propio móvil.</p>`,
+      },
+      {
+        q: '¿Qué pasa si alguien se olvida de fichar la salida?',
+        a: `<p>Pasan varias cosas para que no se pierda el dato:</p>
+<ul>
+<li>La app le avisa al empleado con <strong>«¿Olvidaste fichar la salida?»</strong> cuando lleva demasiadas horas fichado.</li>
+<li>Si terminó antes, puede indicar su <strong>Hora real de salida</strong> y pulsar <strong>Fichar y avisar al administrador</strong>. Queda registrado como propuesta.</li>
+<li>Tú lo ves en el <strong>Panel</strong>, en <strong>Requiere tu atención</strong> → <strong>Correcciones de hora</strong>, y en las alertas («no fichó salida»).</li>
+</ul>
+<p>Después revisas y dejas la hora correcta desde la ficha del empleado. El cambio queda registrado en la auditoría (ver la siguiente pregunta).</p>`,
+      },
+      {
+        q: '¿Puede un empleado editar o borrar sus fichajes? ¿Cómo se corrigen?',
+        a: `<p>No. Los empleados <strong>no pueden editar ni borrar</strong> sus fichajes. Solo el administrador puede corregirlos, desde la ficha del empleado: <strong>Editar</strong>, <strong>Borrar</strong> o <strong>+ Añadir fichaje</strong> (por ejemplo, la salida que se olvidó).</p>
+<p>Cada corrección queda en el <strong>Historial de cambios (auditoría)</strong> de esa ficha: qué fichaje se ha <em>añadido</em>, <em>modificado</em> o <em>eliminado</em>, quién lo hizo, cuándo y qué valor tenía antes. Ese historial no se puede alterar y es lo que te ayuda a acreditar que el registro es fiable, como pide el artículo 34.9 del Estatuto de los Trabajadores.</p>`,
+      },
+      {
+        q: '¿Para qué sirve la selfie al fichar y cómo se activa?',
+        a: `<p>Sirve para evitar que unos fichen por otros. Se activa en <strong>Empleados</strong> → <strong>Ajustes</strong> → <strong>Selfie al fichar</strong> → <strong>Pedir foto al fichar</strong>. A partir de ahí la app pide una foto rápida con la cámara frontal en cada fichaje y el administrador puede pulsar <strong>Ver foto</strong> junto a cada registro.</p>
+<p>Viene <strong>desactivada por defecto</strong>. Si la cámara no funciona en algún móvil, el empleado puede <strong>Continuar sin foto</strong> y el fichaje se guarda igual. Al ser un dato personal, conviene informar a la plantilla antes de activarla.</p>`,
+      },
+    ],
+  },
+  {
+    id: 'vacaciones',
+    icon: 'briefcase',
+    title: 'Vacaciones, ausencias y documentos',
+    desc: 'Solicitudes, saldo, visitas médicas, nóminas y firma.',
+    faqs: [
+      {
+        q: '¿Cómo pide vacaciones un empleado?',
+        a: `<p>En la pestaña <strong>Vacaciones</strong> → <strong>Mis solicitudes</strong>: elige el tipo <strong>Vacaciones</strong>, las fechas <strong>Desde</strong> y <strong>Hasta</strong>, una nota si quiere, y pulsa <strong>Enviar solicitud</strong>. La verá como <em>Pendiente</em> hasta que la empresa la apruebe o rechace, y recibirá un aviso en el móvil con la respuesta.</p>
+<p>Mientras está pendiente puede pulsar <strong>Cancelar solicitud</strong>. Esta función está incluida en el plan <strong>Completo</strong>.</p>`,
+      },
+      {
+        q: '¿Por qué la app no me deja pedir ciertos días?',
+        a: `<p>Hay dos reglas, y la app te dice cuál se aplica:</p>
+<ul>
+<li><strong>«No puedes pedir días que ya han pasado. Elige a partir de hoy.»</strong> Las solicitudes solo pueden empezar hoy o más adelante. Si necesitas justificar un día pasado, pídele a tu responsable que lo registre como ausencia.</li>
+<li><strong>«Esas fechas coinciden con días que ya tienes ocupados…»</strong> Alguno de los días elegidos ya está cubierto por otra solicitud tuya (pendiente o aprobada) o por una ausencia que registró la empresa (vacaciones, baja, permiso). La app te indica el primer día que choca.</li>
+</ul>
+<p>Solución: cancela la solicitud anterior si ya no la quieres, o elige otras fechas. Si la ausencia registrada es un error, que la corrija el administrador.</p>`,
+      },
+      {
+        q: '¿Cómo apruebo o rechazo una solicitud?',
+        a: `<p>Las solicitudes nuevas te aparecen en el <strong>Panel</strong>, en <strong>Requiere tu atención</strong> → <strong>Solicitudes pendientes</strong>, y también en <strong>Vacaciones</strong> → <strong>Solicitudes</strong> → <strong>Pendientes de revisar</strong>. Puedes escribir una nota para el empleado y pulsar <strong>Aprobar</strong> o <strong>Rechazar</strong>. El empleado recibe el aviso al momento y todo queda registrado.</p>
+<p>Para lo que no pasa por solicitud (una baja, un permiso médico, un permiso sin sueldo), usa <strong>Registrar ausencia</strong> en esa misma pestaña.</p>`,
+      },
+      {
+        q: '¿Cómo funciona el saldo de vacaciones y los festivos?',
+        a: `<p>En la ficha de cada empleado fijas sus <strong>Días de vacaciones al año (laborables)</strong>. El empleado ve en su pestaña Vacaciones cuántos días tiene ese año, cuántos ha <strong>usado</strong> y cuántos le quedan <strong>restantes</strong>. Se cuentan días laborables de lunes a viernes.</p>
+<p>Los festivos no gastan saldo. En <strong>Festivos de la empresa</strong> puedes <strong>Cargar festivos de España</strong> de un clic y añadir los locales o autonómicos a mano. Y en el <strong>Calendario del equipo</strong> ves, día a día, quién está ausente o de vacaciones.</p>`,
+      },
+      {
+        q: '¿Cómo se registra una visita médica?',
+        a: `<p>El empleado va a <strong>Vacaciones</strong>, elige el tipo <strong>Cita médica</strong>, indica el día y la franja (por ejemplo «de 10:00 a 13:00») y pulsa <strong>Registrar aviso</strong>. Queda registrado al instante, <strong>sin esperar aprobación</strong> y <strong>sin restar vacaciones</strong>; tú recibes un aviso informativo.</p>
+<p>Si la visita es a mitad de la jornada, también puede iniciar una pausa con <strong>Fichar incidencia</strong> y dejar la nota. El justificante lo puede enviar desde <strong>Documentos</strong> → <strong>Enviar un documento al responsable</strong> (PDF o foto, hasta 10 MB).</p>`,
+      },
+      {
+        q: '¿Cómo comparto una nómina y recojo la firma del empleado?',
+        a: `<p>En <strong>Documentos</strong> → <strong>Subir documento</strong>: elige el empleado, el archivo y una descripción (por ejemplo «nómina de marzo»). Marca <strong>Pedir firma al empleado</strong> si quieres acuse de recibo y pulsa <strong>Subir</strong>. Cada persona solo ve sus propios documentos.</p>
+<p>El empleado recibe el aviso «Tienes un documento nuevo», lo abre en <strong>Mis documentos</strong>, lo lee y pulsa <strong>Firmar</strong>: firma con el dedo en el recuadro y se guarda la fecha y la imagen de la firma. Tú ves cada documento como <em>Pendiente de firma</em> o <em>Firmado el…</em>. Por seguridad, los enlaces de descarga caducan a la hora. Función del plan <strong>Completo</strong>.</p>`,
+      },
+    ],
+  },
+  {
+    id: 'informes',
+    icon: 'file',
+    title: 'Informes e Inspección',
+    desc: 'Parte de horas, auditoría, Excel para la gestoría y conservación.',
+    faqs: [
+      {
+        q: '¿Cómo saco el parte de horas de un empleado?',
+        a: `<p>En <strong>Informes</strong> → <strong>Descargas</strong> → <strong>Informe mensual por trabajador</strong>: elige el empleado y el mes y pulsa <strong>Descargar parte de horas (PDF)</strong>. Sale el resumen del periodo y el detalle de cada fichaje, con el formato que suele pedir la Inspección de Trabajo.</p>
+<p>Si lo prefieres en hoja de cálculo, en el mismo sitio tienes <strong>Descargar Excel del trabajador</strong>. El propio empleado también puede descargar su historial desde la pestaña <strong>Historial</strong> con <strong>Descargar mi historial (Excel)</strong>.</p>`,
+      },
+      {
+        q: '¿Qué es el informe de auditoría o de cumplimiento?',
+        a: `<p>Son dos documentos que se complementan:</p>
+<ul>
+<li><strong>Informe de cumplimiento (registro de jornada)</strong>, en <strong>Informes</strong> → <strong>Descargar informe PDF</strong>: todos los fichajes del mes de toda la empresa (entradas, salidas y pausas) con fecha y hora exactas y la fecha en que se generó el informe.</li>
+<li><strong>Historial de cambios (auditoría)</strong>, en la ficha de cada empleado: cada fichaje añadido, modificado o eliminado por un administrador, con quién, cuándo y qué cambió.</li>
+</ul>
+<p>Juntos te ayudan a acreditar que el registro es objetivo, fiable y no se ha manipulado.</p>`,
+      },
+      {
+        q: '¿Qué le envío a mi gestoría a fin de mes?',
+        a: `<p>En <strong>Informes</strong> → <strong>Resumen mensual para gestoría</strong> → <strong>Descargar Excel para gestoría</strong>. Es una hoja con una fila por empleado: DNI, días trabajados, horas ordinarias y extra, horas totales, y días de vacaciones y de otras ausencias del mes. Lista para preparar las nóminas.</p>
+<p>También tienes <strong>Descargar Excel de toda la empresa</strong> con el detalle completo. Y si tu gestoría ya trabaja con Forjia, no tienes que enviar nada: lo descarga ella desde su panel.</p>`,
+      },
+      {
+        q: '¿Cuánto tiempo se conservan los registros?',
+        a: `<p>La ley obliga a conservar el registro de jornada durante <strong>4 años</strong>, a disposición de los trabajadores, sus representantes y la Inspección de Trabajo. Forjia guarda todos los fichajes mientras tu cuenta esté activa y puedes descargarlos en PDF o Excel cuando quieras.</p>
+<p>Dos consejos: descarga y archiva el informe PDF de cada mes por si algún día dejas de usar la app, y cuando alguien deje la empresa usa <strong>Desactivar empleado</strong> (bloquea su acceso pero conserva sus registros) en lugar de <strong>Eliminar empleado</strong>, que borra sus datos de forma definitiva.</p>`,
+      },
+      {
+        q: '¿Qué muestro si viene la Inspección de Trabajo?',
+        a: `<p>Con Forjia lo tienes en unos minutos:</p>
+<ol>
+<li>El <strong>Informe de cumplimiento (PDF)</strong> del periodo que te pidan.</li>
+<li>El <strong>parte de horas</strong> de cada trabajador afectado.</li>
+<li>El <strong>Historial de cambios (auditoría)</strong> si preguntan por alguna corrección.</li>
+<li>Los partes <strong>firmados por los empleados</strong>, si usas la <strong>Firma mensual del registro</strong>.</li>
+</ol>
+<p>Ese último punto merece la pena: en <strong>Informes</strong> → <strong>Firma mensual del registro</strong> → <strong>Enviar a la firma</strong>, cada empleado recibe su parte del mes para firmarlo en la app. Un registro firmado por las dos partes es lo más sólido ante una inspección. Forjia te ayuda a cumplir, pero recuerda que el registro debe hacerse a diario y recoger la hora de entrada y de salida de cada persona.</p>`,
+      },
+      {
+        q: '¿Está Forjia preparada para el registro horario digital de 2026?',
+        a: `<p>Sí. La reforma que se está tramitando pide que el registro sea <strong>digital, fiable, inalterable y accesible de forma remota</strong> para la Inspección. Forjia ya funciona así: fichajes digitales que el empleado no puede alterar, auditoría de cada cambio, conservación de los datos e informes descargables al momento.</p>
+<p>Vamos adaptando la app a medida que la normativa se concreta. Tienes el detalle, con lo que cambia y desde cuándo, en nuestro artículo <a href="/blog/registro-horario-digital-2026">Registro horario digital 2026: qué cambia y cómo prepararte</a>.</p>`,
+      },
+    ],
+  },
+  {
+    id: 'cuenta',
+    icon: 'euro',
+    title: 'Cuenta, precios y gestorías',
+    desc: 'Prueba gratuita, planes, facturas, gestorías, privacidad y soporte.',
+    faqs: [
+      {
+        q: '¿Cómo funciona la prueba de 30 días? ¿Necesito tarjeta?',
+        a: `<p>No necesitas tarjeta. Al crear la empresa tienes <strong>30 días con todas las funciones del plan Completo</strong>. En la cabecera de la app verás «Prueba gratis · quedan N días». Durante la prueba puedes elegir plan cuando quieras desde el menú <strong>Suscripción y pago</strong>: no se cobra nada hasta que termine la prueba.</p>`,
+      },
+      {
+        q: '¿Qué pasa cuando termina la prueba y no he elegido plan?',
+        a: `<p><strong>Tus empleados siguen fichando con normalidad y no se pierde ningún registro.</strong> Lo que se bloquea es el <strong>panel de administración</strong> (empleados, informes, vacaciones, documentos) hasta que elijas un plan. Entra con tu cuenta, pulsa <strong>Elige tu plan</strong>, escoge Básico o Completo y mensual o anual, y el pago se hace en un portal seguro de Stripe. En cuanto se confirma, recuperas el panel con todo tal y como estaba.</p>`,
+      },
+      {
+        q: '¿Cómo cambio de plan o de tramo? ¿Cómo consigo la factura con IVA?',
+        a: `<p>Desde el menú <strong>Suscripción y pago</strong> → <strong>Gestionar pago y facturas</strong>. Se abre el portal seguro de Stripe, donde puedes cambiar de plan (Básico ↔ Completo), pasar de mensual a anual, actualizar la tarjeta, cancelar y <strong>descargar todas tus facturas</strong> con el 21 % de IVA desglosado. Ahí mismo pones los datos fiscales de la empresa.</p>
+<p>Si tu plantilla crece y pasas de tramo (hasta 5, de 6 a 25, de 26 a 50 empleados), la propia app te avisa con «Tu plantilla ha crecido» y un botón <strong>Actualizar mi plan</strong>. Si baja, también te avisa para que pagues menos. Consulta los importes en <a href="/precios">precios</a>.</p>`,
+      },
+      {
+        q: 'Soy gestoría: ¿cómo consigo mi cuenta y qué puedo ver de mis clientes?',
+        a: `<p>Escríbenos a <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas">info@forjia.es</a> con el nombre del despacho y cuántas empresas llevas; te activamos el panel de cartera y los usuarios que necesites en el día. Al entrar verás la pestaña <strong>Cartera</strong>: das de alta cada cliente con <strong>Nueva empresa</strong>, pulsas <strong>Entrar</strong> y administras esa empresa como si fueras su responsable, sin pedir contraseñas a nadie.</p>
+<p><strong>Privacidad por defecto:</strong> la gestoría ve horas, fichajes e informes. Lo demás (ubicación GPS, selfies, motivos de ausencias, justificantes del trabajador, imagen de la firma, contraseñas y altas) viene <strong>cerrado</strong> y solo se abre con autorización escrita de la empresa cliente. El cliente ve en su app la pantalla <strong>Qué puede ver tu gestoría</strong> y los <strong>Últimos accesos de tu gestoría</strong>. Precio: 9 € por empresa al mes, mínimo 79 €, sin IVA. Más detalle en <a href="/gestorias">Forjia para gestorías</a>.</p>`,
+      },
+      {
+        q: '¿Cómo borro un empleado o toda mi cuenta? ¿Dónde están los datos?',
+        a: `<p><strong>Un empleado:</strong> desde su ficha, lo recomendable es <strong>Desactivar empleado</strong> (deja de poder entrar pero se conservan sus fichajes, que debes guardar 4 años). <strong>Eliminar empleado</strong> borra todos sus datos y no se puede deshacer.</p>
+<p><strong>Toda la cuenta o la empresa:</strong> sigue los pasos de <a href="https://forjia.es/eliminar-cuenta" rel="noopener">forjia.es/eliminar-cuenta</a>. Te recomendamos descargar antes los informes que necesites conservar.</p>
+<p><strong>Los datos</strong> están alojados en la <strong>Unión Europea</strong>, en servidores de Supabase en Europa, con copias de seguridad. Tienes el detalle en la <a href="https://forjia.es/privacidad" rel="noopener">política de privacidad</a>.</p>`,
+      },
+      {
+        q: '¿Cómo contacto con soporte y en qué horario?',
+        a: `<p>Escríbenos a <a href="mailto:info@forjia.es">info@forjia.es</a> o usa el <a href="/contacto">formulario de contacto</a>. Atendemos <strong>de lunes a viernes, de 9:00 a 18:00</strong> (hora peninsular), y respondemos siempre por correo.</p>
+<p>Para ayudarte más rápido, indícanos el nombre de tu empresa en Forjia, qué estabas haciendo y, si puedes, una captura de pantalla del mensaje que te aparece.</p>`,
+      },
+    ],
+  },
+];
+
+const totalPreguntas = bloques.reduce((n, b) => n + b.faqs.length, 0);
+
+// Quita las etiquetas HTML de una respuesta para los datos estructurados.
+const soloTexto = (html: string) =>
+  html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+// Datos estructurados FAQPage con todas las preguntas (SEO).
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  name: 'Centro de ayuda de Forjia',
+  inLanguage: 'es',
+  mainEntity: bloques.flatMap((b) =>
+    b.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: soloTexto(f.a) },
+    }))
+  ),
+};
+---
+
+<BaseLayout
+  title="Centro de ayuda de Forjia — Preguntas frecuentes sobre fichaje, vacaciones e informes"
+  description="Resuelve tus dudas sobre Forjia sin escribir a soporte: alta de empleados, cartel QR, fichaje con GPS o kiosco, vacaciones, nóminas con firma, informes para la Inspección de Trabajo, prueba gratuita, planes y gestorías."
+  jsonLd={faqJsonLd}
+>
+  <!-- ================= CABECERA + BUSCADOR ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Centro de ayuda</span>
+      <h1>¿En qué te ayudamos?</h1>
+      <p class="lead">
+        Las {totalPreguntas} preguntas que más nos hacen jefes de pyme y gestorías,
+        con los pasos exactos dentro de la app. Escribe una palabra para filtrar.
+      </p>
+
+      <form class="search" role="search" onsubmit="return false;">
+        <label for="ayuda-buscar" class="sr-only">Buscar en la ayuda</label>
+        <span class="search-icon" aria-hidden="true"><Icon name="search" size={20} /></span>
+        <input
+          type="search"
+          id="ayuda-buscar"
+          name="q"
+          placeholder="Por ejemplo: QR, vacaciones, factura, inspección…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </form>
+
+      <nav class="chips" aria-label="Bloques de la ayuda">
+        {
+          bloques.map((b) => (
+            <a href={`#${b.id}`} class="chip">
+              <Icon name={b.icon} size={16} />
+              {b.title}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+
+  <!-- ================= BLOQUES DE PREGUNTAS ================= -->
+  <section class="section section--light faq-section">
+    <div class="container faq-wrap" id="faq-root">
+      {
+        bloques.map((b) => (
+          <section class="faq-block" id={b.id} data-block>
+            <header class="faq-block-head">
+              <span class="icon-box"><Icon name={b.icon} /></span>
+              <div>
+                <h2>{b.title}</h2>
+                <p>{b.desc}</p>
+              </div>
+            </header>
+            <div class="faq-list">
+              {b.faqs.map((f) => (
+                <details class="faq-item" data-faq>
+                  <summary>
+                    <span>{f.q}</span>
+                    <span class="faq-marker" aria-hidden="true"></span>
+                  </summary>
+                  <div class="faq-answer" set:html={f.a}></div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+
+      <!-- Aviso cuando el buscador no encuentra nada (lo muestra el script) -->
+      <div class="faq-empty" id="faq-empty" hidden>
+        <Icon name="help" size={28} />
+        <p>
+          No hemos encontrado nada con esa palabra. Prueba con otra o
+          <a href="/contacto">escríbenos</a> y te respondemos por correo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ¿NO ENCUENTRAS LA RESPUESTA? ================= -->
+  <section class="section section--dark cta">
+    <div class="container section-head reveal">
+      <h2>¿No encuentras la respuesta?</h2>
+      <p class="lead">
+        Escríbenos y te contestamos por correo, de lunes a viernes de 9:00 a
+        18:00. Sin robots ni esperas al teléfono.
+      </p>
+      <div class="cta-actions">
+        <a href="/contacto" class="btn btn--primary">
+          Ir al formulario de contacto
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a href="mailto:info@forjia.es" class="btn btn--ghost">
+          <Icon name="mail" size={18} />
+          info@forjia.es
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Buscador sencillo: filtra las preguntas en el navegador, sin recargar.
+  // Oculta las que no coinciden, los bloques que se quedan vacíos y muestra
+  // un aviso si no hay resultados. Con texto, abre las coincidencias.
+  const input = document.getElementById('ayuda-buscar') as HTMLInputElement | null;
+  const bloques = Array.from(document.querySelectorAll<HTMLElement>('[data-block]'));
+  const vacio = document.getElementById('faq-empty');
+  const normaliza = (s: string) =>
+    s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+  function filtrar() {
+    const q = normaliza(input?.value.trim() ?? '');
+    let visibles = 0;
+    bloques.forEach((bloque) => {
+      let enBloque = 0;
+      bloque.querySelectorAll<HTMLDetailsElement>('[data-faq]').forEach((item) => {
+        const coincide = q === '' || normaliza(item.textContent ?? '').includes(q);
+        item.hidden = !coincide;
+        if (coincide) enBloque++;
+        if (q !== '') item.open = coincide;
+      });
+      bloque.hidden = enBloque === 0;
+      visibles += enBloque;
+    });
+    if (vacio) vacio.hidden = visibles > 0;
+  }
+
+  input?.addEventListener('input', filtrar);
+  // Si la página se carga con #ancla, abre ese bloque directamente.
+  if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+</script>
+
+<style>
+  /* CABECERA */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.1), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem) 3rem;
+  }
+
+  .hero-inner {
+    max-width: 48rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  /* Buscador */
+  .search {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    display: flex;
+  }
+
+  .search input {
+    width: 100%;
+    font: inherit;
+    font-size: 1.05rem;
+    color: var(--color-dark);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-full);
+    padding: 1rem 1.25rem 1rem 3.1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .search input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--ring);
+  }
+
+  .search input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Accesos rápidos a los bloques */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    background: var(--color-primary-light);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.18);
+    border-radius: var(--radius-full);
+    padding: 0.45rem 0.9rem;
+  }
+
+  .chip:hover {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+    color: var(--color-primary-dark);
+  }
+
+  /* BLOQUES */
+  .faq-section {
+    padding-top: 3.5rem;
+  }
+
+  .faq-wrap {
+    max-width: 52rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .faq-block {
+    scroll-margin-top: 90px;
+  }
+
+  .faq-block-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .faq-block-head .icon-box {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .faq-block-head h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .faq-block-head p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Acordeón */
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+  }
+
+  .faq-item[open] {
+    border-color: rgba(var(--color-primary-rgb), 0.35);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-dark);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary:focus-visible {
+    outline: none;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--ring);
+  }
+
+  /* El "+" que pasa a "−" al abrir */
+  .faq-marker {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--color-primary-light);
+  }
+
+  .faq-marker::before,
+  .faq-marker::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background: var(--color-primary);
+    border-radius: 1px;
+  }
+
+  .faq-marker::before {
+    width: 0.75rem;
+    height: 2px;
+  }
+
+  .faq-marker::after {
+    width: 2px;
+    height: 0.75rem;
+  }
+
+  .faq-item[open] .faq-marker::after {
+    display: none;
+  }
+
+  .faq-answer {
+    margin-top: 0.85rem;
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-answer :global(p),
+  .faq-answer :global(ul),
+  .faq-answer :global(ol) {
+    margin: 0;
+  }
+
+  .faq-answer :global(ul),
+  .faq-answer :global(ol) {
+    padding-left: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .faq-answer :global(strong) {
+    color: var(--color-dark);
+  }
+
+  .faq-answer :global(code) {
+    font-size: 0.9em;
+    background: var(--color-light-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.1em 0.4em;
+  }
+
+  .faq-answer :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Sin resultados */
+  .faq-empty {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px dashed var(--color-border-strong);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .faq-empty :global(svg) {
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  /* CTA final */
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Animaciones solo si la persona no ha pedido reducir el movimiento */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    .faq-item,
+    .chip,
+    .search input {
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .faq-block-head h2 {
+      font-size: 1.3rem;
+    }
+
+    .faq-item {
+      padding: 0.9rem 1rem;
+    }
+  }
+</style>

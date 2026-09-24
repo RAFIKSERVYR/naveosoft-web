@@ -43,6 +43,8 @@ const year = new Date().getFullYear();
       <ul>
         <li><a href="https://forjia.es/registro" rel="noopener">Empieza gratis</a></li>
         <li><a href="https://forjia.es" rel="noopener">Entrar en la app</a></li>
+        <li><a href="/ayuda">Centro de ayuda</a></li>
+        <li><a href="/plantilla-registro-horario">Plantilla Excel gratis</a></li>
         <li><a href="/blog">Blog</a></li>
       </ul>
     </nav>
@@ -54,6 +56,7 @@ const year = new Date().getFullYear();
         <li><a href="https://forjia.es/eliminar-cuenta" rel="noopener">Eliminar cuenta</a></li>
         <li><a href="/contacto">Formulario de contacto</a></li>
         <li><a href="mailto:info@forjia.es">info@forjia.es</a></li>
+        <li class="footer-support">Soporte por correo: lunes a viernes, 9:00–18:00</li>
       </ul>
     </nav>
   </div>
@@ -145,6 +148,13 @@ const year = new Date().getFullYear();
   .footer-col a:hover {
     opacity: 1;
     color: var(--color-accent);
+  }
+
+  /* Horario de soporte: texto informativo, sin enlace, un poco más discreto. */
+  .footer-support {
+    color: var(--color-text-on-dark);
+    opacity: 0.6;
+    font-size: 0.85rem;
   }
 
   .footer-bottom {
