@@ -1,17 +1,17 @@
 ---
 /**
- * Cabecera del sitio con el logo y el menú de navegación principal.
- * Resalta el enlace de la página actual y ofrece un menú desplegable
- * en pantallas de móvil.
+ * Cabecera del sitio con el logo de Forjia y el menú de navegación principal.
+ * Resalta el enlace de la página actual, ofrece un menú desplegable en móvil
+ * y lleva los dos accesos a la app: "Entrar" y "Empieza gratis" (registro).
  */
 import Logo from './Logo.astro';
 
 const navLinks = [
-  { href: '/', label: 'Inicio' },
-  { href: '/forjia', label: 'Forjia' },
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/sobre-nosotros', label: 'Sobre nosotros' },
+  { href: '/funciones', label: 'Funciones' },
+  { href: '/gestorias', label: 'Para gestorías' },
+  { href: '/precios', label: 'Precios' },
   { href: '/blog', label: 'Blog' },
+  { href: '/contacto', label: 'Contacto' },
 ];
 
 // Ruta actual (sin barra final) para marcar el enlace activo.
@@ -20,9 +20,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="Naveosoft — inicio">
-      <Logo size={32} />
-      <span class="logo-text">Naveosoft</span>
+    <a href="/" class="logo" aria-label="Forjia — inicio">
+      <Logo size={34} />
+      <span class="logo-text">Forjia</span>
     </a>
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
@@ -45,8 +45,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
             );
           })
         }
+        <li class="nav-login">
+          <a href="https://forjia.es" rel="noopener">Entrar</a>
+        </li>
         <li class="nav-cta">
-          <a href="/contacto" class="btn btn--primary">Contacto</a>
+          <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary">
+            Empieza gratis
+          </a>
         </li>
       </ul>
     </nav>
@@ -85,14 +90,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
   .logo:hover {
     color: var(--color-dark);
-  }
-
-  .logo-mark {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    box-shadow: var(--shadow-sm);
   }
 
   /* Navegación */
@@ -142,8 +139,19 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     font-weight: 600;
   }
 
+  /* Enlace "Entrar" (acceso a la app): un poco separado del resto */
+  .nav-login {
+    margin-left: 0.5rem;
+  }
+
+  .nav-login a {
+    font-weight: 600;
+    color: var(--color-dark);
+  }
+
   .nav-cta a {
     color: var(--color-white);
+    padding: 0.6rem 1.15rem;
   }
 
   .nav-cta a:hover {
@@ -211,6 +219,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       padding: 0.9rem 0;
     }
 
+    .nav-login {
+      margin-left: 0;
+    }
+
     .nav-cta {
       margin-top: 0.75rem;
       border-top: none !important;
@@ -222,7 +234,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     /* Al marcar la casilla oculta, se despliega el menú */
     .nav-toggle:checked ~ .site-nav {
-      max-height: 26rem;
+      max-height: 30rem;
     }
 
     .nav-toggle:checked ~ .nav-burger span:nth-child(1) {

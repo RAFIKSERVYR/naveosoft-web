@@ -27,7 +27,26 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 // URL absoluta de la imagen para compartir.
 const socialImage = new URL(image, Astro.site);
 
-const siteName = 'Naveosoft';
+const siteName = 'Forjia';
+
+// Datos estructurados de la organización (Forjia), comunes a todas las
+// páginas. Cada página puede añadir los suyos vía la prop `jsonLd`.
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Forjia',
+  url: 'https://www.forjia.es',
+  logo: new URL('/favicon.svg', Astro.site).toString(),
+  email: 'info@forjia.es',
+  description:
+    'Forjia es la app de control horario y fichaje para pymes y gestorías en España. Registro de jornada conforme al art. 34.9 del Estatuto de los Trabajadores.',
+  areaServed: 'ES',
+  sameAs: ['https://forjia.es'],
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Naveosoft',
+  },
+};
 ---
 
 <!-- Metadatos básicos -->
@@ -53,7 +72,10 @@ const siteName = 'Naveosoft';
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
 
-<!-- Datos estructurados JSON-LD (si la página los aporta) -->
+<!-- Datos estructurados de la organización (en todas las páginas) -->
+<script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+
+<!-- Datos estructurados JSON-LD propios de la página (si los aporta) -->
 {
   jsonLd && (
     <script

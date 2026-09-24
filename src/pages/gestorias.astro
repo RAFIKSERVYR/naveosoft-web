@@ -1,0 +1,582 @@
+---
+/**
+ * Página para gestorías (/gestorias).
+ * Página de venta dirigida a gestorías y despachos laborales que llevan el
+ * control horario de muchas empresas cliente. Estructura: problema (recopilar
+ * horas a mano), solución (panel de cartera + privacidad por defecto + informe
+ * mensual en un Excel), cómo funciona, precio (9 €/empresa, mínimo 79 €) y CTA
+ * por correo (info@forjia.es) o demo.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Los dolores habituales de una gestoría a fin de mes.
+const problemas = [
+  {
+    icon: 'mail',
+    title: 'Perseguir a 20 clientes por correo',
+    text: 'Cada mes toca pedir las horas, recibir fotos de hojas, Excel a medias y mensajes de WhatsApp. Y volver a pedirlas.',
+  },
+  {
+    icon: 'table',
+    title: 'Pasar horas a mano',
+    text: 'Copiar y cuadrar registros de cada empresa en tu plantilla antes de poder empezar con las nóminas.',
+  },
+  {
+    icon: 'alert',
+    title: 'El cliente sin registro cuando hay inspección',
+    text: 'Cuando llega la Inspección de Trabajo, muchos clientes no tienen el registro de jornada o lo tienen incompleto. Y te llaman a ti.',
+  },
+];
+
+// Qué aporta Forjia a la gestoría.
+const solucion = [
+  {
+    icon: 'buildings',
+    title: 'Panel de cartera',
+    text: 'Todas tus empresas cliente en una sola pantalla, con su estado y sus avisos. Entra en cada una como administrador sin pedir contraseñas.',
+  },
+  {
+    icon: 'eye-off',
+    title: 'Privacidad por defecto',
+    text: 'Por defecto la gestoría NO ve GPS, selfies, motivos médicos, documentos ni credenciales. La empresa cliente decide qué abrir con 9 permisos independientes.',
+  },
+  {
+    icon: 'history',
+    title: 'Registro de accesos visible',
+    text: 'El cliente ve cuándo has entrado y qué has consultado. Menos reticencias a la hora de darte acceso.',
+  },
+  {
+    icon: 'download',
+    title: 'Informe mensual en un solo Excel',
+    text: 'Un único archivo con una pestaña por empresa y las horas del mes de cada empleado. Listo para las nóminas.',
+  },
+];
+
+// Pasos para empezar.
+const pasos = [
+  {
+    n: '1',
+    title: 'Crea tu cuenta de gestoría',
+    text: 'Escríbenos a info@forjia.es y te activamos el panel de cartera.',
+  },
+  {
+    n: '2',
+    title: 'Añade a tus clientes',
+    text: 'Da de alta cada empresa y a su equipo pegando una lista. En minutos están fichando desde el móvil.',
+  },
+  {
+    n: '3',
+    title: 'Descarga el Excel a fin de mes',
+    text: 'Un clic, un archivo, todas las empresas. Y si un cliente tiene inspección, el informe de auditoría sale al momento.',
+  },
+];
+---
+
+<BaseLayout
+  title="Forjia para gestorías — Control horario de toda tu cartera en un panel"
+  description="Forjia para gestorías y despachos laborales: panel de cartera con todas tus empresas cliente, privacidad por defecto, registro de accesos e informe mensual de toda la cartera en un solo Excel. 9 € por empresa al mes (mínimo 79 €)."
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Para gestorías y despachos laborales</span>
+        <h1>Las horas de todos tus clientes, en un solo Excel</h1>
+        <p class="lead">
+          Deja de perseguir a cada empresa a fin de mes. Con Forjia tus clientes
+          fichan desde el móvil y tú descargas el informe de toda la cartera con
+          un clic.
+        </p>
+        <ul class="check-list">
+          <li><Icon name="check" size={18} /> Panel de cartera con todas tus empresas cliente</li>
+          <li><Icon name="check" size={18} /> Privacidad por defecto: solo ves lo que el cliente te abre</li>
+          <li><Icon name="check" size={18} /> Informe mensual de toda la cartera en un solo Excel</li>
+        </ul>
+        <div class="hero-actions">
+          <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas" class="btn btn--primary">
+            Escríbenos a info@forjia.es
+          </a>
+          <a href="/contacto" class="btn btn--secondary">Pide una demo</a>
+        </div>
+        <p class="hero-note">
+          9 € por empresa al mes (mínimo 79 €), sin IVA. Sin permanencia.
+        </p>
+      </div>
+      <div class="hero-visual">
+        <img
+          src="/img/capturas/8-gestorias.jpg"
+          alt="Panel de cartera de Forjia para gestorías con la lista de empresas cliente, su estado y el acceso a cada una"
+          width="1080"
+          height="1920"
+          class="shot hero-shot"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEMA ================= -->
+  <section class="section section--light">
+    <div class="container section-head reveal">
+      <span class="eyebrow">El problema</span>
+      <h2>Fin de mes: recopilar horas de 20 clientes a mano</h2>
+      <p class="lead">
+        Si llevas las nóminas de varias empresas, ya sabes cómo acaba cada mes.
+      </p>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <div class="grid grid--3 reveal">
+        {
+          problemas.map((p) => (
+            <article class="card">
+              <span class="icon-box icon-box--warn"><Icon name={p.icon} /></span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOLUCIÓN ================= -->
+  <section class="section">
+    <div class="container split reveal">
+      <div>
+        <span class="eyebrow">La solución</span>
+        <h2>Un panel para toda tu cartera, con la privacidad resuelta</h2>
+        <p class="lead">
+          Forjia está pensada para que la gestoría trabaje cómoda y la empresa
+          cliente se sienta tranquila. Tú ves las horas; lo demás, solo si el
+          cliente quiere.
+        </p>
+        <div class="grid solution-cards">
+          {
+            solucion.map((s) => (
+              <article class="card card--compact">
+                <span class="icon-box"><Icon name={s.icon} /></span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+      <figure class="split-shot">
+        <img
+          src="/img/capturas/4-informes.jpg"
+          alt="Pantalla de informes de Forjia con el parte de horas en PDF y la exportación a Excel para la gestoría"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+        <figcaption>Informes en PDF, Excel y CSV. Para la cartera completa, un solo Excel con una pestaña por empresa.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= PRIVACIDAD (detalle) ================= -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="privacy reveal">
+        <div class="privacy-badge" aria-hidden="true">
+          <Icon name="eye-off" size={40} />
+        </div>
+        <div>
+          <span class="eyebrow">Privacidad por defecto</span>
+          <h2>Tus clientes deciden qué ves</h2>
+          <p class="lead">
+            Al conectar una empresa a tu gestoría, Forjia aplica el mínimo
+            necesario: horas fichadas e informes. El resto son
+            <strong>9 permisos</strong> que la empresa puede abrir uno a uno.
+          </p>
+          <div class="perm-grid">
+            <div>
+              <h3>Por defecto la gestoría NO ve</h3>
+              <ul class="perm-list perm-list--off">
+                <li><Icon name="eye-off" size={16} /> Ubicación GPS de los fichajes</li>
+                <li><Icon name="eye-off" size={16} /> Selfies de verificación</li>
+                <li><Icon name="eye-off" size={16} /> Motivos de visitas médicas</li>
+                <li><Icon name="eye-off" size={16} /> Documentos (nóminas, contratos)</li>
+                <li><Icon name="eye-off" size={16} /> Credenciales de los empleados</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Y siempre</h3>
+              <ul class="perm-list">
+                <li><Icon name="check" size={16} /> Registro de accesos visible para el cliente</li>
+                <li><Icon name="check" size={16} /> Acceso como administrador sin compartir contraseñas</li>
+                <li><Icon name="check" size={16} /> Datos alojados en la Unión Europea</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CÓMO FUNCIONA ================= -->
+  <section class="section">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Cómo empezar</span>
+      <h2>En marcha en una tarde</h2>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
+      <ol class="steps reveal">
+        {
+          pasos.map((p) => (
+            <li class="step">
+              <span class="step-num">{p.n}</span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= PRECIO ================= -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="pricing-box reveal">
+        <div>
+          <span class="eyebrow">Precio para gestorías</span>
+          <h2>9 € por empresa al mes</h2>
+          <p class="lead">
+            Mínimo 79 € al mes. Precios sin IVA. Sin permanencia ni costes de
+            alta. Cada empresa cliente incluye el plan Completo de Forjia
+            (fichaje, turnos, vacaciones, documentos e informes).
+          </p>
+          <ul class="check-list">
+            <li><Icon name="check" size={18} /> Panel de cartera e informe mensual en un solo Excel</li>
+            <li><Icon name="check" size={18} /> Privacidad por defecto y registro de accesos</li>
+            <li><Icon name="check" size={18} /> Soporte directo por correo</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <p class="pricing-amount">9 €<small>/empresa y mes</small></p>
+          <p class="pricing-min">Mínimo 79 €/mes · sin IVA</p>
+          <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas" class="btn btn--primary" style="width: 100%;">
+            Escríbenos a info@forjia.es
+          </a>
+          <a href="/contacto" class="btn btn--secondary" style="width: 100%;">Pide una demo</a>
+          <p class="pricing-note">¿Solo llevas una empresa? Mira los <a href="/precios">planes para pymes</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA FINAL ================= -->
+  <section class="section section--dark cta">
+    <div class="container section-head reveal">
+      <h2>Hablemos de tu cartera</h2>
+      <p class="lead">
+        Cuéntanos cuántas empresas llevas y te enseñamos Forjia en 20 minutos.
+        Sin compromiso.
+      </p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas" class="btn btn--primary">
+          Escríbenos a info@forjia.es
+        </a>
+        <a href="/contacto" class="btn btn--ghost">Pide una demo</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-white);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px 460px at 82% -8%, rgba(var(--color-accent-rgb), 0.2), transparent 60%),
+      radial-gradient(760px 460px at 2% 4%, rgba(var(--color-primary-rgb), 0.1), transparent 55%);
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .hero-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-shot {
+    max-width: 360px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Iconos del bloque "problema" en tono de aviso */
+  .icon-box--warn {
+    color: var(--color-warning);
+    background: rgba(var(--color-warning-rgb), 0.12);
+    border-color: rgba(var(--color-warning-rgb), 0.25);
+  }
+
+  /* Bloque partido texto + captura */
+  .split {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .solution-cards {
+    margin-top: 1.75rem;
+    gap: 1rem;
+  }
+
+  .card--compact {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.4rem;
+  }
+
+  .card--compact .icon-box {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .card--compact h3 {
+    font-size: 1.05rem;
+  }
+
+  .split-shot {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .split-shot img {
+    max-width: 320px;
+  }
+
+  .split-shot figcaption {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 22rem;
+  }
+
+  /* Bloque privacidad */
+  .privacy {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    background: linear-gradient(160deg, var(--color-white), var(--color-primary-light));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .privacy-badge {
+    width: 84px;
+    height: 84px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    box-shadow: var(--shadow-md);
+  }
+
+  .perm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.75rem;
+  }
+
+  .perm-grid h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .perm-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .perm-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .perm-list li :global(svg) {
+    flex-shrink: 0;
+    color: var(--color-success);
+  }
+
+  .perm-list--off li :global(svg) {
+    color: var(--color-text-muted);
+  }
+
+  /* Pasos */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    counter-reset: paso;
+  }
+
+  .step {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.9rem;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    font-weight: 800;
+    color: var(--color-white);
+    background: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .step h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    color: var(--color-text-muted);
+  }
+
+  /* Caja de precio */
+  .pricing-box {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .pricing-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.35);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: center;
+  }
+
+  .pricing-amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .pricing-amount small {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0;
+    margin-top: 0.4rem;
+  }
+
+  .pricing-min {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .pricing-note {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid,
+    .split,
+    .pricing-box {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-shot,
+    .split-shot img {
+      max-width: 280px;
+    }
+
+    .privacy {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.75rem;
+    }
+
+    .perm-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

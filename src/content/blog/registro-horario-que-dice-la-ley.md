@@ -2,14 +2,11 @@
 title: 'Registro horario en tu pyme: qué dice la ley (RD 8/2019)'
 description: 'Guía sencilla sobre el registro de jornada obligatorio en España: qué exige el RD 8/2019, qué debes guardar y cómo cumplir sin complicaciones.'
 pubDate: 2026-08-04
-author: 'Equipo Naveosoft'
+author: 'Equipo Forjia'
 category: 'Fichaje y normativa'
 tags: ['registro horario', 'RD 8/2019', 'fichaje', 'pymes']
 draft: false
 ---
-
-> **Artículo de ejemplo.** Esta es una plantilla para que veas cómo se ve un
-> artículo del blog. Puedes editarlo o borrarlo cuando publiques los tuyos.
 
 Desde 2019, **todas las empresas en España están obligadas a registrar la jornada
 laboral** de sus empleados. Si tienes una pyme, seguramente te hayas preguntado
@@ -46,18 +43,18 @@ errores o huecos... y más riesgo ante una inspección.
 
 ## Cómo lo resuelve Forjia
 
-Con una herramienta como **[Forjia](/forjia)**, el registro horario deja de ser un
+Con una herramienta como **[Forjia](/funciones)**, el registro horario deja de ser un
 problema:
 
 - Tus empleados **fichan en segundos** desde el móvil o una tablet.
 - Los datos se **guardan de forma segura** durante el plazo legal.
 - Generas los **informes mensuales** listos para presentar con un clic.
-- Todo cumple el **RD 8/2019 y el RGPD**.
+- Está diseñada para **ayudarte a cumplir el RD-ley 8/2019 y el RGPD**.
 
 Así te olvidas del papeleo y te centras en tu negocio, con la tranquilidad de
-estar cumpliendo la ley.
+tener el registro al día.
 
 ---
 
-*¿Quieres saber si Forjia encaja en tu empresa? [Solicita información](/contacto)
-sin compromiso.*
+*¿Quieres ver si Forjia encaja en tu empresa? [Empieza gratis](https://forjia.es/registro):
+30 días de prueba gratis. Y si prefieres hablar antes, [escríbenos](/contacto).*

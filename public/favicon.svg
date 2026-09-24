@@ -1,33 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Naveosoft">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Forjia">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#43629f" />
-      <stop offset="1" stop-color="#7791c2" />
-    </linearGradient>
-    <linearGradient id="gd" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2b3a52" />
-      <stop offset="1" stop-color="#3b4d6a" />
+      <stop offset="0" stop-color="#3b82f6" />
+      <stop offset="1" stop-color="#1d4ed8" />
     </linearGradient>
   </defs>
-  <polygon points="32,4 58,18.5 58,45.5 32,60 6,45.5 6,18.5" fill="url(#g)" />
-  <line x1="21" y1="44" x2="21" y2="20" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" />
-  <line x1="21" y1="20" x2="43" y2="44" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" />
-  <line x1="43" y1="44" x2="43" y2="20" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" />
-  <circle cx="32" cy="32" r="3.2" fill="url(#gd)" stroke="#ffffff" stroke-width="1.3" />
-  <g>
-    <circle cx="21" cy="20" r="4.2" fill="none" stroke="#ffffff" stroke-width="1.6" />
-    <circle cx="21" cy="20" r="2" fill="#ffffff" />
-  </g>
-  <g>
-    <circle cx="21" cy="44" r="4.2" fill="none" stroke="#ffffff" stroke-width="1.6" />
-    <circle cx="21" cy="44" r="2" fill="#ffffff" />
-  </g>
-  <g>
-    <circle cx="43" cy="20" r="4.2" fill="none" stroke="#ffffff" stroke-width="1.6" />
-    <circle cx="43" cy="20" r="2" fill="#ffffff" />
-  </g>
-  <g>
-    <circle cx="43" cy="44" r="4.2" fill="none" stroke="#ffffff" stroke-width="1.6" />
-    <circle cx="43" cy="44" r="2" fill="#ffffff" />
-  </g>
+  <rect width="64" height="64" rx="16" fill="url(#g)" />
+  <rect width="64" height="32" rx="16" fill="#ffffff" opacity="0.08" />
+  <path d="M21 14h24v10H32v6h11v10H32v10H21z" fill="#ffffff" />
 </svg>

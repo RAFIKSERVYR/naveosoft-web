@@ -1,10 +1,16 @@
 ---
 /**
- * Página de Contacto (/contacto).
- * Formulario maquetado (nombre, email, empresa, mensaje) + email directo.
- * IMPORTANTE: el envío del formulario está PENDIENTE de decidir método.
- * De momento no se envía a ningún sitio; un pequeño script muestra un aviso
- * temporal al pulsar "Enviar". Ver comentario en el <script> al final.
+ * Página de Contacto (/contacto) de la web de Forjia.
+ * Formulario (nombre, email, empresa, mensaje) + email directo info@forjia.es.
+ * El formulario YA ESTÁ ACTIVO: envía por fetch a Web3Forms (api.web3forms.com)
+ * con una access_key pública y muestra éxito/error sin recargar la página.
+ *
+ * IMPORTANTE — DESTINATARIO DEL FORMULARIO:
+ * El correo al que llegan los mensajes NO se configura aquí, sino en la cuenta
+ * de Web3Forms (web3forms.com → Linked Emails). Hoy los mensajes llegan a
+ * info@naveosoft.es. PENDIENTE (dueño): cambiarlo a info@forjia.es en
+ * web3forms.com → Linked Emails (o crear una access_key nueva asociada a
+ * info@forjia.es y sustituir el value del campo oculto "access_key").
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
@@ -13,30 +19,30 @@ import Icon from '../components/Icon.astro';
 const contactJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Contacto — Naveosoft',
-  url: 'https://naveosoft.es/contacto',
+  name: 'Contacto — Forjia',
+  url: 'https://www.forjia.es/contacto',
   mainEntity: {
     '@type': 'Organization',
-    name: 'Naveosoft',
-    email: 'info@naveosoft.es',
-    url: 'https://naveosoft.es',
+    name: 'Forjia',
+    email: 'info@forjia.es',
+    url: 'https://www.forjia.es',
   },
 };
 ---
 
 <BaseLayout
-  title="Contacto — Habla con Naveosoft"
-  description="¿Buscas una app de fichaje o un desarrollo de software a medida? Escríbenos y te respondemos sin compromiso. Contacta con Naveosoft por formulario o email."
+  title="Contacto — Habla con el equipo de Forjia"
+  description="¿Dudas sobre el registro horario de tu empresa o quieres activar Forjia en tu gestoría? Escríbenos a info@forjia.es o por el formulario. Te respondemos sin compromiso."
   jsonLd={contactJsonLd}
 >
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="container hero-inner">
       <span class="eyebrow">Contacto</span>
-      <h1>¿Hablamos de tu proyecto?</h1>
+      <h1>¿Hablamos del fichaje de tu empresa?</h1>
       <p class="lead">
         Rellena el formulario o escríbenos directamente. Te respondemos lo antes
-        posible, sin compromiso.
+        posible, sin compromiso y sin tecnicismos.
       </p>
     </div>
   </section>
@@ -48,16 +54,17 @@ const contactJsonLd = {
       <aside class="contact-info">
         <h2>Escríbenos</h2>
         <p>
-          Tanto si necesitas <strong>Forjia</strong> para el fichaje de tu
-          empresa como un <strong>desarrollo a medida</strong>, cuéntanos tu
-          caso y te ayudamos.
+          Tanto si eres el jefe de una <strong>pyme</strong> como si llevas una
+          <strong>gestoría</strong> y quieres controlar el horario de toda tu
+          cartera de clientes, cuéntanos tu caso y te ayudamos a ponerlo en
+          marcha.
         </p>
 
         <div class="info-item">
           <span class="info-icon" aria-hidden="true"><Icon name="mail" size={20} /></span>
           <div>
             <h3>Email</h3>
-            <a href="mailto:info@naveosoft.es">info@naveosoft.es</a>
+            <a href="mailto:info@forjia.es">info@forjia.es</a>
           </div>
         </div>
 
@@ -72,9 +79,10 @@ const contactJsonLd = {
         <div class="info-item">
           <span class="info-icon" aria-hidden="true"><Icon name="smartphone" size={20} /></span>
           <div>
-            <h3>¿Ya usas Forjia?</h3>
+            <h3>¿Prefieres probarlo directamente?</h3>
             <p>
-              Accede a la app en
+              <a href="https://forjia.es/registro">Empieza gratis</a>: 30 días de
+              prueba sin compromiso. Y si ya usas Forjia, entra en
               <a href="https://forjia.es" target="_blank" rel="noopener">forjia.es ↗</a>
             </p>
           </div>
@@ -91,9 +99,9 @@ const contactJsonLd = {
           novalidate
         >
           <!--
-            Clave PÚBLICA de Web3Forms. No es secreta: solo sirve para que los
-            mensajes se envíen al correo info@naveosoft.es que configuraste.
-            Sustituye el texto de abajo por tu clave real de Web3Forms.
+            Clave PÚBLICA de Web3Forms. No es secreta: solo identifica la cuenta
+            a la que llegan los mensajes (hoy info@naveosoft.es; ver el comentario
+            de cabecera para cambiarlo a info@forjia.es).
           -->
           <input
             type="hidden"
@@ -103,9 +111,9 @@ const contactJsonLd = {
           <input
             type="hidden"
             name="subject"
-            value="Nuevo mensaje desde el formulario de naveosoft.es"
+            value="Nuevo mensaje desde el formulario de www.forjia.es"
           />
-          <input type="hidden" name="from_name" value="Web Naveosoft" />
+          <input type="hidden" name="from_name" value="Web Forjia" />
 
           <div class="field">
             <label for="nombre">Nombre <span class="req">*</span></label>
@@ -148,7 +156,7 @@ const contactJsonLd = {
 
           <button type="submit" class="btn btn--primary">Enviar mensaje</button>
 
-          <!-- Aviso temporal (se muestra al enviar mientras no hay backend) -->
+          <!-- Mensaje de éxito o error tras enviar (lo rellena el script) -->
           <p id="form-status" class="form-status" role="status" hidden></p>
         </form>
       </div>
@@ -389,7 +397,7 @@ const contactJsonLd = {
         status.hidden = false;
         status.className = 'form-status form-status--error';
         status.textContent =
-          'No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos a info@naveosoft.es.';
+          'No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos a info@forjia.es.';
       }
     } finally {
       if (button) {

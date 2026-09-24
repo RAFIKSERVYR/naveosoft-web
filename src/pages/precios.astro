@@ -1,0 +1,523 @@
+---
+/**
+ * Página de Precios (/precios).
+ * Tabla de los planes Básico y Completo por tramo de empleados, con el precio
+ * mensual y el anual (10 meses: 2 gratis), el plan para gestorías, la nota del
+ * IVA, preguntas frecuentes y CTA al registro.
+ *
+ * Precios duplicados a mano de src/lib/subscription.js de la app; si cambian
+ * allí, cambiar aquí.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Tramos de empleados y precio mensual (sin IVA) de cada plan.
+// El precio anual son 10 mensualidades (2 meses gratis).
+const tramos = [
+  { label: 'Hasta 5 empleados', basico: 15, completo: 29 },
+  { label: 'De 6 a 25 empleados', basico: 25, completo: 49 },
+  { label: 'De 26 a 50 empleados', basico: 49, completo: 99 },
+];
+
+const anual = (mensual: number) => mensual * 10;
+const eur = (n: number) => `${n} €`;
+
+// Qué incluye cada plan.
+const incluyeBasico = [
+  'Fichaje móvil y web con GPS opcional y varios centros',
+  'Modo kiosco con QR o PIN (cartel A4 imprimible)',
+  'Selfie opcional al fichar y pausas con incidencia',
+  'Turnos y cuadrantes',
+  'Panel del jefe en tiempo real con alertas',
+  'Correcciones con auditoría inalterable',
+  'Parte de horas PDF e informe para Inspección (art. 34.9 ET)',
+  'Excel y CSV para la gestoría · conservación 4 años',
+  'Alta de empleados en bloque',
+  'PWA y app Android · 3 idiomas · modo oscuro',
+];
+
+const incluyeCompleto = [
+  'Vacaciones y ausencias: solicitudes, aprobación y saldo',
+  'Festivos y calendario de equipo',
+  'Visitas médicas',
+  'Documentos (nóminas, contratos) con firma con el dedo',
+  'Control de documentos pendientes de firma',
+];
+
+// Preguntas frecuentes sobre precios.
+const faqs = [
+  {
+    q: '¿Los precios incluyen IVA?',
+    a: 'No. Todos los precios son sin IVA. Al importe se le añade el 21 % de IVA en la factura.',
+  },
+  {
+    q: '¿Cómo funciona la prueba gratuita?',
+    a: 'Tienes 30 días con todas las funciones del plan Completo, sin introducir tarjeta. Al acabar, eliges plan o la cuenta simplemente se pausa. Sin cargos sorpresa.',
+  },
+  {
+    q: '¿Qué pasa si crezco y paso de tramo?',
+    a: 'Pasas al tramo siguiente de tu plan a partir del siguiente periodo de facturación. Puedes cambiar de plan o de tramo cuando quieras.',
+  },
+  {
+    q: '¿Hay permanencia o coste de alta?',
+    a: 'No. Sin permanencia, sin costes de implantación y sin mínimos, salvo el plan para gestorías, que tiene un mínimo de 79 € al mes.',
+  },
+  {
+    q: 'Tengo más de 50 empleados',
+    a: 'Escríbenos a info@forjia.es y te preparamos una propuesta a medida.',
+  },
+];
+
+// Datos estructurados de las ofertas (SEO).
+const offersJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Forjia — Control horario para pymes',
+  description: 'Planes Básico y Completo de Forjia, por empresa y tramo de empleados. Prueba 30 días gratis sin tarjeta.',
+  brand: { '@type': 'Brand', name: 'Forjia' },
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    lowPrice: '15',
+    highPrice: '99',
+    offerCount: tramos.length * 2,
+    url: 'https://www.forjia.es/precios',
+  },
+};
+---
+
+<BaseLayout
+  title="Precios de Forjia — Planes Básico y Completo por empresa"
+  description="Precios de Forjia: plan Básico desde 15 €/mes y plan Completo desde 29 €/mes por empresa, según empleados. Pago anual con 2 meses gratis. Gestorías desde 9 € por empresa. Prueba 30 días gratis sin tarjeta. Precios sin IVA."
+  jsonLd={offersJsonLd}
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container section-head">
+      <span class="eyebrow">Precios</span>
+      <h1>Precios claros, por empresa y sin sorpresas</h1>
+      <p class="lead">
+        Elige el plan, mira tu tramo de empleados y listo. Paga anual y te
+        regalamos 2 meses. Prueba 30 días gratis sin tarjeta.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= TABLA DE PLANES ================= -->
+  <section class="section plans">
+    <div class="container">
+      <div class="plan-grid reveal">
+        <!-- BÁSICO -->
+        <article class="plan">
+          <header class="plan-head">
+            <h2>Básico</h2>
+            <p class="plan-desc">Registro de jornada legal, turnos e informes. Lo esencial para cumplir y controlar.</p>
+            <p class="plan-from"><span>desde</span> 15 €<small>/mes</small></p>
+          </header>
+          <table class="plan-table">
+            <thead>
+              <tr>
+                <th scope="col">Empleados</th>
+                <th scope="col">Mensual</th>
+                <th scope="col">Anual</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                tramos.map((t) => (
+                  <tr>
+                    <th scope="row">{t.label}</th>
+                    <td>{eur(t.basico)}<small>/mes</small></td>
+                    <td>{eur(anual(t.basico))}<small>/año</small></td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          <a href="https://forjia.es/registro" rel="noopener" class="btn btn--secondary plan-cta">
+            Empieza gratis
+          </a>
+          <h3 class="plan-includes-title">Incluye</h3>
+          <ul class="check-list plan-includes">
+            {incluyeBasico.map((i) => <li><Icon name="check" size={16} /> {i}</li>)}
+          </ul>
+        </article>
+
+        <!-- COMPLETO -->
+        <article class="plan plan--featured">
+          <span class="pill plan-badge">Más elegido</span>
+          <header class="plan-head">
+            <h2>Completo</h2>
+            <p class="plan-desc">Todo lo del Básico más vacaciones, ausencias y documentos con firma. La empresa entera en una app.</p>
+            <p class="plan-from"><span>desde</span> 29 €<small>/mes</small></p>
+          </header>
+          <table class="plan-table">
+            <thead>
+              <tr>
+                <th scope="col">Empleados</th>
+                <th scope="col">Mensual</th>
+                <th scope="col">Anual</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                tramos.map((t) => (
+                  <tr>
+                    <th scope="row">{t.label}</th>
+                    <td>{eur(t.completo)}<small>/mes</small></td>
+                    <td>{eur(anual(t.completo))}<small>/año</small></td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary plan-cta">
+            Empieza gratis
+            <Icon name="arrow-right" size={18} />
+          </a>
+          <h3 class="plan-includes-title">Todo lo del Básico, y además</h3>
+          <ul class="check-list plan-includes">
+            {incluyeCompleto.map((i) => <li><Icon name="check" size={16} /> {i}</li>)}
+          </ul>
+        </article>
+      </div>
+
+      <p class="vat-note text-center">
+        Precios <strong>sin IVA</strong>, por empresa. El pago anual equivale a 10
+        mensualidades (2 meses gratis). Sin permanencia ni costes de alta.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= GESTORÍAS ================= -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="agency reveal">
+        <div>
+          <span class="eyebrow">Para gestorías</span>
+          <h2>9 € por empresa al mes</h2>
+          <p class="lead">
+            Si eres una gestoría o despacho laboral y llevas varias empresas,
+            tienes un plan propio: panel de cartera, acceso a cada cliente,
+            privacidad por defecto e informe mensual de toda la cartera en un
+            solo Excel. Cada empresa incluye el plan Completo.
+          </p>
+          <p class="agency-min">Mínimo 79 €/mes · sin IVA · sin permanencia</p>
+        </div>
+        <div class="agency-actions">
+          <a href="/gestorias" class="btn btn--primary">
+            Forjia para gestorías
+            <Icon name="arrow-right" size={18} />
+          </a>
+          <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas" class="btn btn--secondary">
+            Escríbenos a info@forjia.es
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMPARATIVA ================= -->
+  <section class="section">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Comparativa</span>
+      <h2>¿Cómo se compara con otras apps?</h2>
+      <p class="lead">
+        Hemos puesto los precios de Forjia junto a los de las apps de fichaje más
+        conocidas en España, con los mismos tramos de empleados.
+      </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="https://forjia.es/comparativa" rel="noopener" class="btn btn--secondary">
+          Compara precios
+          <Icon name="arrow-right" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PREGUNTAS FRECUENTES ================= -->
+  <section class="section section--light">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Dudas sobre precios</h2>
+    </div>
+    <div class="container faq-wrap" style="margin-top: 2.5rem;">
+      <div class="faq reveal">
+        {
+          faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA FINAL ================= -->
+  <section class="section section--dark cta">
+    <div class="container section-head reveal">
+      <h2>Empieza gratis, decide en 30 días</h2>
+      <p class="lead">
+        Todas las funciones del plan Completo, sin tarjeta. Cuando lo tengas
+        claro, eliges plan.
+      </p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary">
+          Empieza gratis
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a href="/contacto" class="btn btn--ghost">¿Alguna duda? Escríbenos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.1), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem) 1rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .plans {
+    padding-top: 2.5rem;
+  }
+
+  /* Rejilla de planes */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  .plan {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .plan--featured {
+    border-color: rgba(var(--color-primary-rgb), 0.45);
+    box-shadow: var(--shadow-md);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -0.9rem;
+    left: 2.25rem;
+  }
+
+  .plan-head h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-desc {
+    color: var(--color-text-muted);
+  }
+
+  .plan-from {
+    margin-top: 1rem;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .plan-from span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0;
+    margin-right: 0.3rem;
+  }
+
+  .plan-from small {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0;
+  }
+
+  /* Tabla de tramos */
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .plan-table th,
+  .plan-table td {
+    padding: 0.7rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .plan-table thead th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .plan-table tbody th {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .plan-table td {
+    font-weight: 700;
+    color: var(--color-dark);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .plan-table td small {
+    font-weight: 400;
+    color: var(--color-text-muted);
+    font-size: 0.8em;
+  }
+
+  .plan-cta {
+    width: 100%;
+  }
+
+  .plan-includes-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .plan-includes {
+    margin-top: 0;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .vat-note {
+    margin-top: 2rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* Bloque gestorías */
+  .agency {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 3rem;
+    align-items: center;
+    background: linear-gradient(160deg, var(--color-white), var(--color-primary-light));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .agency-min {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--color-dark);
+  }
+
+  .agency-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* FAQ */
+  .faq-wrap {
+    max-width: var(--content-narrow);
+  }
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-dark);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  .faq-item p {
+    margin-top: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .plan-grid,
+    .agency {
+      grid-template-columns: 1fr;
+    }
+
+    .agency {
+      padding: 1.75rem;
+      gap: 1.5rem;
+    }
+
+    .plan {
+      padding: 1.75rem;
+    }
+
+    .plan-badge {
+      left: 1.75rem;
+    }
+  }
+</style>

@@ -19,7 +19,7 @@ const blog = defineCollection({
     // Fecha de última actualización (opcional).
     updatedDate: z.coerce.date().optional(),
     // Autor. Si no se indica, se usa "Equipo Naveosoft".
-    author: z.string().default('Equipo Naveosoft'),
+    author: z.string().default('Equipo Forjia'),
     // Categoría del artículo.
     category: z
       .enum(['Fichaje y normativa', 'Desarrollo', 'Naveosoft'])

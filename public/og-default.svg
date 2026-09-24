@@ -1,34 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Naveosoft">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Forjia — Control horario para pymes y gestorías">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b1120" />
-      <stop offset="1" stop-color="#111827" />
+      <stop offset="0" stop-color="#1d4ed8" />
+      <stop offset="1" stop-color="#152c63" />
     </linearGradient>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#43629f" />
-      <stop offset="1" stop-color="#7791c2" />
-    </linearGradient>
-    <linearGradient id="gd" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2b3a52" />
-      <stop offset="1" stop-color="#3b4d6a" />
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#eaf1fe" />
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)" />
-  <circle cx="1050" cy="90" r="320" fill="#43629f" opacity="0.14" />
+  <circle cx="1020" cy="110" r="360" fill="#3b82f6" opacity="0.22" />
+  <circle cx="160" cy="620" r="260" fill="#2563eb" opacity="0.25" />
 
-  <g transform="translate(104 214) scale(1.6)">
-    <polygon points="32,5 57,19 57,45 32,59 7,45 7,19" fill="url(#g)" />
-    <line x1="21" y1="44" x2="21" y2="20" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" />
-    <line x1="21" y1="20" x2="43" y2="44" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" />
-    <line x1="43" y1="44" x2="43" y2="20" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" />
-    <circle cx="32" cy="32" r="3.2" fill="url(#gd)" stroke="#ffffff" stroke-width="1.2" />
-    <circle cx="21" cy="20" r="4" fill="none" stroke="#ffffff" stroke-width="1.5" /><circle cx="21" cy="20" r="1.9" fill="#ffffff" />
-    <circle cx="21" cy="44" r="4" fill="none" stroke="#ffffff" stroke-width="1.5" /><circle cx="21" cy="44" r="1.9" fill="#ffffff" />
-    <circle cx="43" cy="20" r="4" fill="none" stroke="#ffffff" stroke-width="1.5" /><circle cx="43" cy="20" r="1.9" fill="#ffffff" />
-    <circle cx="43" cy="44" r="4" fill="none" stroke="#ffffff" stroke-width="1.5" /><circle cx="43" cy="44" r="1.9" fill="#ffffff" />
+  <!-- Isotipo: cuadrado redondeado blanco con "F" azul -->
+  <g transform="translate(104 176) scale(1.7)">
+    <rect width="64" height="64" rx="16" fill="url(#g)" />
+    <path d="M21 14h24v10H32v6h11v10H32v10H21z" fill="#2563eb" />
   </g>
 
-  <text x="232" y="292" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="#ffffff" letter-spacing="-2">Naveosoft</text>
-  <text x="112" y="392" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500" fill="#e5e7eb">Desarrollo de software a medida para pymes</text>
-  <text x="112" y="442" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500" fill="#7791c2">Creadores de Forjia · Control de presencia y fichaje</text>
+  <text x="236" y="258" font-family="Inter, Arial, sans-serif" font-size="80" font-weight="800" fill="#ffffff" letter-spacing="-2">Forjia</text>
+  <text x="108" y="376" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="700" fill="#ffffff" letter-spacing="-1">El control horario que tu equipo usa cada día</text>
+  <text x="108" y="440" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500" fill="#cbd5e6">Fichaje móvil · Vacaciones · Informes para Inspección · Panel para gestorías</text>
+  <text x="108" y="520" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="600" fill="#12b981">Prueba 30 días gratis · sin tarjeta · www.forjia.es</text>
 </svg>

@@ -1,0 +1,621 @@
+---
+/**
+ * Página de Funciones (/funciones).
+ * Recorre TODAS las funciones reales de Forjia agrupadas por bloques
+ * (fichaje, turnos, vacaciones, documentos, panel del jefe, cumplimiento
+ * legal, gestorías y plataforma), con capturas de la app intercaladas.
+ * La antigua URL /forjia redirige aquí (ver astro.config.mjs).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// --- FICHAJE ---
+const fichaje = [
+  {
+    icon: 'smartphone',
+    title: 'Fichaje móvil y web',
+    text: 'Entrada, salida y pausas en dos toques desde el móvil o el navegador. El empleado ve al instante sus horas de hoy y de la semana.',
+  },
+  {
+    icon: 'map-pin',
+    title: 'GPS opcional y varios centros',
+    text: 'Activa la geolocalización si la necesitas. Define varios centros de trabajo, cada uno con su radio, y solo se podrá fichar dentro de la zona.',
+  },
+  {
+    icon: 'qr',
+    title: 'Modo kiosco con QR o PIN',
+    text: 'Una tablet compartida en la entrada: cada empleado ficha escaneando el QR o con su PIN. Incluye un cartel A4 imprimible.',
+  },
+  {
+    icon: 'camera',
+    title: 'Selfie opcional al fichar',
+    text: 'Foto de verificación en el momento del fichaje, activable por la empresa. El administrador la ve junto a cada registro.',
+  },
+  {
+    icon: 'coffee',
+    title: 'Pausas con incidencia',
+    text: 'El empleado marca la pausa y, si hace falta, indica el motivo. Las pausas quedan separadas de las horas trabajadas.',
+  },
+  {
+    icon: 'medical',
+    title: 'Visitas médicas',
+    text: 'Registro de las visitas médicas como ausencia justificada, sin restar de las vacaciones.',
+  },
+];
+
+// --- TURNOS Y CUADRANTES ---
+const turnos = [
+  {
+    icon: 'calendar',
+    title: 'Turnos y cuadrantes',
+    text: 'Asigna turnos por día con hora de inicio y fin. Crea el mismo turno para varios empleados y días de una vez, y copia la semana anterior con un botón.',
+  },
+  {
+    icon: 'clock',
+    title: 'Horario a la vista del empleado',
+    text: 'Cada persona ve sus próximos días al abrir la app y recibe aviso cuando le asignan o le cambian un turno.',
+  },
+  {
+    icon: 'alert',
+    title: 'Alertas de asistencia',
+    text: 'El jefe ve quién tenía turno y no ha fichado, quién ha llegado tarde y quién ha olvidado fichar la salida.',
+  },
+];
+
+// --- VACACIONES Y AUSENCIAS ---
+const vacaciones = [
+  {
+    icon: 'briefcase',
+    title: 'Solicitudes y aprobación',
+    text: 'El empleado solicita vacaciones o permisos desde la app; el administrador aprueba o rechaza con una nota. Todo queda registrado.',
+  },
+  {
+    icon: 'target',
+    title: 'Saldo de vacaciones',
+    text: 'Días asignados, consumidos y restantes por empleado, descontando automáticamente los festivos.',
+  },
+  {
+    icon: 'calendar',
+    title: 'Festivos y calendario de equipo',
+    text: 'Carga los festivos nacionales de un clic y añade los locales. Calendario de equipo para ver quién falta cada día.',
+  },
+];
+
+// --- DOCUMENTOS Y FIRMA ---
+const documentos = [
+  {
+    icon: 'file',
+    title: 'Nóminas y contratos por empleado',
+    text: 'Sube nóminas, contratos y comunicados. Cada persona solo ve los suyos, desde el móvil.',
+  },
+  {
+    icon: 'edit',
+    title: 'Firma con el dedo',
+    text: 'El empleado abre el documento y firma en la pantalla. Se guarda la fecha y la imagen de la firma como acuse de recibo.',
+  },
+  {
+    icon: 'check',
+    title: 'Control de pendientes',
+    text: 'El administrador ve de un vistazo qué documentos están pendientes de firma y cuáles ya están firmados.',
+  },
+];
+
+// --- PANEL DEL JEFE ---
+const panel = [
+  {
+    icon: 'eye',
+    title: 'Quién está trabajando, ahora',
+    text: 'Estado del equipo en tiempo real: quién trabaja, quién está en pausa y quién ha salido.',
+  },
+  {
+    icon: 'bell',
+    title: 'Alertas automáticas',
+    text: 'Salidas olvidadas, jornadas demasiado largas, retrasos y no presentados. Sin tener que mirar.',
+  },
+  {
+    icon: 'history',
+    title: 'Correcciones con auditoría',
+    text: 'Los empleados no pueden editar ni borrar fichajes. Las correcciones las hace el administrador y quedan en un historial inalterable: quién, cuándo y qué cambió.',
+  },
+  {
+    icon: 'user-plus',
+    title: 'Alta de empleados en bloque',
+    text: 'Pega una lista de nombres y correos y da de alta a todo el equipo de una vez. Cada persona recibe su acceso.',
+  },
+];
+
+// --- INFORMES Y CUMPLIMIENTO LEGAL ---
+const legal = [
+  {
+    icon: 'file',
+    title: 'Parte de horas en PDF',
+    text: 'Resumen del periodo por trabajador y detalle de cada fichaje, con el formato que pide la Inspección de Trabajo.',
+  },
+  {
+    icon: 'shield',
+    title: 'Informe de auditoría',
+    text: 'Historial completo de cambios de cada fichaje, listo para acreditar que el registro es fiable e inalterable (art. 34.9 ET).',
+  },
+  {
+    icon: 'table',
+    title: 'Excel y CSV para la gestoría',
+    text: 'Horas por empleado y de toda la empresa, exportables a Excel y CSV para preparar las nóminas.',
+  },
+  {
+    icon: 'lock',
+    title: 'Conservación 4 años',
+    text: 'Los registros se conservan el tiempo que exige la ley y se pueden descargar cuando quieras.',
+  },
+];
+
+// --- PARA GESTORÍAS ---
+const gestorias = [
+  {
+    icon: 'buildings',
+    title: 'Panel de cartera',
+    text: 'Todas tus empresas cliente en un solo panel. Entra en cada una como administrador sin pedir contraseñas.',
+  },
+  {
+    icon: 'eye-off',
+    title: 'Privacidad por defecto',
+    text: '9 permisos configurables. Por defecto la gestoría NO ve GPS, selfies, motivos médicos, documentos ni credenciales; la empresa decide qué abrir.',
+  },
+  {
+    icon: 'history',
+    title: 'Registro de accesos visible',
+    text: 'La empresa cliente ve cuándo ha entrado la gestoría y qué ha consultado. Confianza en las dos direcciones.',
+  },
+  {
+    icon: 'download',
+    title: 'Informe mensual de toda la cartera',
+    text: 'Un solo Excel con una pestaña por empresa, con las horas del mes listas para las nóminas.',
+  },
+];
+
+// --- PLATAFORMA ---
+const plataforma = [
+  { icon: 'smartphone', title: 'PWA y app Android', text: 'Instálala como app web o desde Google Play.' },
+  { icon: 'languages', title: '3 idiomas', text: 'Español, catalán e inglés.' },
+  { icon: 'moon', title: 'Modo oscuro', text: 'Cómoda a cualquier hora.' },
+  { icon: 'shield', title: 'Datos en la UE', text: 'Alojamiento europeo (Supabase) y copias de seguridad.' },
+];
+---
+
+<BaseLayout
+  title="Funciones de Forjia — Fichaje, turnos, vacaciones, documentos e informes"
+  description="Todas las funciones de Forjia: fichaje móvil con GPS opcional, modo kiosco con QR o PIN, turnos, vacaciones y ausencias, documentos con firma, panel del jefe en tiempo real, informes para Inspección de Trabajo y panel para gestorías."
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Funciones</span>
+      <h1>Todo lo que necesita una pyme para el registro de jornada</h1>
+      <p class="lead">
+        Fichaje, turnos, vacaciones, documentos e informes en una sola app. Sin
+        módulos escondidos ni sorpresas: esto es lo que hace Forjia hoy.
+      </p>
+      <div class="hero-actions">
+        <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary">
+          Empieza gratis
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a href="/precios" class="btn btn--secondary">Ver precios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FICHAJE ================= -->
+  <section class="section section--light">
+    <div class="container feature-block reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Fichaje</span>
+        <h2>Fichar cuesta dos toques</h2>
+        <p class="lead">
+          Desde el móvil, la web o una tablet compartida, con las garantías que
+          necesita tu empresa y sin complicarle la vida al equipo.
+        </p>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/2-fichaje.jpg"
+          alt="Pantalla de fichaje de Forjia con el cronómetro de la jornada, el botón de fichar salida y las horas de hoy y de la semana"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+      </figure>
+    </div>
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--3 reveal">
+        {
+          fichaje.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KIOSCO (captura) + TURNOS ================= -->
+  <section class="section">
+    <div class="container feature-block feature-block--reverse reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Turnos y cuadrantes</span>
+        <h2>Organiza la semana en minutos</h2>
+        <p class="lead">
+          Planifica los turnos, avisa al equipo automáticamente y detecta al
+          momento quién no ha venido o ha llegado tarde.
+        </p>
+        <div class="grid feature-cards">
+          {
+            turnos.map((f) => (
+              <article class="card card--compact">
+                <span class="icon-box"><Icon name={f.icon} /></span>
+                <div>
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/5-kiosko.jpg"
+          alt="Modo kiosco de Forjia en una tablet: los empleados fichan con código QR o con su PIN"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+        <figcaption>Modo kiosco: una tablet en la entrada y un cartel A4 con el QR.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= VACACIONES ================= -->
+  <section class="section section--light">
+    <div class="container feature-block reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Vacaciones y ausencias</span>
+        <h2>Vacaciones sin cadenas de WhatsApp</h2>
+        <p class="lead">
+          Solicitudes, aprobación, saldo y festivos en un solo sitio. El equipo
+          sabe cuántos días le quedan y el jefe quién falta cada día.
+        </p>
+        <div class="grid feature-cards">
+          {
+            vacaciones.map((f) => (
+              <article class="card card--compact">
+                <span class="icon-box"><Icon name={f.icon} /></span>
+                <div>
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <p class="plan-note">Incluido en el plan <strong>Completo</strong>.</p>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/3-vacaciones.jpg"
+          alt="Pantalla de vacaciones y ausencias de Forjia con el saldo de días disponibles y las solicitudes pendientes"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= DOCUMENTOS ================= -->
+  <section class="section">
+    <div class="container feature-block feature-block--reverse reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Documentos y firma</span>
+        <h2>Nóminas y contratos firmados desde el móvil</h2>
+        <p class="lead">
+          Comparte documentos con cada empleado y recoge su firma con el dedo.
+          Se acaba imprimir, firmar y escanear.
+        </p>
+        <div class="grid feature-cards">
+          {
+            documentos.map((f) => (
+              <article class="card card--compact">
+                <span class="icon-box"><Icon name={f.icon} /></span>
+                <div>
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <p class="plan-note">Incluido en el plan <strong>Completo</strong>.</p>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/7-documentos.jpg"
+          alt="Pantalla de documentos de Forjia con nóminas y contratos, y el estado de firma de cada uno"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= PANEL DEL JEFE ================= -->
+  <section class="section section--light">
+    <div class="container feature-block reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Panel del jefe</span>
+        <h2>Tu equipo, de un vistazo y en tiempo real</h2>
+        <p class="lead">
+          Quién trabaja, quién está en pausa y quién ha salido. Alertas cuando
+          algo no cuadra y correcciones que quedan siempre registradas.
+        </p>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/6-empleados.jpg"
+          alt="Panel de empleados de Forjia con el estado en tiempo real de cada persona: trabajando, en pausa o fuera"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+      </figure>
+    </div>
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--2 reveal">
+        {
+          panel.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INFORMES Y CUMPLIMIENTO ================= -->
+  <section class="section">
+    <div class="container feature-block feature-block--reverse reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Informes y cumplimiento legal</span>
+        <h2>Listo para la Inspección de Trabajo</h2>
+        <p class="lead">
+          Registro de jornada conforme al <strong>art. 34.9 del Estatuto de los
+          Trabajadores</strong>. Los informes salen con un clic y los registros se
+          conservan 4 años.
+        </p>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/4-informes.jpg"
+          alt="Pantalla de informes de Forjia: parte de horas en PDF, informe de auditoría y exportación a Excel y CSV"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+      </figure>
+    </div>
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--2 reveal">
+        {
+          legal.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GESTORÍAS ================= -->
+  <section class="section section--light">
+    <div class="container feature-block reveal">
+      <div class="feature-text">
+        <span class="eyebrow">Para gestorías</span>
+        <h2>Toda tu cartera de clientes en un panel</h2>
+        <p class="lead">
+          Pensado para despachos laborales que llevan el control horario de
+          muchas empresas: acceso ordenado, privacidad por defecto y un solo
+          Excel al mes.
+        </p>
+        <div class="hero-actions">
+          <a href="/gestorias" class="btn btn--primary">
+            Forjia para gestorías
+            <Icon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+      <figure class="feature-shot">
+        <img
+          src="/img/capturas/8-gestorias.jpg"
+          alt="Panel de cartera de Forjia para gestorías con la lista de empresas cliente y el acceso a cada una"
+          width="1080"
+          height="1920"
+          loading="lazy"
+          class="shot"
+        />
+      </figure>
+    </div>
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--2 reveal">
+        {
+          gestorias.map((f) => (
+            <article class="card">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLATAFORMA ================= -->
+  <section class="section">
+    <div class="container section-head reveal">
+      <span class="eyebrow">Plataforma</span>
+      <h2>Lista para el día a día</h2>
+    </div>
+    <div class="container" style="margin-top: 2.5rem;">
+      <div class="grid grid--2 reveal">
+        {
+          plataforma.map((f) => (
+            <article class="card card--compact">
+              <span class="icon-box"><Icon name={f.icon} /></span>
+              <div>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA FINAL ================= -->
+  <section class="section section--dark cta">
+    <div class="container section-head reveal">
+      <h2>Pruébalo con tu equipo, gratis</h2>
+      <p class="lead">
+        30 días con todas las funciones, sin tarjeta y sin compromiso. Si no os
+        convence, no pasa nada.
+      </p>
+      <div class="hero-actions" style="justify-content: center;">
+        <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary">
+          Empieza gratis
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a href="/precios" class="btn btn--ghost">Ver precios</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.1), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .hero-inner {
+    max-width: 48rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Bloque de función: texto + captura */
+  .feature-block {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .feature-block--reverse {
+    grid-template-columns: 0.7fr 1.3fr;
+  }
+
+  .feature-block--reverse .feature-text {
+    order: 2;
+  }
+
+  .feature-shot {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .feature-shot img {
+    max-width: 320px;
+  }
+
+  .feature-shot figcaption {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .feature-cards {
+    margin-top: 1.75rem;
+    gap: 1rem;
+  }
+
+  /* Tarjeta compacta: icono a la izquierda */
+  .card--compact {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.4rem;
+  }
+
+  .card--compact .icon-box {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .card--compact h3 {
+    font-size: 1.05rem;
+  }
+
+  .plan-note {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .feature-block,
+    .feature-block--reverse {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .feature-block--reverse .feature-text {
+      order: 0;
+    }
+
+    .feature-shot img {
+      max-width: 260px;
+    }
+  }
+</style>

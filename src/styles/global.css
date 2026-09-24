@@ -1,25 +1,31 @@
 /* =========================================================
-   VARIABLES DE MARCA — NAVEOSOFT
+   VARIABLES DE MARCA — FORJIA
    Cambia un color aquí y se actualiza en TODA la web.
    ========================================================= */
 :root {
-  /* Colores de marca — azul acero / pizarra (apagado, un punto más azul) */
-  --color-primary: #43629f;      /* azul acero primario */
-  --color-primary-dark: #35507f; /* azul acero más oscuro (hover) */
-  --color-accent: #7791c2;       /* azul grisáceo (acento) */
+  /* Colores de marca — azul Forjia */
+  --color-primary: #2563eb;      /* azul primario Forjia */
+  --color-primary-dark: #1d4ed8; /* azul más oscuro (hover) */
+  --color-primary-deep: #152c63; /* azul muy oscuro (fondos, titulares sobre azul) */
+  --color-primary-light: #eaf1fe; /* azul muy claro (fondos de tarjetas, etiquetas) */
+  --color-accent: #3b82f6;       /* azul claro (acento en degradados) */
+  --color-success: #12b981;      /* verde éxito (checks, "gratis", estado trabajando) */
+  --color-warning: #b45309;      /* ámbar (avisos, bloques de "problema") */
+  --color-warning-rgb: 245, 158, 11;
   /* Canales RGB (para tintes con transparencia) */
-  --color-primary-rgb: 67, 98, 159;
-  --color-accent-rgb: 119, 145, 194;
-  --color-dark: #0f172a;         /* texto y titulares oscuros */
-  --color-darker: #0b1120;       /* fondo oscuro profundo */
-  --color-light-bg: #f4f6f9;     /* fondo claro suave (gris frío) */
+  --color-primary-rgb: 37, 99, 235;
+  --color-accent-rgb: 59, 130, 246;
+  --color-success-rgb: 18, 185, 129;
+  --color-dark: #0f1b33;         /* tinta: texto y titulares oscuros */
+  --color-darker: #0b142b;       /* fondo oscuro profundo (pie, CTA) */
+  --color-light-bg: #f5f8fd;     /* fondo claro suave (azul grisáceo muy tenue) */
   --color-surface: #ffffff;      /* superficies (tarjetas) */
   --color-white: #ffffff;
 
   /* Colores de texto */
-  --color-text: #334155;         /* texto principal (slate-700) */
-  --color-text-muted: #64748b;   /* texto secundario (slate-500) */
-  --color-text-on-dark: #cbd5e1; /* texto sobre fondos oscuros */
+  --color-text: #33415c;         /* texto principal */
+  --color-text-muted: #5a6b85;   /* texto secundario (gris Forjia) */
+  --color-text-on-dark: #cbd5e6; /* texto sobre fondos oscuros */
 
   /* Bordes y separadores (hairline) */
   --color-border: #e9edf3;
@@ -346,6 +352,76 @@ p {
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-md);
+}
+
+/* =========================================================
+   CAPTURAS DE LA APP (imágenes en retrato 1080×1920)
+   ========================================================= */
+.shot {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-light-bg);
+}
+
+/* =========================================================
+   LISTA DE COMPROBACIONES (check verde a la izquierda)
+   ========================================================= */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.check-list li svg {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0.28rem;
+  margin-top: 0.15rem;
+  color: var(--color-success);
+  background-color: rgba(var(--color-success-rgb), 0.14);
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.section--dark .check-list li {
+  color: var(--color-text-on-dark);
+}
+
+/* Etiqueta redondeada pequeña (p. ej. "Gratis", "Nuevo") */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.16);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+}
+
+.pill--success {
+  color: var(--color-success);
+  background-color: rgba(var(--color-success-rgb), 0.12);
+  border-color: rgba(var(--color-success-rgb), 0.25);
 }
 
 /* =========================================================

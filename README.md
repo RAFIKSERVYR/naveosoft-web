@@ -1,10 +1,16 @@
-# Naveosoft — Web corporativa
+# Forjia — Web pública
 
-Web corporativa de **Naveosoft**, empresa de desarrollo de software a medida y
-creadora de **Forjia** (app de control de presencia y fichaje). Construida con
-[Astro](https://astro.build) como sitio estático, orientada a SEO.
+Web pública de **Forjia**, la app de control horario y fichaje para pymes y
+gestorías en España. Forjia es un producto de **Naveosoft**. Construida con
+[Astro](https://astro.build) como sitio 100 % estático, orientada a SEO.
 
-Dominio: **naveosoft.es**
+- **Esta web (escaparate):** https://www.forjia.es
+- **La app (donde se ficha y se registra uno):** https://forjia.es — vive en otro
+  repositorio, `employee-time-tracker`. Aquí solo enlazamos a ella
+  (`/registro`, `/precios`, `/comparativa`, `/privacidad`).
+- **Contacto público:** info@forjia.es
+- El dominio antiguo `naveosoft.es` redirige a www.forjia.es (ver
+  `DOMINIO-FORJIA.md`).
 
 ## 🧞 Comandos
 
@@ -21,54 +27,64 @@ Todos se ejecutan desde la carpeta del proyecto, en una terminal:
 
 ```
 src/
-├── components/     Piezas reutilizables (Header, Footer, SEO)
+├── components/     Piezas reutilizables (Header, Footer, SEO, Icon)
 ├── content/
 │   └── blog/       Artículos del blog (archivos .md / .mdx)
 ├── content.config.ts   Definición de la colección del blog
 ├── layouts/        Plantilla base común a todas las páginas
 ├── pages/          Cada archivo es una página de la web
 │   ├── index.astro         Inicio (/)
-│   ├── forjia.astro        Forjia (/forjia)
-│   ├── servicios.astro     Servicios (/servicios)
-│   ├── sobre-nosotros.astro
-│   ├── contacto.astro
-│   └── blog/               Listado y artículos del blog
+│   ├── funciones.astro     Funciones de Forjia (/funciones)
+│   ├── gestorias.astro     Para gestorías (/gestorias)
+│   ├── precios.astro       Precios (/precios)
+│   ├── contacto.astro      Contacto (/contacto)
+│   └── blog/               Listado y artículos del blog (/blog)
 └── styles/
     └── global.css   Colores de marca y estilos globales
 public/              Archivos estáticos (favicon, imágenes, robots.txt)
+DOMINIO-FORJIA.md    Guía paso a paso para el dominio (Fase A y Fase B)
 ```
 
 ## ✍️ Publicar un artículo en el blog
 
 1. Crea un archivo `.md` nuevo en `src/content/blog/`.
-   El nombre del archivo será su dirección web.
+   El nombre del archivo será su dirección web (`mi-articulo.md` → `/blog/mi-articulo`).
 2. Añade la cabecera y escribe el contenido:
 
 ```markdown
 ---
 title: 'Título del artículo'
 description: 'Resumen breve para Google y redes.'
-pubDate: 2026-08-10
+pubDate: 2026-10-01
+author: 'Equipo Forjia'
 category: 'Fichaje y normativa'  # o 'Desarrollo' o 'Naveosoft'
-tags: ['fichaje', 'consejos']
+tags: ['fichaje', 'gestorías']
 draft: false
 ---
 
 Contenido del artículo en texto normal (Markdown).
 ```
 
-3. Guarda. Si el proyecto está en Vercel, súbelo a GitHub y la web se
-   actualizará automáticamente.
+3. Guarda. Al subir a GitHub, Vercel reconstruye la web y el artículo aparece
+   solo. Con `draft: true` el artículo no se publica.
 
 ## 🎨 Colores de marca
 
-Definidos como variables CSS en `src/styles/global.css`:
+Definidos como variables CSS en `src/styles/global.css` (es la fuente de verdad):
 
-- Azul primario `#3B82F6`
-- Azul cielo (acento) `#38BDF8`
+- Azul Forjia (primario) `#2563EB`
 - Oscuros `#111827` y `#0B1120`
 - Fondo claro `#F8FAFC`
 
+## ✉️ Formulario de contacto
+
+Ya está **activo**: envía a [Web3Forms](https://web3forms.com) sin recargar la
+página. El correo de destino se configura en la cuenta de Web3Forms (Linked
+Emails), no en el código. Pendiente: cambiarlo de info@naveosoft.es a
+info@forjia.es (ver comentario de cabecera en `src/pages/contacto.astro`).
+
 ## 📝 Pendiente
 
-- Activar el envío del formulario de contacto (`src/pages/contacto.astro`).
+- Web3Forms → Linked Emails: pasar el destinatario a info@forjia.es.
+- Fase B del dominio (app a `app.forjia.es`, web a `forjia.es`) cuando Google
+  Play apruebe la app en producción. Plan en `DOMINIO-FORJIA.md`.
