@@ -8,7 +8,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   // Dominio final de la web. Se usa para generar el sitemap,
   // las URLs canónicas y las etiquetas Open Graph.
-  site: 'https://www.forjia.es',
+  site: 'https://naveosoft.es',
 
   // Redirecciones de las URLs antiguas (web corporativa de Naveosoft)
   // a las nuevas de la web de Forjia, para no perder enlaces ni SEO.

@@ -4,12 +4,12 @@ Web pública de **Forjia**, la app de control horario y fichaje para pymes y
 gestorías en España. Forjia es un producto de **Naveosoft**. Construida con
 [Astro](https://astro.build) como sitio 100 % estático, orientada a SEO.
 
-- **Esta web (escaparate):** https://www.forjia.es
+- **Esta web (escaparate):** https://naveosoft.es (www.forjia.es es la app; no usar para la web)
 - **La app (donde se ficha y se registra uno):** https://forjia.es — vive en otro
   repositorio, `employee-time-tracker`. Aquí solo enlazamos a ella
   (`/registro`, `/precios`, `/comparativa`, `/privacidad`).
 - **Contacto público:** info@forjia.es
-- El dominio antiguo `naveosoft.es` redirige a www.forjia.es (ver
+- La web se queda en naveosoft.es por decisión del 24-09-2026 (ver
   `DOMINIO-FORJIA.md`).
 
 ## 🧞 Comandos

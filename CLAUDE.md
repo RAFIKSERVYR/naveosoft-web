@@ -12,7 +12,7 @@ Web pública (escaparate) de **Forjia**, app de control horario/fichaje para pym
 y gestorías en España. Forjia es un producto de **Naveosoft**. Sitio **100 %
 estático** hecho con **Astro 5**, orientado a SEO.
 
-- **Dominio de esta web:** `https://www.forjia.es` (el antiguo `naveosoft.es`
+- **Dominio de esta web:** `https://naveosoft.es` (decisión 24-09-2026: se queda aquí; `www.forjia.es` es la APP, no tocar
   redirige aquí; guía de dominio en `DOMINIO-FORJIA.md`).
 - **La app** vive en `https://forjia.es` y es **otro repositorio**
   (`employee-time-tracker`, React + Supabase). Desde esta web solo se enlaza a
@@ -52,7 +52,7 @@ rompe la build).
   clase `.reveal` → `.is-visible`, respetando `prefers-reduced-motion`).
 - **SEO centralizado** en `src/components/SEO.astro`: genera metadatos, Open Graph,
   Twitter Cards, URL canónica y JSON-LD. Las URLs canónicas y el sitemap dependen
-  de `site` en `astro.config.mjs` (`https://www.forjia.es`) — si cambia el
+  de `site` en `astro.config.mjs` (`https://naveosoft.es`) — si cambia el
   dominio (p. ej. en la Fase B a `https://forjia.es`), cámbialo ahí.
 - **Blog como content collection** (`src/content.config.ts`): los artículos son
   `.md`/`.mdx` en `src/content/blog/`. El `schema` de Zod valida el frontmatter
