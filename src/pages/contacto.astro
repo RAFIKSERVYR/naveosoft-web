@@ -20,12 +20,12 @@ const contactJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contacto — Forjia',
-  url: 'https://naveosoft.es/contacto',
+  url: new URL('/contacto', Astro.site).href,
   mainEntity: {
     '@type': 'Organization',
     name: 'Forjia',
     email: 'info@forjia.es',
-    url: 'https://naveosoft.es',
+    url: new URL('/', Astro.site).href,
   },
 };
 ---
@@ -111,7 +111,7 @@ const contactJsonLd = {
           <input
             type="hidden"
             name="subject"
-            value="Nuevo mensaje desde el formulario de naveosoft.es"
+            value="Nuevo mensaje desde el formulario de la web de Forjia"
           />
           <input type="hidden" name="from_name" value="Web Forjia" />
 

@@ -8,15 +8,19 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   // Dominio final de la web. Se usa para generar el sitemap,
   // las URLs canónicas y las etiquetas Open Graph.
+  // OJO (verificado en Vercel el 02-10-2026): la APP vive en www.forjia.es
+  // (forjia.es redirige 308 a www). Esta web NO puede usar www.forjia.es hasta
+  // que la app se mude a app.forjia.es. Todo el código usa Astro.site, así que
+  // el día de la mudanza solo hay que cambiar esta línea.
   site: 'https://naveosoft.es',
 
-  // Redirecciones de las URLs antiguas (web corporativa de Naveosoft)
-  // a las nuevas de la web de Forjia, para no perder enlaces ni SEO.
-  redirects: {
-    '/servicios': '/',
-    '/sobre-nosotros': '/',
-    '/forjia': '/funciones',
-  },
+  // URLs sin barra final (/funciones, no /funciones/). Vercel sirve los .html
+  // sin extensión gracias a cleanUrls en vercel.json.
+  trailingSlash: 'never',
+  build: { format: 'file' },
+
+  // Las redirecciones antiguas (/servicios, /sobre-nosotros, /forjia) viven
+  // en vercel.json como 301 de verdad.
 
   // Integraciones activas.
   integrations: [

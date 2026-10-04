@@ -16,7 +16,8 @@ const navLinks = [
 ];
 
 // Ruta actual (sin barra final) para marcar el enlace activo.
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+// Se quita también el .html que añade build.format 'file' (Vercel sirve la URL limpia).
+const currentPath = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 ---
 
 <header class="site-header">

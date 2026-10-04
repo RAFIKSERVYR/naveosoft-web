@@ -4,7 +4,8 @@
  * Página de venta dirigida a gestorías y despachos laborales que llevan el
  * control horario de muchas empresas cliente. Estructura: problema (recopilar
  * horas a mano), solución (panel de cartera + privacidad por defecto + informe
- * mensual en un Excel), cómo funciona, precio (9 €/empresa, mínimo 79 €) y CTA
+ * mensual en un Excel), cómo funciona, precio (9 €/empresa hasta 25 trabajadores,
+ * 19 € de 26 a 50, mínimo 79 € desde el cuarto mes; 30 días de prueba) y CTA
  * por correo (info@forjia.es) o demo.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -75,14 +76,14 @@ const pasos = [
 
 <BaseLayout
   title="Forjia para gestorías — Control horario de toda tu cartera en un panel"
-  description="Forjia para gestorías y despachos laborales: panel de cartera con todas tus empresas cliente, privacidad por defecto, registro de accesos e informe mensual de toda la cartera en un solo Excel. 9 € por empresa al mes (mínimo 79 €)."
+  description="Forjia para asesorías y gestorías: 9 € por empresa al mes + IVA y 30 días de prueba gratis con todas tus empresas. Las horas de toda tu cartera en un solo Excel."
 >
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">Para gestorías y despachos laborales</span>
+        <span class="eyebrow">Para asesorías, gestorías y despachos laborales</span>
         <h1>Las horas de todos tus clientes, en un solo Excel</h1>
         <p class="lead">
           Deja de perseguir a cada empresa a fin de mes. Con Forjia tus clientes
@@ -101,7 +102,8 @@ const pasos = [
           <a href="/contacto" class="btn btn--secondary">Pide una demo</a>
         </div>
         <p class="hero-note">
-          9 € por empresa al mes (mínimo 79 €), sin IVA. Sin permanencia.
+          <strong>30 días de prueba gratis con todas tus empresas.</strong> Después,
+          9 € por empresa al mes + IVA. Sin permanencia.
         </p>
       </div>
       <div class="hero-visual">
@@ -249,19 +251,24 @@ const pasos = [
           <span class="eyebrow">Precio para gestorías</span>
           <h2>9 € por empresa al mes</h2>
           <p class="lead">
-            Mínimo 79 € al mes. Precios sin IVA. Sin permanencia ni costes de
-            alta. Cada empresa cliente incluye el plan Completo de Forjia
-            (fichaje, turnos, vacaciones, documentos e informes).
+            Para empresas de hasta 25 trabajadores; de 26 a 50, 19 €, y con más
+            de 50, precio a medida. Mínimo de 79 € al mes a partir del cuarto mes:
+            los tres primeros pagas solo por las empresas que tengas. Precios + IVA.
+            Sin permanencia ni costes de alta. Cada empresa cliente incluye el plan
+            Completo de Forjia (fichaje, turnos, vacaciones, documentos e informes).
           </p>
           <ul class="check-list">
-            <li><Icon name="check" size={18} /> Panel de cartera e informe mensual en un solo Excel</li>
+            <li><Icon name="check" size={18} /> 30 días de prueba gratis con todas tus empresas</li>
+            <li><Icon name="check" size={18} /> Panel de cartera e informe mensual en un solo Excel, con las columnas adaptadas a tu despacho</li>
+            <li><Icon name="check" size={18} /> Una sola factura para la gestoría: inclúyelo en tu cuota o cóbraselo a tu cliente</li>
+            <li><Icon name="check" size={18} /> Si dejas de pagar, solo se bloquea tu panel: no se borra nada y los trabajadores siguen fichando</li>
             <li><Icon name="check" size={18} /> Privacidad por defecto y registro de accesos</li>
-            <li><Icon name="check" size={18} /> Soporte directo por correo</li>
+            <li><Icon name="check" size={18} /> Soporte por correo, también para los trabajadores de tus clientes</li>
           </ul>
         </div>
         <div class="pricing-card">
           <p class="pricing-amount">9 €<small>/empresa y mes</small></p>
-          <p class="pricing-min">Mínimo 79 €/mes · sin IVA</p>
+          <p class="pricing-min">Hasta 25 trabajadores · + IVA<br />Mínimo 79 €/mes desde el cuarto mes</p>
           <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas" class="btn btn--primary" style="width: 100%;">
             Escríbenos a info@forjia.es
           </a>

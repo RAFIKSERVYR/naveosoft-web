@@ -1,10 +1,10 @@
 ---
-title: 'Registro horario en tu pyme: qué dice la ley (RD 8/2019)'
-description: 'Guía sencilla sobre el registro de jornada obligatorio en España: qué exige el RD 8/2019, qué debes guardar y cómo cumplir sin complicaciones.'
+title: 'Registro horario en tu pyme: qué dice la ley (RD-ley 8/2019)'
+description: 'Guía sencilla sobre el registro de jornada obligatorio en España: qué exige el RD-ley 8/2019, qué debes guardar y cómo cumplir sin complicaciones.'
 pubDate: 2026-08-04
 author: 'Equipo Forjia'
 category: 'Fichaje y normativa'
-tags: ['registro horario', 'RD 8/2019', 'fichaje', 'pymes']
+tags: ['registro horario', 'RD-ley 8/2019', 'fichaje', 'pymes']
 draft: false
 ---
 

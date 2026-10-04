@@ -48,7 +48,7 @@ const incluyeCompleto = [
 const faqs = [
   {
     q: '¿Los precios incluyen IVA?',
-    a: 'No. Todos los precios son sin IVA. Al importe se le añade el 21 % de IVA en la factura.',
+    a: 'No. Los precios no incluyen IVA: al importe se le añade el 21 % en la factura.',
   },
   {
     q: '¿Cómo funciona la prueba gratuita?',
@@ -60,7 +60,7 @@ const faqs = [
   },
   {
     q: '¿Hay permanencia o coste de alta?',
-    a: 'No. Sin permanencia, sin costes de implantación y sin mínimos, salvo el plan para gestorías, que tiene un mínimo de 79 € al mes.',
+    a: 'No. Sin permanencia, sin costes de implantación y sin mínimos, salvo el plan para gestorías, que tiene un mínimo de 79 € al mes a partir del cuarto mes.',
   },
   {
     q: 'Tengo más de 50 empleados',
@@ -81,14 +81,14 @@ const offersJsonLd = {
     lowPrice: '15',
     highPrice: '99',
     offerCount: tramos.length * 2,
-    url: 'https://www.forjia.es/precios',
+    url: new URL('/precios', Astro.site).href,
   },
 };
 ---
 
 <BaseLayout
   title="Precios de Forjia — Planes Básico y Completo por empresa"
-  description="Precios de Forjia: plan Básico desde 15 €/mes y plan Completo desde 29 €/mes por empresa, según empleados. Pago anual con 2 meses gratis. Gestorías desde 9 € por empresa. Prueba 30 días gratis sin tarjeta. Precios sin IVA."
+  description="Precios de Forjia: plan Básico desde 15 €/mes y plan Completo desde 29 €/mes por empresa, según empleados. Pago anual con 2 meses gratis. Gestorías: 9 € por empresa (hasta 25 trabajadores). Prueba 30 días gratis sin tarjeta. Precios + IVA."
   jsonLd={offersJsonLd}
 >
   <!-- ================= HERO ================= -->
@@ -183,7 +183,7 @@ const offersJsonLd = {
       </div>
 
       <p class="vat-note text-center">
-        Precios <strong>sin IVA</strong>, por empresa. El pago anual equivale a 10
+        Precios <strong>+ IVA</strong>, por empresa. El pago anual equivale a 10
         mensualidades (2 meses gratis). Sin permanencia ni costes de alta.
       </p>
     </div>
@@ -202,7 +202,7 @@ const offersJsonLd = {
             privacidad por defecto e informe mensual de toda la cartera en un
             solo Excel. Cada empresa incluye el plan Completo.
           </p>
-          <p class="agency-min">Mínimo 79 €/mes · sin IVA · sin permanencia</p>
+          <p class="agency-min">Hasta 25 trabajadores por empresa (de 26 a 50, 19 €) · mínimo 79 €/mes desde el cuarto mes · + IVA · sin permanencia · 30 días de prueba con todas tus empresas</p>
         </div>
         <div class="agency-actions">
           <a href="/gestorias" class="btn btn--primary">

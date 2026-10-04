@@ -7,24 +7,18 @@
  * muestra un aviso visible arriba ("Borrador pendiente de revisión legal"); el
  * dueño decide cuándo quitarlo (basta con borrar el bloque <aside class="draft">).
  *
- * Marcadores por rellenar cuando se decida el titular:
- *   {NOMBRE/RAZÓN SOCIAL}  {NIF}  {DIRECCIÓN}
- * Están agrupados en la constante `prestador` para cambiarlos en un solo sitio.
+ * Los datos del titular (nombre, NIF, dirección) viven en src/data/titular.ts,
+ * compartidos con /aviso-legal: se rellenan allí, una sola vez.
  *
  * Las condiciones de precio remiten a /precios (fuente de verdad de los planes)
  * y la protección de datos a https://forjia.es/privacidad, para no duplicar.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import { titular } from '../data/titular';
 
-// Datos del prestador. Sustituir los marcadores cuando estén decididos.
-const prestador = {
-  marca: 'Naveosoft',
-  razonSocial: '{NOMBRE/RAZÓN SOCIAL}',
-  nif: '{NIF}',
-  direccion: '{DIRECCIÓN}',
-  email: 'info@forjia.es',
-};
+// Datos del prestador (se rellenan en src/data/titular.ts).
+const prestador = titular;
 
 const fechaVersion = 'Septiembre de 2026 (borrador)';
 
@@ -52,10 +46,10 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Condiciones del Servicio de Forjia',
-  url: 'https://naveosoft.es/condiciones',
+  url: new URL('/condiciones', Astro.site).href,
   inLanguage: 'es-ES',
   description: 'Condiciones del Servicio de Forjia, la app de control horario para pymes y gestorías.',
-  publisher: { '@type': 'Organization', name: 'Forjia', url: 'https://naveosoft.es' },
+  publisher: { '@type': 'Organization', name: 'Forjia', url: new URL('/', Astro.site).href },
 };
 ---
 
@@ -111,7 +105,7 @@ const jsonLd = {
           <li>NIF: <strong>{prestador.nif}</strong></li>
           <li>Domicilio: <strong>{prestador.direccion}</strong></li>
           <li>Correo electrónico: <a href={`mailto:${prestador.email}`}>{prestador.email}</a></li>
-          <li>Sitios web: <a href="https://naveosoft.es">naveosoft.es</a> (información) y <a href="https://forjia.es" rel="noopener">forjia.es</a> (aplicación)</li>
+          <li>Sitios web: <a href="/">naveosoft.es</a> (información) y <a href="https://forjia.es" rel="noopener">forjia.es</a> (aplicación)</li>
         </ul>
         <p>
           En estas condiciones llamamos <strong>"Forjia"</strong> o <strong>"nosotros"</strong>
@@ -284,9 +278,10 @@ const jsonLd = {
           </li>
           <li>
             <strong>Usar el servicio de forma lícita</strong>, sin intentar acceder a datos de
-            otras empresas, alterar el funcionamiento, revender el servicio o
-            usarlo para fines distintos de la gestión laboral de su propia
-            plantilla (o de las empresas que gestiona, en el caso de gestorías).
+            otras empresas, alterar el funcionamiento, revender el servicio
+            (salvo lo previsto para gestorías en el apartado 9) o usarlo para
+            fines distintos de la gestión laboral de su propia plantilla (o de las
+            empresas que gestiona, en el caso de gestorías).
           </li>
           <li>
             <strong>Informar a su plantilla</strong> del sistema de registro de jornada, de los
@@ -337,6 +332,12 @@ const jsonLd = {
           <li>
             La gestoría es responsable de la facturación de las empresas de su
             cartera frente a Forjia, salvo que cada empresa contrate por su cuenta.
+          </li>
+          <li>
+            La gestoría puede incluir el coste del servicio en sus honorarios o
+            repercutirlo a sus empresas cliente. Esto no se considera reventa, siempre
+            que el servicio se use para gestionar el registro de jornada de esas
+            empresas.
           </li>
         </ul>
 

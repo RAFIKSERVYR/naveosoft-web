@@ -1,0 +1,19 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/servicios", "destination": "/", "permanent": true },
+    { "source": "/sobre-nosotros", "destination": "/", "permanent": true },
+    { "source": "/forjia", "destination": "/funciones", "permanent": true },
+    { "source": "/Gestorias", "destination": "/gestorias", "permanent": true },
+    { "source": "/GESTORIAS", "destination": "/gestorias", "permanent": true },
+    { "source": "/gestoria", "destination": "/gestorias", "permanent": true },
+    { "source": "/Gestoria", "destination": "/gestorias", "permanent": true },
+    { "source": "/gestor%C3%ADas", "destination": "/gestorias", "permanent": true },
+    { "source": "/gestor%C3%ADa", "destination": "/gestorias", "permanent": true },
+    { "source": "/asesorias", "destination": "/gestorias", "permanent": true },
+    { "source": "/asesoria", "destination": "/gestorias", "permanent": true },
+    { "source": "/asesor%C3%ADas", "destination": "/gestorias", "permanent": true },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true }
+  ]
+}

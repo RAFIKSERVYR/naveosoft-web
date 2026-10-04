@@ -143,9 +143,10 @@ control horario para pymes españolas, con un modo pensado para gestorías:
   médicos), salvo que la empresa cliente le abra más permisos por escrito.
 - **Registro de accesos** del despacho a cada empresa: queda constancia de cada
   entrada y de cada descarga de informe.
-- **Precio plano para gestorías: 9 € por empresa al mes, con un mínimo de
-  79 €** (IVA no incluido). Sin módulos ni sorpresas: sabes lo que pagas y lo que
-  puedes repercutir a cada cliente.
+- **Precio para gestorías: 9 € por empresa al mes** para empresas de hasta 25
+  trabajadores (19 € de 26 a 50), con un mínimo de 79 € a partir del cuarto mes
+  (IVA no incluido). Sin módulos ni sorpresas: sabes lo que pagas y lo que puedes
+  repercutir a cada cliente.
 
 Con 20 empresas, por ejemplo, hablamos de 180 € al mes por dejar de perseguir
 veinte Excel. Si a eso le sumas que puedes ofrecerlo a tus clientes como un
@@ -167,7 +168,7 @@ No hace falta migrar a los veinte clientes el mismo día. Lo que mejor funciona 
 
 **¿Quieres verlo funcionando?**
 **[Empieza gratis con Forjia](https://forjia.es/registro)**: 30 días de prueba
-sin compromiso para conocer la app con una empresa (la tuya o la de un cliente).
-Y para activar tu **cuenta de gestoría** con la cartera completa, escríbenos a
+sin compromiso. Y para activar tu **cuenta de gestoría** y probar el panel de
+cartera 30 días gratis con todas tus empresas, escríbenos a
 [info@forjia.es](mailto:info@forjia.es) o desde [contacto](/contacto): te la
 dejamos lista en el día y te enseñamos el panel en una videollamada corta.

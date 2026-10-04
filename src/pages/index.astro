@@ -52,7 +52,7 @@ const softwareJsonLd = {
   name: 'Forjia',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web, Android',
-  url: 'https://www.forjia.es',
+  url: new URL('/', Astro.site).href,
   installUrl: 'https://forjia.es/registro',
   inLanguage: ['es', 'ca', 'en'],
   description:
@@ -88,7 +88,7 @@ const softwareJsonLd = {
   publisher: {
     '@type': 'Organization',
     name: 'Forjia',
-    url: 'https://naveosoft.es',
+    url: new URL('/', Astro.site).href,
   },
 };
 ---
@@ -252,11 +252,11 @@ const softwareJsonLd = {
           <h3>Gestorías</h3>
           <p class="price-amount">9 €<small>/empresa y mes</small></p>
           <p>Panel de cartera, acceso a cada empresa cliente e informe mensual de toda la cartera en un Excel.</p>
-          <p class="price-tiers">Mínimo 79 €/mes · <a href="/gestorias">Ver más</a></p>
+          <p class="price-tiers">Hasta 25 trabajadores · mínimo 79 €/mes desde el cuarto mes · <a href="/gestorias">Ver más</a></p>
         </article>
       </div>
       <p class="price-note text-center">
-        Precios sin IVA, por empresa. Prueba 30 días gratis sin tarjeta.
+        Precios + IVA, por empresa. Prueba 30 días gratis sin tarjeta.
       </p>
       <div class="text-center" style="margin-top: 1.5rem;">
         <a href="/precios" class="btn btn--secondary">

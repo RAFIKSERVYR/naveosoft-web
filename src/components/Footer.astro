@@ -1,8 +1,9 @@
 ---
 /**
  * Pie de página del sitio: logo de Forjia, enlaces de producto, recursos,
- * legales (alojados en la propia app, forjia.es), contacto y la mención
- * "Forjia es un producto de Naveosoft" (único lugar de la web donde aparece).
+ * legales (aviso legal y condiciones en este sitio; privacidad en la app,
+ * forjia.es), contacto y la mención "Forjia es un producto de Naveosoft"
+ * (único lugar de la web donde aparece).
  */
 import Logo from './Logo.astro';
 
@@ -52,6 +53,8 @@ const year = new Date().getFullYear();
     <nav class="footer-col" aria-label="Legal y contacto">
       <h4>Legal y contacto</h4>
       <ul>
+        <li><a href="/aviso-legal">Aviso legal</a></li>
+        <li><a href="/condiciones">Condiciones del Servicio</a></li>
         <li><a href="https://forjia.es/privacidad" rel="noopener">Política de privacidad</a></li>
         <li><a href="https://forjia.es/eliminar-cuenta" rel="noopener">Eliminar cuenta</a></li>
         <li><a href="/contacto">Formulario de contacto</a></li>

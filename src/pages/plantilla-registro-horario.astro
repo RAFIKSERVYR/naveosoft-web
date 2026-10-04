@@ -19,7 +19,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 
 const archivo = '/descargas/plantilla-registro-horario-forjia.xlsx';
-const urlArchivo = `https://naveosoft.es${archivo}`;
+const urlArchivo = new URL(archivo, Astro.site).href;
 
 // Qué incluye la plantilla (tres hojas).
 const incluye = [
@@ -76,12 +76,12 @@ const jsonLd = {
   name: 'Plantilla Excel de registro de jornada mensual (art. 34.9 ET)',
   description:
     'Plantilla gratuita en Excel para el registro horario mensual de los trabajadores, conforme al artículo 34.9 del Estatuto de los Trabajadores. Calcula horas ordinarias y extra e incluye hoja de resumen con firmas.',
-  url: 'https://naveosoft.es/plantilla-registro-horario',
+  url: new URL('/plantilla-registro-horario', Astro.site).href,
   inLanguage: 'es-ES',
   isAccessibleForFree: true,
   encodingFormat: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   contentUrl: urlArchivo,
-  publisher: { '@type': 'Organization', name: 'Forjia', url: 'https://naveosoft.es' },
+  publisher: { '@type': 'Organization', name: 'Forjia', url: new URL('/', Astro.site).href },
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
 };
 ---
