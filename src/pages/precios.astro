@@ -25,15 +25,15 @@ const eur = (n: number) => `${n} €`;
 // Qué incluye cada plan.
 const incluyeBasico = [
   'Fichaje móvil y web con GPS opcional y varios centros',
-  'Modo kiosco con QR o PIN (cartel A4 imprimible)',
+  'Modo kiosco con PIN en tablet y cartel QR para fichar con el móvil',
   'Selfie opcional al fichar y pausas con incidencia',
   'Turnos y cuadrantes',
   'Panel del jefe en tiempo real con alertas',
   'Correcciones con auditoría inalterable',
-  'Parte de horas PDF e informe para Inspección (art. 34.9 ET)',
+  'Parte de horas PDF e informe para una inspección',
   'Excel y CSV para la gestoría · conservación 4 años',
   'Alta de empleados en bloque',
-  'PWA y app Android · 3 idiomas · modo oscuro',
+  'Web y app instalable en Android y iPhone · 3 idiomas · modo oscuro',
 ];
 
 const incluyeCompleto = [
@@ -52,7 +52,7 @@ const faqs = [
   },
   {
     q: '¿Cómo funciona la prueba gratuita?',
-    a: 'Tienes 30 días con todas las funciones del plan Completo, sin introducir tarjeta. Al acabar, eliges plan o la cuenta simplemente se pausa. Sin cargos sorpresa.',
+    a: 'Tienes 30 días con todas las funciones del plan Completo, sin introducir tarjeta. Al acabar, eliges plan o se bloquea el panel hasta que lo elijas; tu equipo sigue fichando y no se borra nada. Sin cargos sorpresa.',
   },
   {
     q: '¿Qué pasa si crezco y paso de tramo?',
@@ -88,7 +88,7 @@ const offersJsonLd = {
 
 <BaseLayout
   title="Precios de Forjia — Planes Básico y Completo por empresa"
-  description="Precios de Forjia: plan Básico desde 15 €/mes y plan Completo desde 29 €/mes por empresa, según empleados. Pago anual con 2 meses gratis. Gestorías: 9 € por empresa (hasta 25 trabajadores). Prueba 30 días gratis sin tarjeta. Precios + IVA."
+  description="Básico desde 15 €/mes y Completo desde 29 €/mes por empresa, + IVA. Gestorías, desde 9 €/mes por empresa. Anual: 2 meses gratis. Prueba 30 días gratis."
   jsonLd={offersJsonLd}
 >
   <!-- ================= HERO ================= -->
@@ -111,7 +111,7 @@ const offersJsonLd = {
         <article class="plan">
           <header class="plan-head">
             <h2>Básico</h2>
-            <p class="plan-desc">Registro de jornada legal, turnos e informes. Lo esencial para cumplir y controlar.</p>
+            <p class="plan-desc">Registro de jornada, turnos e informes. Lo esencial para llevar el registro y controlar las horas.</p>
             <p class="plan-from"><span>desde</span> 15 €<small>/mes</small></p>
           </header>
           <table class="plan-table">
@@ -145,7 +145,7 @@ const offersJsonLd = {
 
         <!-- COMPLETO -->
         <article class="plan plan--featured">
-          <span class="pill plan-badge">Más elegido</span>
+          <span class="pill plan-badge">Recomendado</span>
           <header class="plan-head">
             <h2>Completo</h2>
             <p class="plan-desc">Todo lo del Básico más vacaciones, ausencias y documentos con firma. La empresa entera en una app.</p>

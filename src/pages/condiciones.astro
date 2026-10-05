@@ -2,16 +2,21 @@
 /**
  * Página de Condiciones del Servicio de Forjia (/condiciones).
  *
- * BORRADOR PENDIENTE DE REVISIÓN LEGAL. El texto lo ha redactado el equipo como
+ * BORRADOR PENDIENTE DE REVISIÓN LEGAL. El texto lo ha redactado Forjia como
  * punto de partida para que lo revise un abogado. Mientras tanto, la página
- * muestra un aviso visible arriba ("Borrador pendiente de revisión legal"); el
- * dueño decide cuándo quitarlo (basta con borrar el bloque <aside class="draft">).
+ * muestra un aviso visible arriba («Borrador pendiente de revisión legal»); se
+ * mantiene hasta que lo revise el abogado (decisión del dueño, 04-10-2026).
+ * Para quitarlo, basta con borrar el bloque <aside class="draft">.
  *
- * Los datos del titular (nombre, NIF, dirección) viven en src/data/titular.ts,
- * compartidos con /aviso-legal: se rellenan allí, una sola vez.
+ * Los datos del titular (nombre, NIF, dirección, partido judicial) viven en
+ * src/data/titular.ts, compartidos con /aviso-legal: se rellenan allí, una
+ * sola vez. La línea «Titular: …» es idéntica en las dos páginas.
  *
- * Las condiciones de precio remiten a /precios (fuente de verdad de los planes)
- * y la protección de datos a https://forjia.es/privacidad, para no duplicar.
+ * Las condiciones de precio remiten a /precios (fuente de verdad de los
+ * planes). EXCEPCIÓN: el plan de gestorías se detalla también en el apartado 9
+ * (tramos, mínimo, prueba, factura única e impago): si cambia, cámbialo en los
+ * dos sitios. La protección de datos de la app remite a
+ * https://forjia.es/privacidad, para no duplicar.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
@@ -20,7 +25,7 @@ import { titular } from '../data/titular';
 // Datos del prestador (se rellenan en src/data/titular.ts).
 const prestador = titular;
 
-const fechaVersion = 'Septiembre de 2026 (borrador)';
+const fechaVersion = 'octubre de 2026 (borrador)';
 
 // Índice de secciones (para el sumario y los anclajes).
 const secciones = [
@@ -55,10 +60,10 @@ const jsonLd = {
 
 <BaseLayout
   title="Condiciones del Servicio — Forjia"
-  description="Condiciones del Servicio de Forjia: alta y prueba gratuita, planes y facturación, cancelación, obligaciones del cliente, gestorías, protección de datos, soporte y responsabilidad."
+  description="Condiciones del Servicio de Forjia: prueba gratuita, planes y facturación, cancelación, gestorías, protección de datos, soporte y responsabilidad."
   jsonLd={jsonLd}
 >
-  <!-- ================= CABECERA ================= -->
+  {/* ================= CABECERA ================= */}
   <section class="hero">
     <div class="container legal-wrap">
       <span class="eyebrow">Legal</span>
@@ -70,23 +75,23 @@ const jsonLd = {
       </p>
       <p class="version">Versión: {fechaVersion}</p>
 
-      <!-- AVISO DE BORRADOR: el dueño decide cuándo quitar este bloque -->
+      {/* AVISO DE BORRADOR: se mantiene hasta que revise el texto un abogado */}
       <aside class="draft" role="note">
         <Icon name="alert" size={20} />
         <div>
           <strong>Borrador pendiente de revisión legal.</strong>
-          Este texto es una versión de trabajo redactada por el equipo de Forjia y
-          todavía no ha sido revisada por un abogado. Puede cambiar antes de su
-          versión definitiva.
+          Este texto es una versión de trabajo redactada por Forjia y todavía no
+          ha sido revisada por un abogado. Puede cambiar antes de su versión
+          definitiva.
         </div>
       </aside>
     </div>
   </section>
 
-  <!-- ================= CONTENIDO ================= -->
+  {/* ================= CONTENIDO ================= */}
   <section class="section legal">
     <div class="container legal-wrap">
-      <!-- Sumario -->
+      {/* Sumario */}
       <nav class="toc" aria-label="Índice de las condiciones">
         <p class="toc-title">Índice</p>
         <ol>
@@ -97,25 +102,26 @@ const jsonLd = {
       <article class="prose legal-body">
         <h2 id="prestador">1. Quién presta el servicio</h2>
         <p>
-          Forjia es un servicio de <strong>{prestador.marca}</strong>, con los
-          siguientes datos identificativos:
+          El servicio Forjia lo presta la persona que figura a continuación,
+          con estos datos identificativos:
         </p>
         <ul>
-          <li>Titular: <strong>{prestador.razonSocial}</strong></li>
+          <li>Titular: <strong>{prestador.razonSocial}</strong>, {prestador.condicion}, que opera con el nombre comercial {prestador.marca}</li>
           <li>NIF: <strong>{prestador.nif}</strong></li>
           <li>Domicilio: <strong>{prestador.direccion}</strong></li>
           <li>Correo electrónico: <a href={`mailto:${prestador.email}`}>{prestador.email}</a></li>
           <li>Sitios web: <a href="/">naveosoft.es</a> (información) y <a href="https://forjia.es" rel="noopener">forjia.es</a> (aplicación)</li>
         </ul>
         <p>
-          En estas condiciones llamamos <strong>"Forjia"</strong> o <strong>"nosotros"</strong>
-          al prestador del servicio, y <strong>"cliente"</strong> o <strong>"tú"</strong> a la
+          En estas condiciones llamamos <strong>«Forjia»</strong> o <strong>«nosotros»</strong>
+          al prestador del servicio, y <strong>«cliente»</strong> o <strong>«tú»</strong> a la
           empresa, autónomo o gestoría que se da de alta y usa la aplicación.
         </p>
 
         <h2 id="objeto">2. Objeto y aceptación</h2>
         <p>
-          Forjia es una aplicación en la nube (web, PWA y app Android) para el
+          Forjia es una aplicación en la nube (web y app instalable en Android y
+          iPhone) para el
           <strong>registro de la jornada laboral</strong> conforme al artículo 34.9 del
           Estatuto de los Trabajadores y para la gestión de plantilla asociada:
           fichaje, turnos, informes, vacaciones y ausencias, documentos con firma
@@ -154,7 +160,8 @@ const jsonLd = {
           Forjia se contrata <strong>por empresa</strong> y por <strong>tramo de empleados</strong>
           (por ejemplo, hasta 5, de 6 a 25, de 26 a 50). Existen dos planes para
           empresas, <strong>Básico</strong> y <strong>Completo</strong>, y un plan específico para
-          <strong>gestorías</strong>, con precio por empresa gestionada y un importe mínimo mensual.
+          <strong>gestorías</strong>, con precio por empresa gestionada y un importe mínimo
+          mensual, que se detalla en el apartado 9.
         </p>
         <p>
           Los precios vigentes, lo que incluye cada plan y los tramos se publican
@@ -164,7 +171,8 @@ const jsonLd = {
         </p>
         <p>
           No hay permanencia, ni coste de alta, ni mínimos, salvo el mínimo
-          mensual del plan para gestorías indicado en la página de precios.
+          mensual del plan para gestorías indicado en el apartado 9 y en la
+          página de precios.
         </p>
 
         <h2 id="facturacion">5. Facturación y pago</h2>
@@ -237,7 +245,7 @@ const jsonLd = {
           La cancelación es efectiva al final del periodo ya pagado; hasta
           entonces el servicio sigue disponible con normalidad.
         </p>
-        <p><strong>Qué ocurre al terminar</strong> (por cancelación, fin de la prueba sin elegir plan o impago):</p>
+        <p><strong>Qué ocurre al terminar</strong> (por cancelación, fin de la prueba sin elegir plan o impago; si quien deja de pagar es una gestoría, ver también el apartado 9):</p>
         <ul>
           <li>
             <strong>Los empleados pueden seguir fichando.</strong> El registro de jornada
@@ -325,9 +333,14 @@ const jsonLd = {
           </li>
           <li>
             El acceso de la gestoría se configura con <strong>privacidad por defecto</strong>:
-            solo ve los datos necesarios para su función (registros de jornada,
-            informes e incidencias), salvo que la empresa cliente le conceda
-            expresamente permisos adicionales.
+            ve lo necesario para su función (fichajes, horas e informes, los días
+            y el tipo de las ausencias sin el motivo, y los documentos que suben la
+            empresa o la gestoría) y, de fábrica, tiene abiertos dos permisos:
+            leer las notas de los fichajes y dar de alta usuarios. Los otros siete
+            (ubicación, fotos de verificación, motivos de las ausencias,
+            justificantes de los trabajadores, imagen de la firma, cambio de
+            ajustes y gestión de contraseñas, correos y bajas de usuarios) solo se
+            abren si la empresa cliente lo autoriza por escrito.
           </li>
           <li>
             La gestoría es responsable de la facturación de las empresas de su
@@ -340,6 +353,25 @@ const jsonLd = {
             empresas.
           </li>
         </ul>
+        <p>
+          <strong>Plan para gestorías.</strong> Cuesta <strong>9 € al mes por cada
+          empresa</strong> de la cartera de hasta 25 trabajadores y <strong>19 € al
+          mes</strong> por cada empresa de 26 a 50 trabajadores; para empresas de más
+          de 50, el precio se acuerda a medida. A partir del cuarto mes se aplica un
+          <strong>importe mínimo de 79 € al mes</strong>; durante los tres primeros
+          meses, la gestoría paga solo por las empresas que tenga. Todos los
+          importes son sin IVA. La gestoría dispone de <strong>30 días de prueba
+          gratuita</strong> con todas las empresas que quiera dar de alta. Forjia
+          emite <strong>una sola factura a la gestoría</strong> por todas sus
+          empresas. No hay permanencia.
+        </p>
+        <p>
+          <strong>Si la gestoría deja de pagar</strong>, no se borra ningún dato y
+          los trabajadores de sus empresas cliente siguen fichando con normalidad,
+          pero se bloquea la gestión hasta que se regularice el pago: el panel de
+          la gestoría y también, si lo tiene, el panel de administración propio de
+          cada empresa de su cartera.
+        </p>
 
         <h2 id="datos">10. Protección de datos</h2>
         <p>
@@ -365,9 +397,10 @@ const jsonLd = {
 
         <h2 id="propiedad">11. Propiedad intelectual</h2>
         <p>
-          El software, el diseño, las marcas <strong>Forjia</strong> y <strong>Naveosoft</strong>, los
-          textos y el resto de contenidos de la aplicación y de las webs son
-          propiedad de {prestador.marca} o de sus licenciantes. El cliente recibe
+          El software, el diseño, los nombres <strong>Forjia</strong> y
+          <strong>Naveosoft</strong>, los textos y el resto de contenidos de la
+          aplicación y de las webs pertenecen al titular identificado en el
+          apartado 1 o a sus licenciantes. El cliente recibe
           un derecho de uso <strong>no exclusivo, no transferible y limitado</strong> a la
           duración de la suscripción y a las finalidades de estas condiciones.
         </p>
@@ -378,12 +411,13 @@ const jsonLd = {
         </p>
         <p>
           No está permitido copiar, descompilar, hacer ingeniería inversa,
-          revender o crear productos derivados de Forjia sin autorización escrita.
+          revender (salvo lo previsto para gestorías en el apartado 9) o crear
+          productos derivados de Forjia sin autorización escrita.
         </p>
 
         <h2 id="disponibilidad">12. Disponibilidad y soporte</h2>
         <p>
-          Forjia se presta <strong>"tal cual"</strong> y con un <strong>esfuerzo razonable</strong> por
+          Forjia se presta <strong>«tal cual»</strong> y con un <strong>esfuerzo razonable</strong> por
           mantenerlo disponible las 24 horas. No podemos garantizar una
           disponibilidad absoluta: puede haber interrupciones por mantenimiento
           (que intentaremos avisar y hacer fuera del horario laboral habitual),
@@ -399,8 +433,8 @@ const jsonLd = {
           <strong>Soporte:</strong> por correo electrónico en
           <a href={`mailto:${prestador.email}`}>{prestador.email}</a>, de
           <strong>lunes a viernes de 9:00 a 18:00</strong> (hora peninsular española),
-          excepto festivos. Procuramos responder en el mismo día laborable y en un
-          máximo de dos. El soporte incluye ayuda con el uso de la aplicación; no
+          excepto festivos. El plazo habitual de respuesta es de un día laborable.
+          El soporte incluye ayuda con el uso de la aplicación; no
           incluye asesoramiento laboral ni jurídico.
         </p>
         <p>
@@ -463,10 +497,10 @@ const jsonLd = {
         </p>
         <p>
           Para cualquier controversia, las partes intentarán primero una solución
-          amistosa. Si no se alcanza, se someten a los <strong>juzgados y tribunales del
-          domicilio del prestador</strong> ({prestador.direccion}), salvo que el
-          cliente tenga la condición legal de consumidor, en cuyo caso se aplicará
-          el fuero que le corresponda por ley.
+          amistosa. Si no se alcanza, se someten a los <strong>juzgados y tribunales
+          de {prestador.partidoJudicial}</strong>, salvo que el cliente tenga la
+          condición legal de consumidor, en cuyo caso se aplicará el fuero que le
+          corresponda por ley.
         </p>
 
         <h2 id="contacto">16. Contacto</h2>
@@ -474,14 +508,15 @@ const jsonLd = {
           Para cualquier duda sobre estas condiciones, la facturación o el
           servicio, escríbenos a
           <a href={`mailto:${prestador.email}`}>{prestador.email}</a> o a través del
-          <a href="/contacto">formulario de contacto</a>. Responderemos en el
-          horario de soporte indicado en la sección 12.
+          <a href="/contacto">formulario de contacto</a>. Responderemos en el plazo
+          y el horario de soporte indicados en la sección 12.
         </p>
 
         <hr />
         <p class="legal-foot">
           Documentos relacionados:
-          <a href="https://forjia.es/privacidad" rel="noopener">Política de Privacidad</a> ·
+          <a href="https://forjia.es/privacidad" rel="noopener">Privacidad de la aplicación</a> ·
+          <a href="/aviso-legal">Aviso legal</a> ·
           <a href="/precios">Precios</a> ·
           <a href="/contacto">Contacto</a>
         </p>

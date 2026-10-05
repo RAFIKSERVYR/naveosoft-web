@@ -73,7 +73,7 @@ const bloques = [
 <p>El administrador ve junto a cada fichaje un botón <strong>Ver mapa</strong> con el punto exacto. Además puedes definir <strong>Zonas de fichaje (centros de trabajo)</strong> con un radio entre 20 y 5.000 metros y activar <strong>Solo se puede fichar dentro de una zona</strong>: si alguien está fuera, la app le avisa a cuántos metros está y no le deja fichar.</p>`,
       },
       {
-        q: '¿Cómo funciona el kiosco en una tablet compartida (QR o PIN)?',
+        q: '¿Cómo funciona el kiosco en una tablet compartida?',
         a: `<p>En <strong>Empleados</strong> → <strong>Modo kiosko</strong> → <strong>Activar Kiosko</strong>. La tablet pasa a mostrar solo un teclado numérico: cada empleado introduce su <strong>PIN de 4 dígitos</strong> y elige entrada o salida. En kiosco no se pide GPS ni ubicación.</p>
 <p>El PIN se asigna en la ficha de cada empleado, en <strong>PIN kiosko (4 dígitos)</strong>, y debe ser único en la empresa. Para salir del modo kiosco, mantén pulsada la esquina inferior izquierda durante 3 segundos.</p>
 <p>Si prefieres una cuenta exclusiva para la tablet, que al iniciar sesión entre directa a la pantalla de PIN, escríbenos a <a href="mailto:info@forjia.es">info@forjia.es</a> y la creamos. Y si no quieres tablet, el cartel QR hace que cada uno fiche desde su propio móvil.</p>`,
@@ -91,7 +91,7 @@ const bloques = [
       {
         q: '¿Puede un empleado editar o borrar sus fichajes? ¿Cómo se corrigen?',
         a: `<p>No. Los empleados <strong>no pueden editar ni borrar</strong> sus fichajes. Solo el administrador puede corregirlos, desde la ficha del empleado: <strong>Editar</strong>, <strong>Borrar</strong> o <strong>+ Añadir fichaje</strong> (por ejemplo, la salida que se olvidó).</p>
-<p>Cada corrección queda en el <strong>Historial de cambios (auditoría)</strong> de esa ficha: qué fichaje se ha <em>añadido</em>, <em>modificado</em> o <em>eliminado</em>, quién lo hizo, cuándo y qué valor tenía antes. Ese historial no se puede alterar y es lo que te ayuda a acreditar que el registro es fiable, como pide el artículo 34.9 del Estatuto de los Trabajadores.</p>`,
+<p>Cada corrección queda en el <strong>Historial de cambios (auditoría)</strong> de esa ficha: qué fichaje se ha <em>añadido</em>, <em>modificado</em> o <em>eliminado</em>, quién lo hizo, cuándo y qué valor tenía antes. Ese historial no se puede alterar y es lo que te ayuda a acreditar que el registro es fiable.</p>`,
       },
       {
         q: '¿Para qué sirve el selfie al fichar y cómo se activa?',
@@ -127,8 +127,8 @@ const bloques = [
       },
       {
         q: '¿Cómo funciona el saldo de vacaciones y los festivos?',
-        a: `<p>En la ficha de cada empleado fijas sus <strong>Días de vacaciones al año (laborables)</strong>. El empleado ve en su pestaña Vacaciones cuántos días tiene ese año, cuántos ha <strong>usado</strong> y cuántos le quedan <strong>restantes</strong>. Se cuentan días laborables de lunes a viernes.</p>
-<p>Los festivos no gastan saldo. En <strong>Festivos de la empresa</strong> puedes <strong>Cargar festivos de España</strong> de un clic y añadir los locales o autonómicos a mano. Y en el <strong>Calendario del equipo</strong> ves, día a día, quién está ausente o de vacaciones.</p>`,
+        a: `<p>En la ficha de cada empleado fijas sus <strong>Días de vacaciones al año (laborables)</strong>. El empleado ve en su pestaña Vacaciones cuántos días tiene ese año, cuántos ha usado y cuántos le quedan. Se cuentan días laborables de lunes a viernes.</p>
+<p>Los festivos no gastan saldo. En <strong>Festivos de la empresa</strong> puedes <strong>Cargar festivos de España</strong> con un clic y añadir los locales o autonómicos a mano. Y en el <strong>Calendario del equipo</strong> ves, día a día, quién está ausente o de vacaciones.</p>`,
       },
       {
         q: '¿Cómo se registra una visita médica?',
@@ -138,7 +138,7 @@ const bloques = [
       {
         q: '¿Cómo comparto una nómina y recojo la firma del empleado?',
         a: `<p>En <strong>Documentos</strong> → <strong>Subir documento</strong>: elige el empleado, el archivo y una descripción (por ejemplo «nómina de marzo»). Marca <strong>Pedir firma al empleado</strong> si quieres acuse de recibo y pulsa <strong>Subir</strong>. Cada persona solo ve sus propios documentos.</p>
-<p>El empleado recibe el aviso «Tienes un documento nuevo», lo abre en <strong>Mis documentos</strong>, lo lee y pulsa <strong>Firmar</strong>: firma con el dedo en el recuadro y se guarda la fecha y la imagen de la firma. Tú ves cada documento como <em>Pendiente de firma</em> o <em>Firmado el…</em>. Por seguridad, los enlaces de descarga caducan a la hora. Función del plan <strong>Completo</strong>.</p>`,
+<p>El empleado recibe el aviso «Tienes un documento nuevo», lo abre en <strong>Mis documentos</strong>, lo lee y pulsa <strong>Firmar</strong>: firma con el dedo en el recuadro y se guarda la fecha y la imagen de la firma. En tu lista, cada documento aparece como <em>Pendiente de firma</em> o como <em>Firmado el</em> seguido de la fecha. Por seguridad, los enlaces de descarga caducan a la hora. Función del plan <strong>Completo</strong>.</p>`,
       },
     ],
   },
@@ -150,7 +150,7 @@ const bloques = [
     faqs: [
       {
         q: '¿Cómo saco el parte de horas de un empleado?',
-        a: `<p>En <strong>Informes</strong> → <strong>Descargas</strong> → <strong>Informe mensual por trabajador</strong>: elige el empleado y el mes y pulsa <strong>Descargar parte de horas (PDF)</strong>. Sale el resumen del periodo y el detalle de cada fichaje, con el formato que suele pedir la Inspección de Trabajo.</p>
+        a: `<p>En <strong>Informes</strong> → <strong>Descargas</strong> → <strong>Informe mensual por trabajador</strong>: elige el empleado y el mes y pulsa <strong>Descargar parte de horas (PDF)</strong>. Sale el resumen del periodo y cada fichaje desglosado, con el detalle que suele pedir la Inspección de Trabajo.</p>
 <p>Si lo prefieres en hoja de cálculo, en el mismo sitio tienes <strong>Descargar Excel del trabajador</strong>. El propio empleado también puede descargar su historial desde la pestaña <strong>Historial</strong> con <strong>Descargar mi historial (Excel)</strong>.</p>`,
       },
       {
@@ -170,7 +170,7 @@ const bloques = [
       {
         q: '¿Cuánto tiempo se conservan los registros?',
         a: `<p>La ley obliga a conservar el registro de jornada durante <strong>4 años</strong>, a disposición de los trabajadores, sus representantes y la Inspección de Trabajo. Forjia conserva el registro de jornada, también el de los trabajadores dados de baja (4 años), y puedes descargarlo en PDF o Excel cuando quieras.</p>
-<p>Dos consejos: descarga y archiva el informe PDF de cada mes por si algún día dejas de usar la app, y cuando alguien deje la empresa usa <strong>Desactivar empleado</strong> (bloquea su acceso pero conserva sus registros) en lugar de <strong>Eliminar empleado</strong>, que borra sus datos de forma definitiva.</p>`,
+<p>Dos consejos: descarga y archiva el informe PDF de cada mes por si algún día dejas de usar la app, y cuando alguien deje la empresa usa <strong>Desactivar empleado</strong> (bloquea su acceso pero conserva sus registros) en lugar de <strong>Eliminar empleado</strong>, que lo da de baja y borra sus fotos y documentos. Su registro de jornada se conserva los cuatro años que marca la ley.</p>`,
       },
       {
         q: '¿Qué muestro si viene la Inspección de Trabajo?',
@@ -184,9 +184,9 @@ const bloques = [
 <p>Ese último punto merece la pena: en <strong>Informes</strong> → <strong>Firma mensual del registro</strong> → <strong>Enviar a la firma</strong>, cada empleado recibe su parte del mes para firmarlo en la app. Un registro firmado por las dos partes es lo más sólido ante una inspección. Forjia te ayuda a cumplir, pero recuerda que el registro debe hacerse a diario y recoger la hora de entrada y de salida de cada persona.</p>`,
       },
       {
-        q: '¿Está Forjia preparada para el registro horario digital de 2026?',
-        a: `<p>Forjia cumple la ley de hoy (art. 34.9 del Estatuto de los Trabajadores) y se adaptará cuando se apruebe la nueva norma, que todavía está en tramitación. Lo que se conoce del borrador pide que el registro sea <strong>digital, fiable, inalterable y accesible de forma remota</strong> para la Inspección. Forjia ya registra de forma digital, el empleado no puede alterar sus fichajes, cada cambio queda auditado y los informes se descargan al momento; el acceso remoto de la Inspección dependerá de cómo se regule.</p>
-<p>Vamos adaptando la app a medida que la normativa se concreta. Tienes el detalle, con lo que cambia y desde cuándo, en nuestro artículo <a href="/blog/registro-horario-digital-2026">Registro horario digital 2026: qué cambia y cómo prepararte</a>.</p>`,
+        q: '¿Qué pasa con la nueva norma de registro horario digital?',
+        a: `<p>Forjia te ayuda a cumplir la ley de hoy (art. 34.9 del Estatuto de los Trabajadores) y se adaptará si se aprueba la nueva norma, que todavía está en tramitación. Según lo que se conoce del borrador, exigiría que el registro fuera <strong>digital, fiable, inalterable y accesible de forma remota</strong> para la Inspección. Forjia ya registra de forma digital, el empleado no puede alterar sus fichajes, cada cambio queda auditado y los informes se descargan al momento; el acceso remoto de la Inspección dependerá de cómo se regule.</p>
+<p>Vamos adaptando la app a medida que la normativa se concreta. Tienes el detalle, con lo que cambiaría, en nuestro artículo <a href="/blog/registro-horario-digital-2026">Registro horario digital en 2026: qué exige la ley y cómo cumplir sin complicarte</a>.</p>`,
       },
     ],
   },
@@ -211,18 +211,20 @@ const bloques = [
       },
       {
         q: 'Soy gestoría: ¿cómo consigo mi cuenta y qué puedo ver de mis clientes?',
-        a: `<p>Escríbenos a <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas">info@forjia.es</a> con el nombre del despacho y cuántas empresas llevas; te activamos el panel de cartera y los usuarios que necesites en el día. Al entrar verás la pestaña <strong>Cartera</strong>: das de alta cada cliente con <strong>Nueva empresa</strong>, pulsas <strong>Entrar</strong> y administras esa empresa como si fueras su responsable, sin pedir contraseñas a nadie.</p>
-<p><strong>Privacidad por defecto:</strong> la gestoría ve horas, fichajes e informes. Lo demás (ubicación GPS, selfies, motivos de ausencias, justificantes del trabajador, imagen de la firma, contraseñas y altas) viene <strong>cerrado</strong> y solo se abre con autorización escrita de la empresa cliente. El cliente ve en su app la pantalla <strong>Qué puede ver tu gestoría</strong> y los <strong>Últimos accesos de tu gestoría</strong>. Precio: 9 € por empresa al mes + IVA para empresas de hasta 25 trabajadores (19 € de 26 a 50), con un mínimo de 79 € a partir del cuarto mes. Puedes probarlo 30 días gratis con todas tus empresas. Más detalle en <a href="/gestorias">Forjia para gestorías</a>.</p>`,
+        a: `<p>Escríbenos a <a href="mailto:info@forjia.es?subject=Forjia%20para%20gestor%C3%ADas">info@forjia.es</a> con el nombre del despacho y cuántas empresas llevas. Respondemos en un día laborable y te activamos el panel de cartera y los usuarios que necesites. Al entrar verás la pestaña <strong>Cartera</strong>: das de alta cada cliente con <strong>Nueva empresa</strong>, pulsas <strong>Entrar</strong> y llevas el día a día de esa empresa con tu propio acceso, sin pedir contraseñas a nadie, dentro de los permisos que te explicamos a continuación.</p>
+<p><strong>Privacidad por defecto:</strong> ves siempre los fichajes, las horas y los informes, los días y el tipo de cada ausencia (sin el motivo) y los documentos que sube la empresa o que subes tú. También puedes dar de alta trabajadores y leer las notas que se escriben al fichar.</p>
+<p>Lo demás viene <strong>cerrado</strong>: la ubicación de los fichajes, las fotos de verificación, los motivos de ausencias y solicitudes, los justificantes que sube cada trabajador, la imagen de su firma, cambiar los ajustes de la empresa y cambiar contraseñas, correos o eliminar usuarios. Son siete permisos independientes y cada uno se abre solo si la empresa cliente lo autoriza por escrito; entonces lo aplica Forjia. En su app, la empresa ve lo que está abierto en la pantalla <strong>Qué puede ver tu gestoría</strong>, y cuándo has entrado, en <strong>Últimos accesos de tu gestoría</strong>.</p>
+<p>Precio: 9 € por empresa al mes + IVA para empresas de hasta 25 trabajadores (19 € de 26 a 50), con un mínimo de 79 € a partir del cuarto mes. Puedes probarlo 30 días gratis con todas tus empresas. Más detalle en <a href="/gestorias">Forjia para gestorías</a>.</p>`,
       },
       {
         q: '¿Cómo borro un empleado o toda mi cuenta? ¿Dónde están los datos?',
         a: `<p><strong>Un empleado:</strong> desde su ficha, lo recomendable es <strong>Desactivar empleado</strong> (deja de poder entrar pero se conservan sus fichajes, que debes guardar 4 años). <strong>Eliminar empleado</strong> lo da de baja: deja de aparecer en las listas y no puede volver a entrar, se borran sus fotos de fichaje y sus documentos, y su registro de jornada se conserva 4 años, como exige la ley.</p>
 <p><strong>Toda la cuenta o la empresa:</strong> sigue los pasos de <a href="https://forjia.es/eliminar-cuenta" rel="noopener">forjia.es/eliminar-cuenta</a>. Te recomendamos descargar antes los informes que necesites conservar.</p>
-<p><strong>Los datos</strong> están alojados en la <strong>Unión Europea</strong>, en servidores de Supabase en Europa, con copias de seguridad. Tienes el detalle en la <a href="https://forjia.es/privacidad" rel="noopener">política de privacidad</a>.</p>`,
+<p><strong>La base de datos</strong> está alojada en la <strong>Unión Europea</strong>, en servidores de Supabase en Europa, con copias de seguridad. Tienes el detalle en la <a href="https://forjia.es/privacidad" rel="noopener">política de privacidad</a>.</p>`,
       },
       {
         q: '¿Cómo contacto con soporte y en qué horario?',
-        a: `<p>Escríbenos a <a href="mailto:info@forjia.es">info@forjia.es</a> o usa el <a href="/contacto">formulario de contacto</a>. Atendemos <strong>de lunes a viernes, de 9:00 a 18:00</strong> (hora peninsular), y respondemos siempre por correo.</p>
+        a: `<p>Escríbenos a <a href="mailto:info@forjia.es">info@forjia.es</a> o usa el <a href="/contacto">formulario de contacto</a>. Atendemos <strong>de lunes a viernes, de 9:00 a 18:00</strong> (hora peninsular), siempre por correo. <strong>Respondemos en un día laborable.</strong></p>
 <p>Para ayudarte más rápido, indícanos el nombre de tu empresa en Forjia, qué estabas haciendo y, si puedes, una captura de pantalla del mensaje que te aparece.</p>`,
       },
     ],
@@ -232,10 +234,15 @@ const bloques = [
 const totalPreguntas = bloques.reduce((n, b) => n + b.faqs.length, 0);
 
 // Quita las etiquetas HTML de una respuesta para los datos estructurados.
+// Así Google lee exactamente el mismo texto que ve el visitante. Las dos
+// últimas líneas quitan el espacio que deja una etiqueta junto a un signo
+// («empleado , que» → «empleado, que»).
 const soloTexto = (html: string) =>
   html
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
+    .replace(/\s+([,.;:!?)»])/g, '$1')
+    .replace(/([(«¿¡])\s+/g, '$1')
     .trim();
 
 // Datos estructurados FAQPage con todas las preguntas (SEO).
@@ -255,8 +262,8 @@ const faqJsonLd = {
 ---
 
 <BaseLayout
-  title="Centro de ayuda de Forjia — Preguntas frecuentes sobre fichaje, vacaciones e informes"
-  description="Resuelve tus dudas sobre Forjia sin escribir a soporte: alta de empleados, cartel QR, fichaje con GPS o kiosco, vacaciones, nóminas con firma, informes para la Inspección de Trabajo, prueba gratuita, planes y gestorías."
+  title="Centro de ayuda de Forjia: fichaje, vacaciones e informes"
+  description="Resuelve tus dudas sobre Forjia: alta de empleados, cartel QR, fichaje con GPS o kiosco, vacaciones, nóminas con firma, informes, planes y gestorías."
   jsonLd={faqJsonLd}
 >
   <!-- ================= CABECERA + BUSCADOR ================= -->
@@ -265,8 +272,8 @@ const faqJsonLd = {
       <span class="eyebrow">Centro de ayuda</span>
       <h1>¿En qué te ayudamos?</h1>
       <p class="lead">
-        Las {totalPreguntas} preguntas que más nos hacen jefes de pyme y gestorías,
-        con los pasos exactos dentro de la app. Escribe una palabra para filtrar.
+        {totalPreguntas} preguntas frecuentes de jefes de pyme y gestorías, con
+        los pasos exactos dentro de la app. Escribe una palabra para filtrar.
       </p>
 
       <form class="search" role="search" onsubmit="return false;">
@@ -339,8 +346,9 @@ const faqJsonLd = {
     <div class="container section-head reveal">
       <h2>¿No encuentras la respuesta?</h2>
       <p class="lead">
-        Escríbenos y te contestamos por correo, de lunes a viernes de 9:00 a
-        18:00. Sin robots ni esperas al teléfono.
+        Escríbenos y te contestamos por correo. Atendemos de lunes a viernes,
+        de 9:00 a 18:00, y respondemos en un día laborable. Sin robots ni
+        esperas al teléfono.
       </p>
       <div class="cta-actions">
         <a href="/contacto" class="btn btn--primary">

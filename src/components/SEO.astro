@@ -43,13 +43,11 @@ const organizationJsonLd = {
   logo: new URL('/favicon.svg', Astro.site).toString(),
   email: 'info@forjia.es',
   description:
-    'Forjia es la app de control horario y fichaje para pymes y gestorías en España. Registro de jornada conforme al art. 34.9 del Estatuto de los Trabajadores.',
+    'Forjia es la app de control horario y fichaje para pymes y gestorías en España. Te ayuda a llevar el registro de jornada del art. 34.9 del Estatuto de los Trabajadores.',
   areaServed: 'ES',
   sameAs: ['https://forjia.es'],
-  parentOrganization: {
-    '@type': 'Organization',
-    name: 'Naveosoft',
-  },
+  // Sin parentOrganization: Naveosoft es solo el nombre comercial de un
+  // autónomo, no una sociedad (ver src/data/titular.ts).
 };
 ---
 

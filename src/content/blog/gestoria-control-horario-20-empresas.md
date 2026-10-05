@@ -1,8 +1,8 @@
 ---
 title: 'Cómo una gestoría puede llevar el control horario de 20 empresas sin morir en el intento'
-description: 'Guía para despachos laborales: cómo dejar de recopilar Excel y WhatsApp de cada cliente, qué exigir a una herramienta de fichaje multiempresa y cómo lo resuelve Forjia.'
+description: 'Guía para gestorías: cómo dejar de recopilar Excel y WhatsApp de cada cliente, qué exigir a una app de fichaje multiempresa y cómo lo resuelve Forjia.'
 pubDate: 2026-09-25
-author: 'Equipo Forjia'
+author: 'Forjia'
 category: 'Fichaje y normativa'
 tags: ['gestorías', 'asesorías laborales', 'control horario', 'multiempresa', 'RGPD']
 draft: false
@@ -11,7 +11,7 @@ draft: false
 Si llevas un despacho laboral, el día 1 de cada mes conoces bien la escena:
 nóminas por cerrar, incidencias que llegan tarde y, encima, el **registro
 horario** de veinte clientes que aparece como puede. Un Excel por email, una foto
-de una hoja firmada por WhatsApp, un "te lo mando mañana" que nunca llega... Y la
+de una hoja firmada por WhatsApp, un «te lo mando mañana» que nunca llega... Y la
 responsabilidad de que todo cuadre cuando la Inspección llama a la puerta de
 alguno de ellos.
 
@@ -25,7 +25,7 @@ Casi ninguna pyme tiene problema en **fichar**. El problema aparece después, en
 cadena que va desde el fichaje hasta el despacho:
 
 - **Cada cliente usa un sistema distinto.** Uno tiene una app, otro un Excel, otro
-  una hoja de papel en la nevera de la oficina. Cada mes hay que "traducir" veinte
+  una hoja de papel en la nevera de la oficina. Cada mes hay que «traducir» veinte
   formatos.
 - **Los datos llegan tarde y a trozos.** El registro del mes se persigue durante
   la primera quincena del siguiente, justo cuando menos tiempo hay.
@@ -37,11 +37,10 @@ cadena que va desde el fichaje hasta el despacho:
   empresa, pero si el registro falla, la llamada la recibe la gestoría.
 
 El resultado son horas de trabajo administrativo que **no se facturan** y una
-sensación permanente de ir apagando fuegos. Y con la nueva norma de registro
-horario digital en tramitación (te lo contamos en
-[este artículo](/blog/registro-horario-digital-2026)), la exigencia de que los
-registros sean digitales, inalterables y accesibles para la Inspección solo va a
-ir a más.
+sensación permanente de ir apagando fuegos. Y si sale adelante la nueva norma de
+registro horario digital, que sigue en tramitación (te lo contamos en
+[este artículo](/blog/registro-horario-digital-2026)), se exigiría además que los
+registros fueran digitales, inalterables y accesibles en remoto para la Inspección.
 
 ## Cambiar el enfoque: una herramienta, todos los clientes
 
@@ -57,7 +56,7 @@ Cuando eso ocurre, el flujo de fin de mes cambia por completo:
 3. El día 1, la gestoría entra en su panel, ve las veinte empresas y **descarga el
    informe del mes** de cada una. Sin perseguir a nadie.
 
-Además, la gestoría pasa de ser quien "pide el Excel" a quien **ofrece la
+Además, la gestoría pasa de ser quien «pide el Excel» a quien **ofrece la
 solución**: un servicio más que puedes incluir en tu cuota o cobrar aparte.
 
 ## Qué debes exigir a una herramienta de fichaje para gestorías
@@ -79,14 +78,14 @@ multiempresa: es veinte veces la misma app.
 El informe de jornada debe salir **por empresa y por mes**, en un formato que
 puedas abrir y procesar (Excel o CSV), con las horas por empleado y por día, las
 incidencias y los totales. Lo ideal es que también puedas guardar un PDF como
-"foto" del mes, por si hay que entregarlo tal cual a la Inspección.
+«foto» del mes, por si hay que entregarlo tal cual a la Inspección.
 
 ### 3. Registros inalterables, con historial de cambios
 
 Habrá correcciones (alguien olvida fichar la salida, un fichaje duplicado). Lo
 importante es que **cualquier corrección deje rastro**: quién la hizo, cuándo y
 qué valor había antes. Es lo que da credibilidad al registro ante un inspector y
-lo que exige el borrador de la nueva norma.
+lo que exigiría la nueva norma, según su borrador.
 
 ### 4. Privacidad por defecto y RGPD bien resuelto
 
@@ -138,23 +137,26 @@ control horario para pymes españolas, con un modo pensado para gestorías:
   código QR en la entrada del local para equipos que no quieren instalar nada.
 - **Registros sellados e historial de correcciones**: cada cambio queda anotado
   con quién y cuándo.
-- **Privacidad por defecto**: sin huella ni reconocimiento facial; la gestoría
-  ve solo lo que necesita para la nómina (no fotos, ubicaciones ni justificantes
-  médicos), salvo que la empresa cliente le abra más permisos por escrito.
+- **Privacidad por defecto**: sin huella ni reconocimiento facial.
+- **Qué ve la gestoría.** Por defecto la gestoría ve los fichajes, las horas y los informes, y puede dar de alta a la
+  plantilla. No ve la ubicación, las fotos, los motivos de las ausencias ni los
+  justificantes de los trabajadores, y no puede cambiar contraseñas, salvo que la
+  empresa lo autorice por escrito.
 - **Registro de accesos** del despacho a cada empresa: queda constancia de cada
-  entrada y de cada descarga de informe.
+  entrada, y la empresa cliente puede consultarlo en su app.
 - **Precio para gestorías: 9 € por empresa al mes** para empresas de hasta 25
   trabajadores (19 € de 26 a 50), con un mínimo de 79 € a partir del cuarto mes
   (IVA no incluido). Sin módulos ni sorpresas: sabes lo que pagas y lo que puedes
   repercutir a cada cliente.
 
-Con 20 empresas, por ejemplo, hablamos de 180 € al mes por dejar de perseguir
-veinte Excel. Si a eso le sumas que puedes ofrecerlo a tus clientes como un
-servicio tuyo, las cuentas suelen salir rápido.
+Con 20 empresas, por ejemplo, si todas tienen hasta 25 trabajadores, hablamos de
+180 € al mes + IVA por dejar de perseguir veinte Excel. Si a eso le sumas que
+puedes ofrecerlo a tus clientes como un servicio tuyo, las cuentas suelen salir
+rápido.
 
-Forjia **te ayuda a cumplir** con el registro de jornada y a llegar preparado a la
-nueva norma. No es un sustituto de tu criterio profesional ni una garantía
-frente a una inspección: la obligación sigue siendo de cada empresa. Lo que sí
+Forjia **te ayuda a cumplir** con el registro de jornada que pide hoy la ley. No
+es un sustituto de tu criterio profesional ni una garantía frente a una
+inspección: la obligación sigue siendo de cada empresa. Lo que sí
 hace es que el registro exista, sea fiable y esté a mano cuando haga falta.
 
 ## Cómo empezar sin liarte
@@ -171,4 +173,4 @@ No hace falta migrar a los veinte clientes el mismo día. Lo que mejor funciona 
 sin compromiso. Y para activar tu **cuenta de gestoría** y probar el panel de
 cartera 30 días gratis con todas tus empresas, escríbenos a
 [info@forjia.es](mailto:info@forjia.es) o desde [contacto](/contacto): te la
-dejamos lista en el día y te enseñamos el panel en una videollamada corta.
+dejamos lista en un día laborable y te enseñamos el panel en una videollamada corta.

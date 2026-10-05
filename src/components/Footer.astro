@@ -1,8 +1,9 @@
 ---
 /**
  * Pie de página del sitio: logo de Forjia, enlaces de producto, recursos,
- * legales (aviso legal y condiciones en este sitio; privacidad en la app,
- * forjia.es), contacto y la mención "Forjia es un producto de Naveosoft"
+ * legales (aviso legal, condiciones y privacidad de esta web en este sitio;
+ * la privacidad de la app, en forjia.es, se enlaza desde /privacidad),
+ * contacto y la mención "Forjia es un producto de Naveosoft"
  * (único lugar de la web donde aparece).
  */
 import Logo from './Logo.astro';
@@ -18,11 +19,11 @@ const year = new Date().getFullYear();
         <span class="logo-text">Forjia</span>
       </a>
       <p class="footer-tagline">
-        El control horario que tu equipo usa cada día. Fichaje, vacaciones,
-        documentos e informes para Inspección, para pymes y gestorías en España.
+        El control horario que tu equipo usa cada día: fichaje, vacaciones,
+        documentos e informes, para pymes y gestorías en España.
       </p>
       <div class="footer-badges">
-        <span class="footer-badge">Datos alojados en la UE</span>
+        <span class="footer-badge">Base de datos alojada en la UE</span>
         <span class="footer-badge">Art. 34.9 ET</span>
       </div>
     </div>
@@ -55,7 +56,7 @@ const year = new Date().getFullYear();
       <ul>
         <li><a href="/aviso-legal">Aviso legal</a></li>
         <li><a href="/condiciones">Condiciones del Servicio</a></li>
-        <li><a href="https://forjia.es/privacidad" rel="noopener">Política de privacidad</a></li>
+        <li><a href="/privacidad">Política de privacidad</a></li>
         <li><a href="https://forjia.es/eliminar-cuenta" rel="noopener">Eliminar cuenta</a></li>
         <li><a href="/contacto">Formulario de contacto</a></li>
         <li><a href="mailto:info@forjia.es">info@forjia.es</a></li>

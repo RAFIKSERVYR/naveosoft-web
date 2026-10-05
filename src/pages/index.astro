@@ -2,7 +2,8 @@
 /**
  * Página de Inicio (/): landing de Forjia.
  * Estructura: hero con captura de la app, propuesta de valor, tres bloques
- * (empleado / empresa / gestoría), franja de cumplimiento legal, tira de
+ * (empleado / empresa / gestoría) con la nota de qué ve la gestoría por
+ * defecto, franja de cumplimiento legal, tira de
  * capturas, resumen de precios con enlace a /precios y CTA final.
  * Incluye datos estructurados SoftwareApplication para el SEO.
  */
@@ -22,14 +23,14 @@ const audiences = [
     icon: 'dashboard',
     eyebrow: 'Para la empresa',
     title: 'Todo el equipo, de un vistazo',
-    text: 'Quién trabaja, quién está en pausa y quién ha salido, en tiempo real. Turnos, alertas e informes listos para la Inspección de Trabajo.',
+    text: 'Quién trabaja, quién está en pausa y quién ha salido, en tiempo real. Turnos, alertas e informes con el detalle que suele pedir la Inspección de Trabajo.',
     points: ['Panel en tiempo real con alertas', 'Turnos y cuadrantes', 'Parte de horas PDF, Excel y CSV'],
   },
   {
     icon: 'buildings',
     eyebrow: 'Para la gestoría',
     title: 'Toda tu cartera en un panel',
-    text: 'Gestiona varias empresas cliente, entra en cada una como administrador y descarga el informe mensual de toda la cartera en un solo Excel.',
+    text: 'Gestiona varias empresas cliente desde un solo panel, entra en cada una con tu propio acceso y descarga el informe mensual de toda la cartera en un solo Excel.',
     points: ['Privacidad por defecto', 'Un Excel con una pestaña por empresa', 'Desde 9 € por empresa al mes'],
   },
 ];
@@ -39,7 +40,7 @@ const shots = [
   { src: '/img/capturas/2-fichaje.jpg', alt: 'Pantalla de fichaje de Forjia con el cronómetro de la jornada y el botón de fichar salida' },
   { src: '/img/capturas/3-vacaciones.jpg', alt: 'Pantalla de vacaciones y ausencias de Forjia con el saldo de días y las solicitudes' },
   { src: '/img/capturas/4-informes.jpg', alt: 'Pantalla de informes de Forjia: parte de horas en PDF y exportación a Excel' },
-  { src: '/img/capturas/5-kiosko.jpg', alt: 'Modo kiosco de Forjia en tablet para fichar con QR o PIN' },
+  { src: '/img/capturas/5-kiosko.jpg', alt: 'Código QR de fichaje de Forjia para escanear con el propio móvil; en la tablet del modo kiosco se ficha con un PIN de 4 dígitos' },
   { src: '/img/capturas/6-empleados.jpg', alt: 'Panel de empleados de Forjia con el estado de cada persona en tiempo real' },
   { src: '/img/capturas/7-documentos.jpg', alt: 'Pantalla de documentos de Forjia con nóminas y contratos firmados desde el móvil' },
   { src: '/img/capturas/8-gestorias.jpg', alt: 'Panel de cartera de Forjia para gestorías con varias empresas cliente' },
@@ -51,20 +52,20 @@ const softwareJsonLd = {
   '@type': 'SoftwareApplication',
   name: 'Forjia',
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web, Android',
+  operatingSystem: 'Web',
   url: new URL('/', Astro.site).href,
   installUrl: 'https://forjia.es/registro',
   inLanguage: ['es', 'ca', 'en'],
   description:
-    'App de control horario y fichaje para pymes y gestorías en España. Fichaje móvil con GPS opcional, modo kiosco con QR o PIN, turnos, vacaciones, documentos con firma, panel para gestorías e informes para la Inspección de Trabajo (art. 34.9 ET).',
+    'App de control horario y fichaje para pymes y gestorías en España. Te ayuda a llevar el registro de jornada (art. 34.9 ET): fichaje móvil con GPS opcional, modo kiosco con PIN, cartel QR, turnos, vacaciones, documentos con firma, panel para gestorías e informes para una inspección.',
   featureList: [
     'Fichaje desde móvil y web con GPS opcional y varios centros de trabajo',
-    'Modo kiosco con QR o PIN para tablet',
+    'Modo kiosco con PIN para tablet y cartel QR para fichar con el propio móvil',
     'Turnos y cuadrantes',
     'Vacaciones y ausencias con solicitudes, aprobación y saldo',
     'Documentos (nóminas, contratos) con firma con el dedo',
     'Panel del jefe en tiempo real con alertas',
-    'Parte de horas PDF e informe de auditoría para Inspección de Trabajo',
+    'Parte de horas en PDF e informe de auditoría para una inspección',
     'Exportación a Excel y CSV para la gestoría',
     'Panel de cartera para gestorías con privacidad por defecto',
     'Informe mensual de toda la cartera en un solo Excel',
@@ -95,7 +96,7 @@ const softwareJsonLd = {
 
 <BaseLayout
   title="Forjia — Control horario y fichaje para pymes y gestorías"
-  description="Forjia es la app de control horario que tu equipo usa cada día: fichaje móvil con GPS opcional, modo kiosco, vacaciones, documentos con firma e informes para la Inspección de Trabajo. Panel para gestorías. Prueba 30 días gratis sin tarjeta."
+  description="App de control horario para pymes y gestorías: fichaje móvil con GPS opcional, kiosco, vacaciones, documentos con firma e informes. Prueba 30 días gratis."
   jsonLd={softwareJsonLd}
 >
   <!-- ================= HERO ================= -->
@@ -108,11 +109,11 @@ const softwareJsonLd = {
         </span>
         <h1>El control horario que tu equipo <span class="accent">usa cada día</span></h1>
         <p class="lead">
-          Fichaje desde el móvil, informes para la Inspección de Trabajo y todo el
-          equipo en un sitio. Para pymes y para las gestorías que las llevan.
+          Fichaje desde el móvil, informes para una inspección y todo el equipo
+          en un sitio. Para pymes y para las gestorías que las llevan.
         </p>
         <ul class="check-list">
-          <li><Icon name="check" size={18} /> Registro de jornada legal (art. 34.9 ET)</li>
+          <li><Icon name="check" size={18} /> Registro de jornada (art. 34.9 ET)</li>
           <li><Icon name="check" size={18} /> Fichaje móvil con GPS opcional y modo kiosco</li>
           <li><Icon name="check" size={18} /> Informes y parte de horas en un toque</li>
         </ul>
@@ -147,7 +148,7 @@ const softwareJsonLd = {
       <span class="eyebrow">Por qué Forjia</span>
       <h2>Sencilla para el equipo, completa para la empresa, cómoda para la gestoría</h2>
       <p class="lead">
-        La mayoría de apps de fichaje se abandonan a las dos semanas. Forjia está
+        Una app de fichaje solo sirve si la gente la usa. Por eso Forjia está
         pensada para que fichar cueste dos toques y para que los informes salgan
         solos.
       </p>
@@ -171,6 +172,14 @@ const softwareJsonLd = {
           ))
         }
       </div>
+      {/* Qué ve la gestoría: frase común a portada, /gestorias, /funciones y blog. */}
+      <p class="audience-note reveal">
+        <strong>Qué ve la gestoría.</strong> Por defecto la gestoría ve los
+        fichajes, las horas y los informes, y puede dar de alta a la plantilla. No
+        ve la ubicación, las fotos, los motivos de las ausencias ni los
+        justificantes de los trabajadores, y no puede cambiar contraseñas, salvo
+        que la empresa lo autorice por escrito.
+      </p>
     </div>
   </section>
 
@@ -183,18 +192,18 @@ const softwareJsonLd = {
         </div>
         <div>
           <span class="eyebrow">Cumplimiento legal</span>
-          <h2>Tranquilidad ante la Inspección de Trabajo</h2>
+          <h2>Te ayuda a cumplir con el registro de jornada</h2>
           <p class="lead">
-            Forjia lleva el registro de jornada conforme al <strong>art. 34.9 del
-            Estatuto de los Trabajadores</strong>. Cada fichaje queda guardado con
-            su historial de cambios, y el informe de auditoría se descarga con un
-            clic.
+            Forjia te ayuda a llevar el registro de jornada que pide el <strong>art.
+            34.9 del Estatuto de los Trabajadores</strong>. Cada fichaje queda
+            guardado con su historial de cambios, y el informe de auditoría se
+            descarga con un clic.
           </p>
           <ul class="check-list">
             <li><Icon name="check" size={18} /> Correcciones con auditoría inalterable: quién, cuándo y qué cambió</li>
-            <li><Icon name="check" size={18} /> Parte de horas en PDF e informe de auditoría listos para Inspección</li>
+            <li><Icon name="check" size={18} /> Parte de horas en PDF e informe de auditoría para una inspección</li>
             <li><Icon name="check" size={18} /> Conservación de los registros durante 4 años</li>
-            <li><Icon name="check" size={18} /> Datos alojados en la Unión Europea</li>
+            <li><Icon name="check" size={18} /> Base de datos alojada en la UE</li>
           </ul>
         </div>
       </div>
@@ -207,8 +216,8 @@ const softwareJsonLd = {
       <span class="eyebrow">Así se ve</span>
       <h2>Una app que apetece abrir</h2>
       <p class="lead">
-        Interfaz clara, en español, catalán e inglés, con modo oscuro. Como app
-        web (PWA) o desde Google Play.
+        Interfaz clara, en español, catalán e inglés, con modo oscuro. Se instala
+        en el móvil como app web, en Android y en iPhone.
       </p>
     </div>
     <div class="shots-strip reveal" aria-label="Capturas de pantalla de Forjia">
@@ -238,11 +247,11 @@ const softwareJsonLd = {
         <article class="card price">
           <h3>Básico</h3>
           <p class="price-amount"><span>desde</span> 15 €<small>/mes</small></p>
-          <p>Fichaje, turnos, panel en tiempo real, informes para Inspección y Excel para la gestoría.</p>
+          <p>Fichaje, turnos, panel en tiempo real, informes para una inspección y Excel para la gestoría.</p>
           <p class="price-tiers">15 € hasta 5 empleados · 25 € hasta 25 · 49 € hasta 50</p>
         </article>
         <article class="card price price--featured">
-          <span class="pill">Más elegido</span>
+          <span class="pill">Recomendado</span>
           <h3>Completo</h3>
           <p class="price-amount"><span>desde</span> 29 €<small>/mes</small></p>
           <p>Todo lo del Básico más vacaciones y ausencias, y documentos con firma con el dedo.</p>
@@ -273,7 +282,7 @@ const softwareJsonLd = {
       <h2>Empieza hoy. Tu equipo ficha mañana.</h2>
       <p class="lead">
         Crea la cuenta de tu empresa, da de alta a tu equipo pegando una lista y
-        empezad a fichar. 30 días gratis, sin tarjeta y sin compromiso.
+        empieza a fichar. 30 días gratis, sin tarjeta y sin compromiso.
       </p>
       <div class="hero-actions" style="justify-content: center;">
         <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary">
@@ -376,6 +385,19 @@ const softwareJsonLd = {
 
   .check-list--compact li {
     color: var(--color-text);
+  }
+
+  /* Nota de privacidad de la gestoría, bajo las tres tarjetas */
+  .audience-note {
+    max-width: var(--content-narrow);
+    margin: 2rem auto 0;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .audience-note strong {
+    color: var(--color-dark);
   }
 
   /* Bloque de cumplimiento */

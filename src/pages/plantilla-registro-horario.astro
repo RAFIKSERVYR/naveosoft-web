@@ -25,12 +25,12 @@ const urlArchivo = new URL(archivo, Astro.site).href;
 const incluye = [
   {
     icon: 'file',
-    titulo: 'Hoja "Instrucciones"',
+    titulo: 'Hoja «Instrucciones»',
     texto: 'Qué exige el art. 34.9 del Estatuto de los Trabajadores, cómo rellenar cada columna, conservación 4 años y firma mensual.',
   },
   {
     icon: 'table',
-    titulo: 'Hoja "Registro"',
+    titulo: 'Hoja «Registro»',
     texto: 'Cabecera con empresa, CIF, trabajador, DNI y mes. Tabla de 31 días con entrada, salida, pausa, observaciones y firma diaria.',
   },
   {
@@ -40,7 +40,7 @@ const incluye = [
   },
   {
     icon: 'edit',
-    titulo: 'Hoja "Resumen" con firmas',
+    titulo: 'Hoja «Resumen» con firmas',
     texto: 'Totales del mes y bloque de firma del trabajador y de la empresa, listo para imprimir o guardar en PDF y archivar.',
   },
 ];
@@ -61,11 +61,11 @@ const limites = [
   },
   {
     titulo: 'Una Inspección',
-    texto: 'Un Excel rellenado "de memoria" el último día es poco creíble ante un inspector: no hay hora real de fichaje, ni rastro de quién cambió qué. Un registro digital con auditoría sí lo tiene.',
+    texto: 'Un Excel rellenado «de memoria» el último día es poco creíble ante un inspector: no hay hora real de fichaje, ni rastro de quién cambió qué. Un registro digital con auditoría sí lo tiene.',
   },
   {
-    titulo: 'El registro digital de 2026',
-    texto: 'La nueva norma que se tramita exige registros inalterables, con trazabilidad y accesibles en remoto por la Inspección. Un Excel, por definición, se puede editar sin dejar rastro.',
+    titulo: 'La norma digital en trámite',
+    texto: 'La nueva norma que se tramita, si se aprueba, exigiría registros inalterables, con trazabilidad y accesibles en remoto por la Inspección. Un Excel, por definición, se puede editar sin dejar rastro.',
   },
 ];
 
@@ -87,8 +87,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="Plantilla Excel gratis de registro de jornada (art. 34.9 ET) — Forjia"
-  description="Descarga gratis la plantilla Excel de registro horario mensual conforme al art. 34.9 del Estatuto de los Trabajadores. Calcula horas ordinarias y extra, con hoja de resumen y firmas. Sin registro ni email."
+  title="Plantilla Excel gratis de registro de jornada — Forjia"
+  description="Descarga gratis la plantilla Excel de registro horario mensual (art. 34.9 ET). Calcula horas ordinarias y extra, con resumen y firmas. Sin pedir email."
   jsonLd={jsonLd}
 >
   <!-- ================= HERO + DESCARGA ================= -->
@@ -200,7 +200,7 @@ const jsonLd = {
         }
       </div>
       <p class="more-link text-center">
-        Te contamos qué cambia con la nueva norma en el artículo
+        Te contamos qué cambiaría con la nueva norma en el artículo
         <a href="/blog/registro-horario-digital-2026">Registro horario digital en 2026: qué exige la ley y cómo cumplir</a>.
       </p>
     </div>
@@ -212,9 +212,9 @@ const jsonLd = {
       <span class="eyebrow eyebrow--on-dark">La forma más sencilla de dejar el Excel</span>
       <h2>Cuando te quedes corto, Forjia</h2>
       <p class="lead">
-        Fichaje desde el móvil o en modo kiosco con QR, informe listo para
-        Inspección, Excel para la gestoría y conservación 4 años. Desde 15 € al
-        mes por empresa. Prueba 30 días gratis, sin tarjeta.
+        Fichaje desde el móvil, con cartel QR o en una tablet en modo kiosco con
+        PIN, informes para una inspección, Excel para la gestoría y conservación 4 años. Desde 15 € al
+        mes por empresa + IVA. Prueba 30 días gratis, sin tarjeta.
       </p>
       <div class="hero-actions" style="justify-content: center;">
         <a href="https://forjia.es/registro" rel="noopener" class="btn btn--primary">

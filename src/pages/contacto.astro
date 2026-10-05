@@ -11,6 +11,11 @@
  * info@naveosoft.es. PENDIENTE (dueño): cambiarlo a info@forjia.es en
  * web3forms.com → Linked Emails (o crear una access_key nueva asociada a
  * info@forjia.es y sustituir el value del campo oculto "access_key").
+ *
+ * PRIVACIDAD: junto a la casilla va la información básica (responsable,
+ * finalidad, Web3Forms y derechos) con enlaces a /privacidad y /aviso-legal.
+ * Si cambia el proveedor del formulario o el buzón, actualiza también
+ * src/pages/privacidad.astro.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
@@ -31,8 +36,8 @@ const contactJsonLd = {
 ---
 
 <BaseLayout
-  title="Contacto — Habla con el equipo de Forjia"
-  description="¿Dudas sobre el registro horario de tu empresa o quieres activar Forjia en tu gestoría? Escríbenos a info@forjia.es o por el formulario. Te respondemos sin compromiso."
+  title="Contacto — Habla con Forjia"
+  description="¿Dudas sobre el registro horario o quieres activar Forjia en tu gestoría? Escríbenos a info@forjia.es o por el formulario. Respondemos en un día laborable."
   jsonLd={contactJsonLd}
 >
   <!-- ================= HERO ================= -->
@@ -41,8 +46,8 @@ const contactJsonLd = {
       <span class="eyebrow">Contacto</span>
       <h1>¿Hablamos del fichaje de tu empresa?</h1>
       <p class="lead">
-        Rellena el formulario o escríbenos directamente. Te respondemos lo antes
-        posible, sin compromiso y sin tecnicismos.
+        Rellena el formulario o escríbenos directamente. Respondemos en un día
+        laborable, sin compromiso y sin tecnicismos.
       </p>
     </div>
   </section>
@@ -72,7 +77,7 @@ const contactJsonLd = {
           <span class="info-icon" aria-hidden="true"><Icon name="chat" size={20} /></span>
           <div>
             <h3>Qué esperar</h3>
-            <p>Una respuesta cercana y sin tecnicismos, normalmente en 24-48 h laborables.</p>
+            <p>Respondemos en un día laborable, de forma cercana y sin tecnicismos.</p>
           </div>
         </div>
 
@@ -98,11 +103,11 @@ const contactJsonLd = {
           method="POST"
           novalidate
         >
-          <!--
+          {/*
             Clave PÚBLICA de Web3Forms. No es secreta: solo identifica la cuenta
-            a la que llegan los mensajes (hoy info@naveosoft.es; ver el comentario
-            de cabecera para cambiarlo a info@forjia.es).
-          -->
+            a la que llegan los mensajes (el buzón de destino se explica en el
+            comentario de cabecera). Este comentario no sale en la web publicada.
+          */}
           <input
             type="hidden"
             name="access_key"
@@ -147,12 +152,31 @@ const contactJsonLd = {
           />
 
           <div class="field field--check">
-            <input type="checkbox" id="consent" name="consent" required />
+            <input
+              type="checkbox"
+              id="consent"
+              name="consent"
+              required
+              aria-describedby="consent-info"
+            />
             <label for="consent">
-              He leído y acepto que mis datos se usen únicamente para responder a
-              mi consulta. <span class="req">*</span>
+              He leído la <a href="/privacidad">política de privacidad</a> y acepto
+              que Forjia use mis datos para responder a mi consulta.
+              <span class="req">*</span>
             </label>
           </div>
+
+          {/* Información básica de protección de datos (junto a la casilla) */}
+          <p id="consent-info" class="form-legal">
+            <strong>Responsable:</strong> el titular de Naveosoft, identificado en
+            el <a href="/aviso-legal">aviso legal</a>.
+            <strong>Finalidad:</strong> contestar a tu mensaje. No usamos tus datos
+            para publicidad ni los cedemos. El envío pasa por Web3Forms, el
+            servicio que gestiona este formulario. Puedes pedir ver, corregir o
+            borrar tus datos escribiendo a
+            <a href="mailto:info@forjia.es">info@forjia.es</a>. Más detalles en la
+            <a href="/privacidad">política de privacidad</a>.
+          </p>
 
           <button type="submit" class="btn btn--primary">Enviar mensaje</button>
 
@@ -301,6 +325,30 @@ const contactJsonLd = {
     margin-bottom: 0;
   }
 
+  /* Enlaces de la casilla y del texto de privacidad: subrayados para que se vean */
+  .field--check label a,
+  .form-legal a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Información básica de protección de datos, bajo la casilla */
+  .form-legal {
+    margin: -0.5rem 0 1.25rem;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    background-color: var(--color-light-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+
+  .form-legal strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
   /* Campo trampa oculto */
   .hp {
     position: absolute;
@@ -387,7 +435,7 @@ const contactJsonLd = {
           status.hidden = false;
           status.className = 'form-status form-status--ok';
           status.textContent =
-            '¡Gracias! Hemos recibido tu mensaje y te responderemos lo antes posible.';
+            '¡Gracias! Hemos recibido tu mensaje. Respondemos en un día laborable.';
         }
       } else {
         throw new Error(data.message || 'Error al enviar');

@@ -5,20 +5,24 @@
  * de uso de la web (no del servicio Forjia, que tiene su página propia en
  * /condiciones).
  *
- * BORRADOR PENDIENTE DE REVISIÓN LEGAL, igual que /condiciones. El aviso
- * visible de arriba se quita borrando el bloque <aside class="draft">.
+ * Sin nota de borrador desde octubre de 2026 (decisión del dueño, 04-10-2026):
+ * solo identifica al titular y regula el uso de la web. /condiciones, en
+ * cambio, mantiene su nota hasta que la revise un abogado.
  *
- * Los datos del titular (nombre, NIF, dirección) viven en src/data/titular.ts,
- * compartidos con /condiciones: se rellenan allí, una sola vez.
+ * Los datos del titular (nombre, NIF, dirección, partido judicial) viven en
+ * src/data/titular.ts, compartidos con /condiciones: se rellenan allí, una
+ * sola vez. La línea «Titular: …» es idéntica en las dos páginas.
+ *
+ * Privacidad: la de esta web (formulario y correo) está en /privacidad; la de
+ * la aplicación, en https://forjia.es/privacidad.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Icon from '../components/Icon.astro';
 import { titular } from '../data/titular';
 
 // Datos del titular (se rellenan en src/data/titular.ts).
 const prestador = titular;
 
-const fechaVersion = 'Septiembre de 2026 (borrador)';
+const fechaVersion = 'octubre de 2026';
 
 // Índice de secciones (para el sumario y los anclajes).
 const secciones = [
@@ -46,10 +50,10 @@ const jsonLd = {
 
 <BaseLayout
   title="Aviso Legal — Forjia"
-  description="Aviso legal del sitio web de Forjia: identificación del titular, condiciones de uso de la web, propiedad intelectual, enlaces, protección de datos y cookies, conforme a la LSSI-CE."
+  description="Aviso legal de la web de Forjia: datos del titular, condiciones de uso, propiedad intelectual, enlaces, protección de datos y cookies (LSSI-CE)."
   jsonLd={jsonLd}
 >
-  <!-- ================= CABECERA ================= -->
+  {/* ================= CABECERA ================= */}
   <section class="hero">
     <div class="container legal-wrap">
       <span class="eyebrow">Legal</span>
@@ -62,24 +66,13 @@ const jsonLd = {
         <a href="/condiciones">Condiciones del Servicio</a>.
       </p>
       <p class="version">Versión: {fechaVersion}</p>
-
-      <!-- AVISO DE BORRADOR: el dueño decide cuándo quitar este bloque -->
-      <aside class="draft" role="note">
-        <Icon name="alert" size={20} />
-        <div>
-          <strong>Borrador pendiente de revisión legal.</strong>
-          Este texto es una versión de trabajo redactada por el equipo de Forjia y
-          todavía no ha sido revisada por un abogado. Puede cambiar antes de su
-          versión definitiva.
-        </div>
-      </aside>
     </div>
   </section>
 
-  <!-- ================= CONTENIDO ================= -->
+  {/* ================= CONTENIDO ================= */}
   <section class="section legal">
     <div class="container legal-wrap">
-      <!-- Sumario -->
+      {/* Sumario */}
       <nav class="toc" aria-label="Índice del aviso legal">
         <p class="toc-title">Índice</p>
         <ol>
@@ -91,10 +84,10 @@ const jsonLd = {
         <h2 id="titular">1. Datos del titular</h2>
         <p>
           En cumplimiento del artículo 10 de la LSSI-CE, se informa de que el
-          titular de este sitio web y de la marca <strong>Forjia</strong> es:
+          titular de este sitio web y del servicio <strong>Forjia</strong> es:
         </p>
         <ul>
-          <li>Titular: <strong>{prestador.razonSocial}</strong> ({prestador.marca})</li>
+          <li>Titular: <strong>{prestador.razonSocial}</strong>, {prestador.condicion}, que opera con el nombre comercial {prestador.marca}</li>
           <li>NIF: <strong>{prestador.nif}</strong></li>
           <li>Domicilio: <strong>{prestador.direccion}</strong></li>
           <li>Correo electrónico: <a href={`mailto:${prestador.email}`}>{prestador.email}</a></li>
@@ -172,10 +165,11 @@ const jsonLd = {
 
         <h2 id="propiedad">5. Propiedad intelectual</h2>
         <p>
-          El diseño del sitio, sus textos, imágenes, logotipos y las marcas
-          <strong>Forjia</strong> y <strong>Naveosoft</strong> son titularidad de
-          {prestador.marca} o de sus licenciantes, y están protegidos por la
-          normativa de propiedad intelectual e industrial.
+          El diseño del sitio, sus textos, imágenes y logotipos, así como los
+          nombres <strong>Forjia</strong> y <strong>Naveosoft</strong>,
+          pertenecen al titular identificado en el apartado 1 o a sus
+          licenciantes, y están protegidos por la normativa de propiedad
+          intelectual e industrial.
         </p>
         <p>
           Se autoriza la visualización, impresión y descarga de los contenidos
@@ -183,8 +177,8 @@ const jsonLd = {
           ofrecidos para descarga pueden usarse libremente en la gestión de la
           propia empresa; no está permitida su reventa ni su redistribución como
           propios. Cualquier otro uso requiere autorización escrita del titular.
-          La cita o el enlace a los contenidos del blog está permitida indicando
-          la fuente.
+          La cita o el enlace a los contenidos del blog están permitidos
+          indicando la fuente.
         </p>
 
         <h2 id="enlaces">6. Enlaces</h2>
@@ -205,9 +199,11 @@ const jsonLd = {
         <p>
           Los datos personales que se faciliten a través del
           <a href="/contacto">formulario de contacto</a> o por correo electrónico
-          se tratan con la única finalidad de atender la consulta. El tratamiento
-          de datos en la aplicación Forjia (empleados, fichajes) se rige por la
-          <a href="https://forjia.es/privacidad" rel="noopener">Política de Privacidad</a>
+          se tratan con la única finalidad de atender la consulta, como se
+          explica en la <a href="/privacidad">Política de Privacidad de esta web</a>.
+          El tratamiento de datos en la aplicación Forjia (empleados, fichajes)
+          se rige por la
+          <a href="https://forjia.es/privacidad" rel="noopener">Política de Privacidad de la aplicación</a>
           y, para los clientes, por el Acuerdo de Encargo del Tratamiento descrito
           en las <a href="/condiciones">Condiciones del Servicio</a>.
         </p>
@@ -237,16 +233,17 @@ const jsonLd = {
         <p>
           Este aviso legal se rige por la <strong>legislación española</strong>. Para
           cualquier controversia derivada del uso de este sitio web, las partes
-          se someten a los juzgados y tribunales del domicilio del titular, salvo
-          que el usuario tenga la condición legal de consumidor, en cuyo caso se
-          aplicará el fuero que le corresponda por ley.
+          se someten a los juzgados y tribunales de {prestador.partidoJudicial},
+          salvo que el usuario tenga la condición legal de consumidor, en cuyo
+          caso se aplicará el fuero que le corresponda por ley.
         </p>
 
         <hr />
         <p class="legal-foot">
           Documentos relacionados:
           <a href="/condiciones">Condiciones del Servicio</a> ·
-          <a href="https://forjia.es/privacidad" rel="noopener">Política de Privacidad</a> ·
+          <a href="/privacidad">Privacidad de esta web</a> ·
+          <a href="https://forjia.es/privacidad" rel="noopener">Privacidad de la aplicación</a> ·
           <a href="/contacto">Contacto</a>
         </p>
       </article>
@@ -277,33 +274,6 @@ const jsonLd = {
     margin-top: 1rem;
     font-size: 0.9rem;
     color: var(--color-text-muted);
-  }
-
-  /* Aviso de borrador (ámbar) */
-  .draft {
-    display: flex;
-    gap: 0.85rem;
-    align-items: flex-start;
-    margin-top: 1.75rem;
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius);
-    background: rgba(var(--color-warning-rgb), 0.1);
-    border: 1px solid rgba(var(--color-warning-rgb), 0.35);
-    color: var(--color-dark);
-    font-size: 0.95rem;
-    line-height: 1.55;
-  }
-
-  .draft svg {
-    flex-shrink: 0;
-    color: var(--color-warning);
-    margin-top: 0.15rem;
-  }
-
-  .draft strong {
-    display: block;
-    color: var(--color-warning);
-    margin-bottom: 0.15rem;
   }
 
   /* CONTENIDO */

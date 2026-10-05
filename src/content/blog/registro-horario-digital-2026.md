@@ -1,18 +1,18 @@
 ---
 title: 'Registro horario digital en 2026: qué exige la ley y cómo cumplir sin complicarte'
-description: 'Qué pide hoy la ley de registro de jornada, qué cambiará con la nueva norma de registro horario digital (acceso remoto de Inspección, inalterabilidad, 4 años) y un checklist práctico para tu pyme.'
+description: 'Qué exige hoy la ley de registro de jornada, qué cambiaría con la norma digital en trámite (acceso remoto, inalterabilidad) y un checklist para tu pyme.'
 pubDate: 2026-09-24
-author: 'Equipo Forjia'
+author: 'Forjia'
 category: 'Fichaje y normativa'
 tags: ['registro horario', 'fichaje digital', 'Inspección de Trabajo', 'pymes', 'normativa 2026']
 draft: false
 ---
 
 Si tienes una pyme en España, seguro que en los últimos meses has oído hablar del
-**"registro horario digital obligatorio"**. Hay mucho ruido: titulares que anuncian
+**«registro horario digital obligatorio»**. Hay mucho ruido: titulares que anuncian
 fechas, proveedores que meten prisa y una norma nueva que lleva más de un año
 en tramitación. En este artículo separamos lo que **ya es obligatorio hoy** de lo
-que **está por venir**, y te dejamos un checklist sencillo para que cumplas sin
+que **podría venir**, y te dejamos un checklist sencillo para que cumplas sin
 volverte loco.
 
 > **Aviso:** esto es una guía informativa, no asesoramiento jurídico. Para tu caso
@@ -26,7 +26,7 @@ Trabajadores**. Desde el 12 de mayo de 2019, **toda empresa**, tenga 2 o 200
 empleados, debe:
 
 1. **Registrar cada día** la hora de inicio y de fin de la jornada de cada persona
-   trabajadora. No vale un cuadrante genérico ni "de lunes a viernes de 9 a 18".
+   trabajadora. No vale un cuadrante genérico ni «de lunes a viernes de 9 a 18».
 2. **Organizar y documentar** ese registro mediante negociación colectiva o
    acuerdo de empresa; si no lo hay, por decisión del empresario **previa consulta**
    con los representantes de los trabajadores.
@@ -44,7 +44,7 @@ que rellena el jefe el último día del mes es, a ojos de un inspector, poco cre
 El incumplimiento del registro de jornada es una **infracción grave** según el
 artículo 7.5 de la **LISOS** (Ley sobre Infracciones y Sanciones en el Orden
 Social). En 2026 la horquilla vigente es de **751 € a 7.500 € por infracción**,
-graduada en tres tramos (mínimo, medio y máximo) según criterios como el número
+con tres grados (mínimo, medio y máximo) según criterios como el número
 de trabajadores afectados, la intencionalidad o la reincidencia.
 
 Y ojo: la multa suele venir acompañada. Si la Inspección no puede comprobar la
@@ -52,7 +52,7 @@ jornada, es habitual que **presuma horas extra no pagadas ni cotizadas**, con la
 liquidaciones a la Seguridad Social correspondientes. Ese segundo golpe suele ser
 más caro que la sanción en sí.
 
-## Lo que viene: la nueva norma de registro horario digital
+## Lo que podría venir: la nueva norma de registro horario digital
 
 En 2025 el Gobierno impulsó dos medidas en paralelo: la **reducción de la jornada
 a 37,5 horas** y el **endurecimiento del registro horario**. El proyecto de ley
@@ -71,19 +71,19 @@ esta:
 - **El Real Decreto todavía no se ha aprobado ni publicado en el BOE.** No hay una
   fecha oficial de entrada en vigor ni un plazo de adaptación confirmado.
 
-Si alguien te dice que "es obligatorio desde el 1 de enero" o te da una fecha
+Si alguien te dice que «es obligatorio desde el 1 de enero» o te da una fecha
 exacta, desconfía: hoy nadie la conoce con certeza. Lo que sí conocemos es el
 **contenido del borrador**, y por ahí van los tiros.
 
-### Qué cambia (según el borrador)
+### Qué cambiaría (según el borrador)
 
 - **Solo formato digital.** El papel y las hojas firmadas dejarían de ser válidos.
 - **Acceso remoto de la Inspección.** La ITSS podría consultar tus registros de
   forma telemática, sin tener que presentarse en la empresa ni pedírtelos antes.
 - **Interoperabilidad.** El sistema debería poder entregar los datos en un formato
   estandarizado que entienda la Inspección.
-- **Inalterabilidad y trazabilidad.** Cada fichaje debe quedar sellado en el
-  tiempo; si alguien corrige un registro, tiene que quedar rastro de **quién, cuándo
+- **Inalterabilidad y trazabilidad.** Cada fichaje debería quedar sellado en el
+  tiempo; si alguien corrige un registro, tendría que quedar rastro de **quién, cuándo
   y por qué** (lo que en informática se llama *log de auditoría*).
 - **Más detalle.** No solo entrada y salida: también pausas, horas extraordinarias
   y la identificación individual de cada persona.
@@ -95,12 +95,13 @@ exacta, desconfía: hoy nadie la conoce con certeza. Lo que sí conocemos es el
   afecta a la LISOS (que es una ley) y **no está en vigor**; lo mencionamos para
   que veas hacia dónde va la tendencia.
 
-Conclusión práctica: aunque la norma se retrase, **todo apunta a que el registro
-digital, inalterable y accesible será el estándar**. Adelantarse no cuesta más.
+Conclusión práctica: aunque la norma no está aprobada ni tiene fecha, **todo apunta
+a que el registro digital, inalterable y accesible acabará siendo lo habitual**.
+Adelantarse no cuesta más.
 
 ## Checklist para una pyme: ¿estás cumpliendo?
 
-Repasa esta lista con calma. Si respondes "no" a alguna, ahí tienes deberes.
+Repasa esta lista con calma. Si respondes «no» a alguna, ahí tienes deberes.
 
 ### Lo básico (obligatorio hoy)
 
@@ -115,7 +116,7 @@ Repasa esta lista con calma. Si respondes "no" a alguna, ahí tienes deberes.
 - Si tienes representantes de los trabajadores, les has **consultado** el
   sistema.
 
-### Lo que te deja preparado para la nueva norma
+### Lo que pediría la nueva norma (si se aprueba)
 
 - El sistema es **digital** y guarda cada fichaje con fecha y hora automáticas.
 - Los registros **no se pueden borrar ni sobrescribir** sin dejar rastro.
@@ -131,7 +132,7 @@ Repasa esta lista con calma. Si respondes "no" a alguna, ahí tienes deberes.
 Estos son los fallos que más se repiten en las pymes y que más facilitan el
 trabajo a la Inspección:
 
-1. **El registro "de memoria".** Rellenar la hoja el viernes con "9:00 - 18:00"
+1. **El registro «de memoria».** Rellenar la hoja el viernes con «9:00 - 18:00»
    todos los días. Un patrón perfecto todos los días es justo lo que más levanta
    sospechas.
 2. **Confundir horario con registro.** Tener publicado el horario de la empresa
@@ -146,8 +147,8 @@ trabajo a la Inspección:
    editar cualquier hora sin que quede registrado, el sistema pierde credibilidad
    ante una inspección, por muy digital que sea.
 6. **No poder entregarlo rápido.** Cuando llega el requerimiento, suele dar un
-   plazo corto. Si tienes que reconstruir el mes a partir de WhatsApps, ya vas
-   tarde.
+   plazo corto. Si tienes que reconstruir el mes a partir de mensajes de
+   WhatsApp, ya vas tarde.
 
 ## Cómo cumplir sin complicarte
 
@@ -160,13 +161,13 @@ golpe:
 - Cada fichaje queda **sellado con fecha y hora** y no se puede alterar sin rastro.
 - Los registros se guardan **en la nube durante el plazo legal**, aunque cambies
   de móvil, de ordenador o de gestoría.
-- El **informe mensual** sale en un clic, listo para la gestoría o para la
+- El **informe mensual** sale en un clic, para la gestoría o por si lo pide la
   Inspección.
 
 Eso es exactamente lo que hace **Forjia**: una app de control horario pensada para
 pymes y gestorías españolas, sin funciones que no vas a usar y con la privacidad
-por defecto. Te ayuda a cumplir la normativa actual y te deja preparado para lo
-que viene, sin que tengas que estar pendiente de cada cambio del BOE.
+por defecto. Te ayuda a cumplir la normativa actual, y si la norma nueva sale
+adelante te lo contaremos aquí.
 
 **¿Quieres verlo con tu propia empresa?** Puedes
 **[probar Forjia 30 días gratis](https://forjia.es/registro)**: das de alta a tu
@@ -175,6 +176,6 @@ equipo en cinco minutos y al final del mes tienes tu primer informe hecho.
 ---
 
 *Fuentes (septiembre de 2026): RD-ley 8/2019; art. 34.9 del Estatuto de los
-Trabajadores; art. 7.5 de la LISOS (RDL 5/2000); tramitación del proyecto de Real
-Decreto de registro de jornada. Actualizaremos este artículo cuando la norma se
-publique en el BOE.*
+Trabajadores; art. 7.5 de la LISOS (Real Decreto Legislativo 5/2000); tramitación del proyecto de Real
+Decreto de registro de jornada. Actualizaremos este artículo si la norma se
+aprueba y se publica en el BOE.*

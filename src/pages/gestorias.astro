@@ -7,6 +7,10 @@
  * mensual en un Excel), cómo funciona, precio (9 €/empresa hasta 25 trabajadores,
  * 19 € de 26 a 50, mínimo 79 € desde el cuarto mes; 30 días de prueba) y CTA
  * por correo (info@forjia.es) o demo.
+ *
+ * La lista de lo que ve la gestoría (lo que ve siempre y los 9 permisos) sale de
+ * src/lib/gestoriaScope.js y de los textos gsc_flag_* de src/lib/locales/es.js
+ * del repo de la app. Si cambian allí, revisar aquí y en /ayuda.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
@@ -35,17 +39,17 @@ const solucion = [
   {
     icon: 'buildings',
     title: 'Panel de cartera',
-    text: 'Todas tus empresas cliente en una sola pantalla, con su estado y sus avisos. Entra en cada una como administrador sin pedir contraseñas.',
+    text: 'Todas tus empresas cliente en una sola pantalla, con su estado y sus avisos. Entra en cada una con tu propio acceso, sin pedir contraseñas.',
   },
   {
     icon: 'eye-off',
     title: 'Privacidad por defecto',
-    text: 'Por defecto la gestoría NO ve GPS, selfies, motivos médicos, documentos ni credenciales. La empresa cliente decide qué abrir con 9 permisos independientes.',
+    text: 'Por defecto ves los fichajes, las horas y los informes, y puedes dar de alta a la plantilla. No ves la ubicación, las fotos, los motivos de las ausencias ni los justificantes de los trabajadores, y no puedes cambiar contraseñas, salvo que la empresa lo autorice por escrito.',
   },
   {
     icon: 'history',
     title: 'Registro de accesos visible',
-    text: 'El cliente ve cuándo has entrado y qué has consultado. Menos reticencias a la hora de darte acceso.',
+    text: 'El cliente ve en su app qué tienes abierto y cuándo has entrado en su empresa. Menos reticencias a la hora de darte acceso.',
   },
   {
     icon: 'download',
@@ -75,8 +79,8 @@ const pasos = [
 ---
 
 <BaseLayout
-  title="Forjia para gestorías — Control horario de toda tu cartera en un panel"
-  description="Forjia para asesorías y gestorías: 9 € por empresa al mes + IVA y 30 días de prueba gratis con todas tus empresas. Las horas de toda tu cartera en un solo Excel."
+  title="Forjia para gestorías: control horario de toda tu cartera"
+  description="Para asesorías y gestorías: las horas de toda tu cartera en un solo Excel. Desde 9 € por empresa al mes + IVA y 30 días gratis con todas tus empresas."
 >
   <!-- ================= HERO ================= -->
   <section class="hero">
@@ -92,7 +96,7 @@ const pasos = [
         </p>
         <ul class="check-list">
           <li><Icon name="check" size={18} /> Panel de cartera con todas tus empresas cliente</li>
-          <li><Icon name="check" size={18} /> Privacidad por defecto: solo ves lo que el cliente te abre</li>
+          <li><Icon name="check" size={18} /> Privacidad por defecto: lo delicado, solo con autorización escrita del cliente</li>
           <li><Icon name="check" size={18} /> Informe mensual de toda la cartera en un solo Excel</li>
         </ul>
         <div class="hero-actions">
@@ -103,7 +107,7 @@ const pasos = [
         </div>
         <p class="hero-note">
           <strong>30 días de prueba gratis con todas tus empresas.</strong> Después,
-          9 € por empresa al mes + IVA. Sin permanencia.
+          desde 9 € por empresa al mes + IVA. Sin permanencia.
         </p>
       </div>
       <div class="hero-visual">
@@ -151,8 +155,8 @@ const pasos = [
         <h2>Un panel para toda tu cartera, con la privacidad resuelta</h2>
         <p class="lead">
           Forjia está pensada para que la gestoría trabaje cómoda y la empresa
-          cliente se sienta tranquila. Tú ves las horas; lo demás, solo si el
-          cliente quiere.
+          cliente se sienta tranquila. Tú ves las horas; lo delicado, solo si el
+          cliente lo autoriza por escrito.
         </p>
         <div class="grid solution-cards">
           {
@@ -194,26 +198,44 @@ const pasos = [
           <h2>Tus clientes deciden qué ves</h2>
           <p class="lead">
             Al conectar una empresa a tu gestoría, Forjia aplica el mínimo
-            necesario: horas fichadas e informes. El resto son
-            <strong>9 permisos</strong> que la empresa puede abrir uno a uno.
+            necesario. Hay <strong>9 permisos</strong>: dos vienen abiertos de
+            fábrica (leer las notas de los fichajes y dar de alta usuarios) y los
+            otros siete, cerrados. Para abrir uno, la empresa cliente lo autoriza
+            por escrito y Forjia lo aplica. En su app, la empresa ve qué tienes
+            abierto y cuándo has entrado.
           </p>
           <div class="perm-grid">
             <div>
-              <h3>Por defecto la gestoría NO ve</h3>
-              <ul class="perm-list perm-list--off">
-                <li><Icon name="eye-off" size={16} /> Ubicación GPS de los fichajes</li>
-                <li><Icon name="eye-off" size={16} /> Selfies de verificación</li>
-                <li><Icon name="eye-off" size={16} /> Motivos de visitas médicas</li>
-                <li><Icon name="eye-off" size={16} /> Documentos (nóminas, contratos)</li>
-                <li><Icon name="eye-off" size={16} /> Credenciales de los empleados</li>
+              <h3>Por defecto ves y puedes</h3>
+              <ul class="perm-list">
+                <li><Icon name="check" size={16} /> Fichajes, horas e informes (Excel y PDF)</li>
+                <li><Icon name="check" size={16} /> Días y tipo de cada ausencia, sin el motivo</li>
+                <li><Icon name="check" size={16} /> Documentos que suben la empresa o tu gestoría</li>
+                <li><Icon name="check" size={16} /> Si un documento está firmado y en qué fecha</li>
+                <li><Icon name="check" size={16} /> Ajustes de la empresa, solo para consultarlos</li>
+                <li><Icon name="check" size={16} /> Activar y desactivar trabajadores</li>
+                <li><Icon name="check" size={16} /> Leer las notas de los fichajes</li>
+                <li><Icon name="check" size={16} /> Dar de alta usuarios</li>
               </ul>
             </div>
             <div>
+              <h3>Cerrado salvo autorización escrita</h3>
+              <ul class="perm-list perm-list--off">
+                <li><Icon name="eye-off" size={16} /> Ubicación de los fichajes</li>
+                <li><Icon name="eye-off" size={16} /> Fotos de verificación</li>
+                <li><Icon name="eye-off" size={16} /> Motivos de ausencias y solicitudes</li>
+                <li><Icon name="eye-off" size={16} /> Justificantes enviados por el trabajador</li>
+                <li><Icon name="eye-off" size={16} /> Imagen de la firma</li>
+                <li><Icon name="eye-off" size={16} /> Cambiar ajustes de la empresa</li>
+                <li><Icon name="eye-off" size={16} /> Contraseñas, correos y eliminación de usuarios</li>
+              </ul>
+            </div>
+            <div class="perm-full">
               <h3>Y siempre</h3>
-              <ul class="perm-list">
+              <ul class="perm-list perm-list--inline">
                 <li><Icon name="check" size={16} /> Registro de accesos visible para el cliente</li>
-                <li><Icon name="check" size={16} /> Acceso como administrador sin compartir contraseñas</li>
-                <li><Icon name="check" size={16} /> Datos alojados en la Unión Europea</li>
+                <li><Icon name="check" size={16} /> Acceso con tu propio usuario, sin compartir contraseñas</li>
+                <li><Icon name="check" size={16} /> Base de datos alojada en la Unión Europea</li>
               </ul>
             </div>
           </div>
@@ -261,7 +283,7 @@ const pasos = [
             <li><Icon name="check" size={18} /> 30 días de prueba gratis con todas tus empresas</li>
             <li><Icon name="check" size={18} /> Panel de cartera e informe mensual en un solo Excel, con las columnas adaptadas a tu despacho</li>
             <li><Icon name="check" size={18} /> Una sola factura para la gestoría: inclúyelo en tu cuota o cóbraselo a tu cliente</li>
-            <li><Icon name="check" size={18} /> Si dejas de pagar, solo se bloquea tu panel: no se borra nada y los trabajadores siguen fichando</li>
+            <li><Icon name="check" size={18} /> Si dejas de pagar, no se borra nada y los trabajadores siguen fichando; se bloquea la gestión (tu panel y el de administración de tus empresas cliente) hasta que se regularice el pago</li>
             <li><Icon name="check" size={18} /> Privacidad por defecto y registro de accesos</li>
             <li><Icon name="check" size={18} /> Soporte por correo, también para los trabajadores de tus clientes</li>
           </ul>
@@ -468,6 +490,19 @@ const pasos = [
 
   .perm-list--off li :global(svg) {
     color: var(--color-text-muted);
+  }
+
+  /* Bloque "Y siempre": ocupa todo el ancho, con los puntos en línea */
+  .perm-full {
+    grid-column: 1 / -1;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .perm-list--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.75rem;
   }
 
   /* Pasos */

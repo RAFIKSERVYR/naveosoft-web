@@ -1,0 +1,265 @@
+---
+/**
+ * Página de Política de Privacidad de ESTA WEB (/privacidad).
+ * Solo cubre los datos que deja quien nos escribe por el formulario de
+ * contacto o por correo. La privacidad de la aplicación Forjia (empleados,
+ * fichajes, ubicación…) tiene su propia política en https://forjia.es/privacidad,
+ * que se enlaza al final.
+ *
+ * Texto basado en la propuesta de Cowork (04-10-2026, sección D.2), pendiente
+ * de que lo revise el abogado. Mismo diseño que /aviso-legal.
+ *
+ * Los datos del titular se leen de src/data/titular.ts (no se escriben aquí).
+ * Proveedores comprobados en octubre de 2026:
+ *  - Web3Forms (formulario): lo opera Web3Creative (India); proveedores AWS
+ *    (región sin concretar), Cloudflare (red global), Hetzner (UE) y, contra
+ *    el spam, CleanTalk y Akismet (EE. UU.); cláusulas contractuales tipo;
+ *    guarda los envíos un máximo de tres años (web3forms.com/privacy y /dpa).
+ *  - DonDominio (España): buzón de correo.
+ *  - Vercel Inc. (EE. UU.): alojamiento; adherida al Marco de Privacidad de
+ *    Datos UE-EE. UU. y con cláusulas contractuales tipo en su DPA.
+ * Si cambia alguno (o el formulario pasa a otro servicio), actualiza esta página.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { titular } from '../data/titular';
+
+const fechaActualizacion = 'octubre de 2026';
+
+// Índice de secciones (para el sumario y los anclajes).
+const secciones = [
+  { id: 'responsable', titulo: '1. Quién es el responsable' },
+  { id: 'datos', titulo: '2. Qué datos tratamos en esta web' },
+  { id: 'finalidad', titulo: '3. Para qué' },
+  { id: 'base', titulo: '4. Con qué base legal' },
+  { id: 'destinatarios', titulo: '5. Quién más los ve' },
+  { id: 'plazo', titulo: '6. Cuánto tiempo' },
+  { id: 'derechos', titulo: '7. Tus derechos' },
+  { id: 'cookies', titulo: '8. Cookies' },
+  { id: 'app', titulo: '9. Los datos de la aplicación' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Política de privacidad',
+  url: new URL('/privacidad', Astro.site).href,
+  inLanguage: 'es-ES',
+  description: 'Política de privacidad de la web de Forjia: qué datos se tratan cuando nos escribes, para qué, quién más los ve y cómo ejercer tus derechos.',
+  publisher: { '@type': 'Organization', name: 'Forjia', url: new URL('/', Astro.site).href },
+};
+---
+
+<BaseLayout
+  title="Política de privacidad — Forjia"
+  description="Qué datos trata la web de Forjia cuando nos escribes, para qué, quién más los ve y cómo ejercer tus derechos. Sin cookies de analítica ni de publicidad."
+  jsonLd={jsonLd}
+>
+  {/* ================= CABECERA ================= */}
+  <section class="hero">
+    <div class="container legal-wrap">
+      <span class="eyebrow">Legal</span>
+      <h1>Política de privacidad de esta web</h1>
+      <p class="lead">
+        Aquí explicamos qué hacemos con los datos que nos das en esta web, sobre
+        todo cuando nos escribes por el <a href="/contacto">formulario de contacto</a>
+        o por correo. Si usas la aplicación Forjia, los datos que se tratan en ella se rigen por la
+        <a href="https://forjia.es/privacidad" rel="noopener">política de privacidad de la aplicación</a>.
+      </p>
+      <p class="version">Última actualización: {fechaActualizacion}.</p>
+    </div>
+  </section>
+
+  {/* ================= CONTENIDO ================= */}
+  <section class="section legal">
+    <div class="container legal-wrap">
+      {/* Sumario */}
+      <nav class="toc" aria-label="Índice de la política de privacidad">
+        <p class="toc-title">Índice</p>
+        <ol>
+          {secciones.map((s) => <li><a href={`#${s.id}`}>{s.titulo}</a></li>)}
+        </ol>
+      </nav>
+
+      <article class="prose legal-body">
+        <h2 id="responsable">1. Quién es el responsable</h2>
+        <p>
+          <strong>{titular.razonSocial}</strong>, {titular.condicion}, que opera con el
+          nombre comercial {titular.marca}. Sus datos completos
+          están en el <a href="/aviso-legal">aviso legal</a>. Contacto para
+          cualquier tema de privacidad:
+          <a href={`mailto:${titular.email}`}>{titular.email}</a>.
+        </p>
+
+        <h2 id="datos">2. Qué datos tratamos en esta web</h2>
+        <p>
+          Solo los que nos das al escribirnos: tu nombre, tu correo, el nombre de
+          tu empresa o gestoría si lo indicas y el contenido de tu mensaje.
+        </p>
+
+        <h2 id="finalidad">3. Para qué</h2>
+        <p>
+          Para contestarte y, si lo pides, enseñarte Forjia o darte de alta.
+          <strong>No los usamos para enviarte publicidad.</strong>
+        </p>
+
+        <h2 id="base">4. Con qué base legal</h2>
+        <p>
+          Tu consentimiento al enviar el formulario o el correo, y las medidas
+          previas a un posible contrato que tú solicitas.
+        </p>
+
+        <h2 id="destinatarios">5. Quién más los ve</h2>
+        <p>
+          Nadie fuera de Forjia, salvo los proveedores técnicos que hacen posible
+          el servicio. No vendemos ni cedemos tus datos a nadie.
+        </p>
+        <ul>
+          <li>
+            <strong>Web3Forms</strong>, el servicio que recibe el formulario y nos
+            entrega el mensaje por correo. Lo gestiona Web3Creative, desde la
+            India, con proveedores en varios países (entre ellos Estados Unidos y
+            la Unión Europea). Esa transferencia fuera de la UE se hace con las cláusulas contractuales
+            tipo aprobadas por la Comisión Europea. Según su política, guarda una
+            copia de cada envío un máximo de tres años.
+          </li>
+          <li>
+            <strong>DonDominio</strong>, en España, donde está alojado nuestro
+            buzón de correo.
+          </li>
+          <li>
+            <strong>Vercel Inc.</strong>, en Estados Unidos, que aloja y sirve
+            esta web. Como cualquier alojamiento, registra datos técnicos de las
+            visitas, como la dirección IP. Vercel está adherida al Marco de
+            Privacidad de Datos UE-EE. UU. y su contrato incluye además las
+            cláusulas contractuales tipo de la Comisión Europea.
+          </li>
+        </ul>
+
+        <h2 id="plazo">6. Cuánto tiempo</h2>
+        <p>
+          Nosotros los conservamos mientras dure la conversación y, como máximo,
+          doce meses después del último mensaje, salvo que te hagas cliente. La
+          copia que guarda Web3Forms se borra sola, como máximo, a los tres años
+          del envío.
+        </p>
+
+        <h2 id="derechos">7. Tus derechos</h2>
+        <p>
+          Puedes pedir ver, corregir o borrar tus datos, oponerte a su uso o
+          pedir que te los entreguemos, escribiendo a
+          <a href={`mailto:${titular.email}`}>{titular.email}</a>. Si crees que
+          no hemos respetado tus derechos, puedes reclamar ante la Agencia
+          Española de Protección de Datos
+          (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).
+        </p>
+
+        <h2 id="cookies">8. Cookies</h2>
+        <p>
+          <strong>Esta web no usa cookies de analítica ni de publicidad.</strong>
+          La tipografía y el resto de recursos se sirven desde esta misma web:
+          solo al enviar el formulario se conecta con Web3Forms.
+        </p>
+
+        <h2 id="app">9. Los datos de la aplicación</h2>
+        <p>
+          Si usas Forjia como empresa o como trabajador, el tratamiento de los
+          fichajes y del resto de datos se explica en la
+          <a href="https://forjia.es/privacidad" rel="noopener">política de privacidad de la aplicación</a>.
+        </p>
+
+        <hr />
+        <p class="legal-foot">
+          Documentos relacionados:
+          <a href="/aviso-legal">Aviso legal</a> ·
+          <a href="/condiciones">Condiciones del Servicio</a> ·
+          <a href="https://forjia.es/privacidad" rel="noopener">Privacidad de la aplicación</a> ·
+          <a href="/contacto">Contacto</a>
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* CABECERA (mismo tratamiento que /aviso-legal y /condiciones) */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(var(--color-accent-rgb), 0.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(var(--color-primary-rgb), 0.1), transparent 55%),
+      var(--color-white);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem) 2.5rem;
+  }
+
+  .hero h1 {
+    margin-block: 0.5rem 1.25rem;
+    font-size: clamp(2.1rem, 4.2vw, 3rem);
+  }
+
+  .legal-wrap {
+    max-width: var(--content-narrow);
+  }
+
+  .version {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  /* CONTENIDO */
+  .legal {
+    padding-top: 2.5rem;
+  }
+
+  .toc {
+    background: var(--color-light-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .toc-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .toc a {
+    color: var(--color-text);
+  }
+
+  .toc a:hover {
+    color: var(--color-primary);
+  }
+
+  .legal-body h2 {
+    scroll-margin-top: 6rem;
+  }
+
+  .legal-body ul {
+    list-style: disc;
+  }
+
+  .legal-foot {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .toc ol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

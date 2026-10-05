@@ -14,6 +14,10 @@
     { "source": "/asesorias", "destination": "/gestorias", "permanent": true },
     { "source": "/asesoria", "destination": "/gestorias", "permanent": true },
     { "source": "/asesor%C3%ADas", "destination": "/gestorias", "permanent": true },
+    { "source": "/asesor%C3%ADa", "destination": "/gestorias", "permanent": true },
+    { "source": "/Asesorias", "destination": "/gestorias", "permanent": true },
+    { "source": "/para-gestorias", "destination": "/gestorias", "permanent": true },
+    { "source": "/despachos", "destination": "/gestorias", "permanent": true },
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true }
   ]
 }

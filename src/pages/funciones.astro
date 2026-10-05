@@ -23,8 +23,8 @@ const fichaje = [
   },
   {
     icon: 'qr',
-    title: 'Modo kiosco con QR o PIN',
-    text: 'Una tablet compartida en la entrada: cada empleado ficha escaneando el QR o con su PIN. Incluye un cartel A4 imprimible.',
+    title: 'Modo kiosco y cartel QR',
+    text: 'Una tablet compartida en la entrada donde cada empleado ficha con su PIN. Y un cartel A4 con un código QR para fichar con el propio móvil.',
   },
   {
     icon: 'camera',
@@ -35,11 +35,6 @@ const fichaje = [
     icon: 'coffee',
     title: 'Pausas con incidencia',
     text: 'El empleado marca la pausa y, si hace falta, indica el motivo. Las pausas quedan separadas de las horas trabajadas.',
-  },
-  {
-    icon: 'medical',
-    title: 'Visitas médicas',
-    text: 'Registro de las visitas médicas como ausencia justificada, sin restar de las vacaciones.',
   },
 ];
 
@@ -77,7 +72,12 @@ const vacaciones = [
   {
     icon: 'calendar',
     title: 'Festivos y calendario de equipo',
-    text: 'Carga los festivos nacionales de un clic y añade los locales. Calendario de equipo para ver quién falta cada día.',
+    text: 'Carga los festivos nacionales con un clic y añade los locales. Calendario de equipo para ver quién falta cada día.',
+  },
+  {
+    icon: 'medical',
+    title: 'Visitas médicas',
+    text: 'Registro de las visitas médicas como ausencia justificada, sin restar de las vacaciones.',
   },
 ];
 
@@ -120,7 +120,7 @@ const panel = [
   {
     icon: 'user-plus',
     title: 'Alta de empleados en bloque',
-    text: 'Pega una lista de nombres y correos y da de alta a todo el equipo de una vez. Cada persona recibe su acceso.',
+    text: 'Pega una lista de nombres y correos y da de alta a todo el equipo de una vez. La app genera las credenciales y tú las repartes.',
   },
 ];
 
@@ -129,12 +129,12 @@ const legal = [
   {
     icon: 'file',
     title: 'Parte de horas en PDF',
-    text: 'Resumen del periodo por trabajador y detalle de cada fichaje, con el formato que pide la Inspección de Trabajo.',
+    text: 'Resumen del periodo por trabajador y cada fichaje desglosado, con el detalle que suele pedir la Inspección de Trabajo.',
   },
   {
     icon: 'shield',
     title: 'Informe de auditoría',
-    text: 'Historial completo de cambios de cada fichaje, listo para acreditar que el registro es fiable e inalterable (art. 34.9 ET).',
+    text: 'Historial completo de cambios de cada fichaje: quién, cuándo y qué cambió. Te ayuda a demostrar que el registro es fiable e inalterable.',
   },
   {
     icon: 'table',
@@ -153,17 +153,17 @@ const gestorias = [
   {
     icon: 'buildings',
     title: 'Panel de cartera',
-    text: 'Todas tus empresas cliente en un solo panel. Entra en cada una como administrador sin pedir contraseñas.',
+    text: 'Todas tus empresas cliente en un solo panel. Entra en cada una con tu propio acceso, sin pedir contraseñas.',
   },
   {
     icon: 'eye-off',
     title: 'Privacidad por defecto',
-    text: '9 permisos configurables. Por defecto la gestoría NO ve GPS, selfies, motivos médicos, documentos ni credenciales; la empresa decide qué abrir.',
+    text: 'Por defecto la gestoría ve los fichajes, las horas y los informes, y puede dar de alta a la plantilla. No ve la ubicación, las fotos, los motivos de las ausencias ni los justificantes de los trabajadores, y no puede cambiar contraseñas, salvo que la empresa lo autorice por escrito.',
   },
   {
     icon: 'history',
     title: 'Registro de accesos visible',
-    text: 'La empresa cliente ve cuándo ha entrado la gestoría y qué ha consultado. Confianza en las dos direcciones.',
+    text: 'En su app, la empresa cliente consulta qué puede ver su gestoría y cuándo ha entrado. Confianza en las dos direcciones.',
   },
   {
     icon: 'download',
@@ -174,16 +174,16 @@ const gestorias = [
 
 // --- PLATAFORMA ---
 const plataforma = [
-  { icon: 'smartphone', title: 'PWA y app Android', text: 'Instálala como app web o desde Google Play.' },
+  { icon: 'smartphone', title: 'Web y app instalable en Android y iPhone', text: 'Instálala en el móvil desde el navegador, como app web.' },
   { icon: 'languages', title: '3 idiomas', text: 'Español, catalán e inglés.' },
   { icon: 'moon', title: 'Modo oscuro', text: 'Cómoda a cualquier hora.' },
-  { icon: 'shield', title: 'Datos en la UE', text: 'Alojamiento europeo (Supabase) y copias de seguridad.' },
+  { icon: 'shield', title: 'Base de datos en la UE', text: 'Base de datos alojada en la UE (Supabase), con copias de seguridad.' },
 ];
 ---
 
 <BaseLayout
-  title="Funciones de Forjia — Fichaje, turnos, vacaciones, documentos e informes"
-  description="Todas las funciones de Forjia: fichaje móvil con GPS opcional, modo kiosco con QR o PIN, turnos, vacaciones y ausencias, documentos con firma, panel del jefe en tiempo real, informes para Inspección de Trabajo y panel para gestorías."
+  title="Funciones de Forjia — Fichaje, turnos, vacaciones e informes"
+  description="Fichaje móvil con GPS opcional, kiosco con PIN, turnos, vacaciones, documentos con firma, informes y panel para gestorías: todo lo que hace Forjia hoy."
 >
   <!-- ================= HERO ================= -->
   <section class="hero">
@@ -268,13 +268,13 @@ const plataforma = [
       <figure class="feature-shot">
         <img
           src="/img/capturas/5-kiosko.jpg"
-          alt="Modo kiosco de Forjia en una tablet: los empleados fichan con código QR o con su PIN"
+          alt="Código QR de fichaje de Forjia para escanear con el propio móvil; en la tablet del modo kiosco cada empleado ficha con su PIN de 4 dígitos"
           width="1080"
           height="1920"
           loading="lazy"
           class="shot"
         />
-        <figcaption>Modo kiosco: una tablet en la entrada y un cartel A4 con el QR.</figcaption>
+        <figcaption>En la entrada: una tablet en modo kiosco para fichar con PIN, o un cartel A4 con el QR para fichar con el propio móvil.</figcaption>
       </figure>
     </div>
   </section>
@@ -325,7 +325,7 @@ const plataforma = [
         <h2>Nóminas y contratos firmados desde el móvil</h2>
         <p class="lead">
           Comparte documentos con cada empleado y recoge su firma con el dedo.
-          Se acaba imprimir, firmar y escanear.
+          Se acabó imprimir, firmar y escanear.
         </p>
         <div class="grid feature-cards">
           {
@@ -397,11 +397,11 @@ const plataforma = [
     <div class="container feature-block feature-block--reverse reveal">
       <div class="feature-text">
         <span class="eyebrow">Informes y cumplimiento legal</span>
-        <h2>Listo para la Inspección de Trabajo</h2>
+        <h2>Informes para una inspección</h2>
         <p class="lead">
-          Registro de jornada conforme al <strong>art. 34.9 del Estatuto de los
-          Trabajadores</strong>. Los informes salen con un clic y los registros se
-          conservan 4 años.
+          Te ayuda a llevar el registro de jornada que pide el <strong>art. 34.9
+          del Estatuto de los Trabajadores</strong>. Los informes salen con un clic
+          y los registros se conservan 4 años.
         </p>
       </div>
       <figure class="feature-shot">
@@ -502,7 +502,7 @@ const plataforma = [
     <div class="container section-head reveal">
       <h2>Pruébalo con tu equipo, gratis</h2>
       <p class="lead">
-        30 días con todas las funciones, sin tarjeta y sin compromiso. Si no os
+        30 días con todas las funciones, sin tarjeta y sin compromiso. Si no te
         convence, no pasa nada.
       </p>
       <div class="hero-actions" style="justify-content: center;">

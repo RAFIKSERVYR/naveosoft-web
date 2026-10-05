@@ -2,7 +2,7 @@
 title: 'Registro horario en tu pyme: qué dice la ley (RD-ley 8/2019)'
 description: 'Guía sencilla sobre el registro de jornada obligatorio en España: qué exige el RD-ley 8/2019, qué debes guardar y cómo cumplir sin complicaciones.'
 pubDate: 2026-08-04
-author: 'Equipo Forjia'
+author: 'Forjia'
 category: 'Fichaje y normativa'
 tags: ['registro horario', 'RD-ley 8/2019', 'fichaje', 'pymes']
 draft: false
@@ -37,7 +37,7 @@ errores o huecos... y más riesgo ante una inspección.
 
 ## Errores más habituales
 
-- **Fichar "de memoria" al final de la semana.** El registro debe ser diario.
+- **Fichar «de memoria» al final de la semana.** El registro debe ser diario.
 - **No guardar los datos el tiempo suficiente.** Son cuatro años.
 - **Usar sistemas fáciles de alterar**, que no dan garantías de fiabilidad.
 
@@ -56,5 +56,5 @@ tener el registro al día.
 
 ---
 
-*¿Quieres ver si Forjia encaja en tu empresa? [Empieza gratis](https://forjia.es/registro):
-30 días de prueba gratis. Y si prefieres hablar antes, [escríbenos](/contacto).*
+*¿Quieres ver si Forjia encaja en tu empresa? [Empieza gratis](https://forjia.es/registro)
+con 30 días de prueba. Y si prefieres hablar antes, [escríbenos](/contacto).*
