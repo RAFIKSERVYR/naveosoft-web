@@ -144,13 +144,13 @@ control horario para pymes españolas, con un modo pensado para gestorías:
   empresa lo autorice por escrito.
 - **Registro de accesos** del despacho a cada empresa: queda constancia de cada
   entrada, y la empresa cliente puede consultarlo en su app.
-- **Precio para gestorías: 9 € por empresa al mes** para empresas de hasta 25
-  trabajadores (19 € de 26 a 50), con un mínimo de 79 € a partir del cuarto mes
-  (IVA no incluido). Sin módulos ni sorpresas: sabes lo que pagas y lo que puedes
+- **Precio para gestorías: desde 4 € por empresa al mes**: 4 € para empresas de
+  hasta 5 trabajadores, 9 € de 6 a 25 y 19 € de 26 a 50 (IVA no incluido), sin
+  mínimo mensual. Sin módulos ni sorpresas: sabes lo que pagas y lo que puedes
   repercutir a cada cliente.
 
-Con 20 empresas, por ejemplo, si todas tienen hasta 25 trabajadores, hablamos de
-180 € al mes + IVA por dejar de perseguir veinte Excel. Si a eso le sumas que
+Con 20 empresas, por ejemplo, si la mitad tienen hasta 5 trabajadores y la otra
+mitad de 6 a 25, hablamos de 130 € al mes + IVA por dejar de perseguir veinte Excel. Si a eso le sumas que
 puedes ofrecerlo a tus clientes como un servicio tuyo, las cuentas suelen salir
 rápido.
 
