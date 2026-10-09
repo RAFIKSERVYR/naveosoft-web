@@ -2,6 +2,8 @@
 /**
  * Página de Contacto (/contacto) de la web de Forjia.
  * Formulario (nombre, email, empresa, mensaje) + email directo info@forjia.es.
+ * Con ?demo=gestoria (botones «Pide una demo» de /gestorias) el formulario se
+ * adapta: aviso de la demo, asunto propio y «Gestoría o despacho».
  * El formulario YA ESTÁ ACTIVO: envía por fetch a Web3Forms (api.web3forms.com)
  * con una access_key pública y muestra éxito/error sin recargar la página.
  *
@@ -117,6 +119,13 @@ const contactJsonLd = {
             value="Nuevo mensaje desde el formulario de la web de Forjia"
           />
           <input type="hidden" name="from_name" value="Web Forjia" />
+
+          {/* Solo se ve al llegar desde «Pide una demo» de /gestorias (?demo=gestoria). */}
+          <p id="demo-aviso" class="demo-aviso" hidden>
+            Pides una <strong>demo de Forjia para tu gestoría</strong> (unos 15
+            minutos). Cuéntanos cuántas empresas llevas y qué días y horas te
+            vienen bien.
+          </p>
 
           <div class="field">
             <label for="nombre">Nombre <span class="req">*</span></label>
@@ -330,6 +339,18 @@ const contactJsonLd = {
     text-underline-offset: 2px;
   }
 
+  /* Aviso de la demo para gestorías (solo con ?demo=gestoria) */
+  .demo-aviso {
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: rgba(var(--color-primary-rgb), 0.08);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius);
+  }
+
   /* Información básica de protección de datos, bajo la casilla */
   .form-legal {
     margin: -0.5rem 0 1.25rem;
@@ -402,6 +423,22 @@ const contactJsonLd = {
   const button = form?.querySelector(
     'button[type="submit"]'
   ) as HTMLButtonElement | null;
+
+  // «Pide una demo» de /gestorias llega con ?demo=gestoria: el mensaje lleva su
+  // propio asunto (para distinguirlo en info@forjia.es) y el formulario se adapta.
+  if (form && new URLSearchParams(window.location.search).get('demo') === 'gestoria') {
+    const asunto = form.querySelector('input[name="subject"]') as HTMLInputElement | null;
+    if (asunto) asunto.value = 'Demo para gestoría (formulario de la web de Forjia)';
+    const aviso = document.getElementById('demo-aviso');
+    if (aviso) aviso.hidden = false;
+    const etiquetaEmpresa = form.querySelector('label[for="empresa"]');
+    if (etiquetaEmpresa) etiquetaEmpresa.textContent = 'Gestoría o despacho';
+    const mensaje = document.getElementById('mensaje') as HTMLTextAreaElement | null;
+    if (mensaje) {
+      mensaje.placeholder =
+        'Cuántas empresas llevas, cuántos trabajadores tienen más o menos y qué días y horas te vienen bien.';
+    }
+  }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
